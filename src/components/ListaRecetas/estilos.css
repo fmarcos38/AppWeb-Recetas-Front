@@ -1,0 +1,8 @@
+.contListaRecetas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    width: 95%;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}

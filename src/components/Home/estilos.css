@@ -1,0 +1,15 @@
+.contIzq{
+    background-color: aquamarine;
+}
+.contMed{    
+    background-color: rgba(49, 208, 110, 0.722);
+}
+.contDer{
+    background-color: rgb(196, 251, 255);
+}
+
+.contTituloColMed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
