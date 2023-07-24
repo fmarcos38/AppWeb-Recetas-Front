@@ -1,6 +1,7 @@
 import React from 'react';
 import './estilos.css';
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function CardReceta({_id, title, image, diets, analyzedInstructions}) {
     return (
@@ -12,16 +13,20 @@ function CardReceta({_id, title, image, diets, analyzedInstructions}) {
                 {
                     diets?.map(t => {
                         return(
-                            <div key={t}>
-                                <p>{t}</p>
+                            <div key={t.name}>
+                                <p>{t.name}</p>
                             </div>
                         )
                     })
                 }                
             </div>
-            <div class="card-footer">
-                <button></button>
-                <button></button>
+            <div class="card-footer contBtnsFavElim">
+                <button className='cardButton'>
+                    <FavoriteBorderIcon/>
+                </button>
+                <button className='cardButton'>
+                    <DeleteForeverIcon/>
+                </button>
             </div>
         </div>
     )

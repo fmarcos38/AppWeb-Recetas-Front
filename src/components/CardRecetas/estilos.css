@@ -8,3 +8,36 @@
     height: 200px;
     
 }
+.contBtnsFavElim{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* fav */
+.cardButton {
+    border: 1px solid aqua;
+    display: flex;
+    padding: .3em;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: .3s ease-in-out;
+    background-color: rgb(230, 223, 223);
+    color: black;
+    margin-right: 5px;
+    margin-bottom: 5px;
+} 
+.cardButtonFav{
+    border: 1px solid #252525;
+    display: flex;
+    padding: .3em;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 1px solid #e33939;
+    background-color: #e33939;
+    color: #ffffff;
+    margin-right: 5px;
+}
+ /* btnS-Admin */
+.btn-elimProd{
+    border-radius: 30px;
+}
