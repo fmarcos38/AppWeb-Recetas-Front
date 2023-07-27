@@ -1,8 +1,14 @@
+.contGralR{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+}
 .contListaRecetas{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; 
-    width: 95%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+    
     margin-left: 2rem;
     margin-bottom: 1rem;
 }

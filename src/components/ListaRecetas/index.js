@@ -17,15 +17,16 @@ function ListaRecetas() {
     },[dispatch]);
     
     return (
-        <div class="contListaRecetas">
+        <div class="container-fluid contGralR">
             {
                 load ? 
                 <>
                     <Loading/>
                 </>
                 :
-                <>
+                <div class=" contListaRecetas">
                     {
+
                         allRecetas[0] ?
                         allRecetas.map(r => {
                             return(
@@ -36,7 +37,7 @@ function ListaRecetas() {
                         }) :
                         <span>No recetas</span>
                     }
-                </>
+                </div>
             }
             
         </div>

@@ -3,6 +3,8 @@ import logo from '../../imagenes/logo.ico';
 import './estilos.css';
 
 function NavBar() {
+
+    
     return (
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -15,9 +17,11 @@ function NavBar() {
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
@@ -29,10 +33,18 @@ function NavBar() {
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link disabled">Disabled</a>
                         </li>
                     </ul>
+
+                    {/* login */}
+                    <a href='/login' class="btn btn-secundary btnLog">Login</a>
+                    {/* registrarse */}
+                    <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
+
+                    {/* searchBar */}
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                         <button class="btn btn-outline-success" type="submit">Search</button>

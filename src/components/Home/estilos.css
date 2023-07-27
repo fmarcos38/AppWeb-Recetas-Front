@@ -1,11 +1,14 @@
 .contIzq{
     background-color: aquamarine;
+    height: 100vh;
 }
 .contMed{    
     background-color: rgba(49, 208, 110, 0.722);
+    height: 100%;
 }
 .contDer{
     background-color: rgb(196, 251, 255);
+    height: 100vh;
 }
 
 .contTituloColMed{
