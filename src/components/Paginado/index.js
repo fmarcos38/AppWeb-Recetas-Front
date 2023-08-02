@@ -3,14 +3,14 @@ import './estilos.css';
 
 
 function Paginado({paginaActual, totalPag, onChangePag}) {
-    console.log("paginaActual: ", paginaActual)
     
     const numPage = [];
 
     for(let i=1; i <= Math.ceil(totalPag); i++){
         numPage.push(i);
     }
-    console.log("numPage: ", numPage.length)
+    
+    
     return (
         <nav className='contGralPaginado'>
             {/*btn Prev */}
