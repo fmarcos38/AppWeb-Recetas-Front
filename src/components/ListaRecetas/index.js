@@ -18,24 +18,24 @@ function ListaRecetas() {
     const totalPag =  Math.ceil(19/5);//allRecetas.page.totalRecetasDB / allRecetas.page.registrosPorPagina;
     //calculo la variable DESDE q mando al front    
     
-    //let desde = calculoDesde(paginaActual);
+    
 
     const onChangePag = (numPag) => {
         setPaginaActual(numPag);
-        //dispatch(getRecetas(desde));
     };   
     
     useEffect(()=>{
-                
+
         const calculoDesde = (pagAct) => {
-            console.log("pagActLista: ", paginaActual)
+            console.log("pagActLista: ", pagAct)
             if(pagAct === 1){
                 return 0;
             }else{
-                return (paginaActual - 1) * 5;
+                return (pagAct - 1) * 5;
             }
         }
-        dispatch(getRecetas(calculoDesde(paginaActual)));;
+
+        dispatch(getRecetas(calculoDesde(paginaActual)));
     },[dispatch, paginaActual]);
 
 
