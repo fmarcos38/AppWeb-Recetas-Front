@@ -1,19 +1,27 @@
-import { GET_RECETAS, LOAD, LOGIN, REGISTRARSE } from "./actionsType";
+import { FILTROS, GET_RECETAS, LOAD, LOGIN, REGISTRARSE } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
 /*---------actions Recetas CRUD----------------*/
 //trae todas las recetas Api + DB
-export function getRecetas(){
+export function getRecetas(desde){
     return async function (dispatch) {
         dispatch({type: LOAD}); 
         
-        let resp = await axios.get(`${urlDesarrollo}/recetas`);
+        let resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
         return  dispatch({ type: GET_RECETAS, payload: resp.data });    
     };
 };
 
-
+//filtros
+export function filtrar(filtro){
+    return async function(dispatch){
+        dispatch({type: LOAD});
+console.log("Lo q mandaré:", filtro)
+        const resp = await axios.post(`${urlDesarrollo}/recetas/filtro`, filtro);
+        return dispatch({type: FILTROS, payload: resp.data});
+    }
+};
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){
@@ -33,11 +41,16 @@ export function validaCuenta(token){
     
 };
 
-//login
+//login 
+/**
+ * data: 
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZtYXJjb3NfMjNAaG90bWFpbC5jb20iLCJpYXQiOjE2OTA1NTE5Nzd9.G9V0eo3TehiLOawlB8a1TOAs8fSI-zRWIUewm9p1WIk"
+    user: {_id: '64c2d06f02f69d66256a44bf', name: 'marcos', email: 'fmarcos_23@hotmail.com', password: 'U2FsdGVkX1/zvvdoMq2zS4sz97dkzFTW95/34cu1GYA=', role: 'cliente', …}
+*/
 export function login(data){
     return async function(dispatch){        
         const resp = await axios.post(`${urlDesarrollo}/auth/login`, data);
-        console.log("respAction: ", resp);
+        
         if(resp.data.token){
             localStorage.setItem('user', JSON.stringify(resp.data));
             return dispatch({type: LOGIN, payload: "ok"})

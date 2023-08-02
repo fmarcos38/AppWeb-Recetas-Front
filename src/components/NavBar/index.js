@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../imagenes/logo.ico';
 import './estilos.css';
+import userLog from '../../localStorage';
+import { useNavigate } from 'react-router-dom';
 
-function NavBar() {
-
+function NavBar() {     
     
+    //me traigo la data del user logeado
+    const userData = userLog.getUserActual;  //console.log("data:", userData);
+    const navigate = useNavigate();
+    const [userActual, setUserActual] = useState(false);
+    const [name, setName] = useState("");
+    
+    useEffect(()=>{
+        if(userData !== null){
+            setName(userData.user.name);
+            setUserActual(true);
+        }
+    },[userData]);
+        
+
+    const handleLogout = (e) => {
+        userLog.logout();
+        navigate('/');
+    };
+
+
     return (
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -13,7 +34,10 @@ function NavBar() {
                 </a>
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {
+                        userActual === true &&
+                        <>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -37,18 +61,37 @@ function NavBar() {
                         <li class="nav-item">
                             <a class="nav-link disabled">Disabled</a>
                         </li>
-                    </ul>
+                        </ul>
+                        </>                        
+                    }
 
-                    {/* login */}
-                    <a href='/login' class="btn btn-secundary btnLog">Login</a>
-                    {/* registrarse */}
-                    <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
+                    {/* login/Logout Registrarse*/}
+                    {
+                        userActual === false ?
+                        <>
+                            <span>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas y cocinar como un verdadero CHEFF !!</span>
+                            <a href='/login' class="btn btn-secundary btnLog">Login</a>
+                            {/* registrarse */}
+                            <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
+                        </>
+                        :
+                        <>
+                            <span className='contNombreUser'>Hola {name}</span>
+                            <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
+                        </>
+                    }
 
                     {/* searchBar */}
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    {
+                        userActual === true &&
+                        <>
+                            <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                        </>
+                    }
+                    
                 </div>
             </div>
         </nav>

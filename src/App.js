@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -7,8 +8,9 @@ import CardReceta from './components/CardRecetas';
 import CreateR from './components/FormCreateReceta';
 import Login from './components/Login';
 import Registrarse from './components/Registrarse';
-
 function App() {
+
+
   return (
     <div className="App">
       <Routes>
