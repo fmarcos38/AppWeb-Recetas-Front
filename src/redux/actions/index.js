@@ -4,21 +4,26 @@ import { urlDesarrollo } from "./urls";
 
 /*---------actions Recetas CRUD----------------*/
 //trae todas las recetas Api + DB
-export function getRecetas(desde){
+export function getRecetas(desde, dieta){
     return async function (dispatch) {
         dispatch({type: LOAD}); 
         
-        let resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
+        let resp = [];
+        if(!dieta){
+            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
+        }else{
+            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&dieta=${dieta}`);
+        }
+        
         return  dispatch({ type: GET_RECETAS, payload: resp.data });    
     };
 };
 
 //filtros
-export function filtrar(filtro){
-    return async function(dispatch){
-        dispatch({type: LOAD});
-console.log("Lo q mandaré:", filtro)
-        const resp = await axios.post(`${urlDesarrollo}/recetas/filtro`, filtro);
+export function filtrar(desde, dieta){
+    return async function(dispatch){        
+console.log("Lo q mandaré:", dieta)
+        const resp = await axios.post(`${urlDesarrollo}/recetas/filtro?desde=${desde}`, dieta);
         return dispatch({type: FILTROS, payload: resp.data});
     }
 };
@@ -26,7 +31,7 @@ console.log("Lo q mandaré:", filtro)
 export function registrarse(data){
     return async function(dispatch){
         const resp = await axios.post(`${urlDesarrollo}/auth`, data);
-        console.log("RespActionRegistrarse: ", resp.data);
+        
         if(resp.data.token){
             localStorage.setItem('user', JSON.stringify(resp.data)); //asigno el token q viene del back
             return dispatch({type: REGISTRARSE, payload: "true"});

@@ -3,22 +3,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filtrar } from '../../redux/actions';
 
 function Filtros() {
+
     const tiposDietas = useSelector(state => state.TiposDietas);
-    const [tipos, setTipos] = useState([]);
+    const [dieta, setDieta] = useState({dieta: ""});
     const dispatch = useDispatch();
 
     const handleChecked = (e) => {
-        if(e.target.checked === true){
-            setTipos([...tipos, {name:e.target.value}]);
-        }else{
-            setTipos(tipos.filter(t => t !== e.target.value));
-        }    
-        console.log("tipos:", tipos)    
+        console.log("dieta:", e.target.value)
+        
+        setDieta(e.target.value);      
     };
     const handleSubmit = (e) => {
-        if(tipos[0]){
-            console.log("tipos:", tipos)
-            dispatch(filtrar(tipos));
+        if(dieta){
+            console.log("dietaSUB:", dieta)
+            dispatch(filtrar(dieta.dieta));
+            //setDieta("");
+        }else{
+            alert("No seleccionaste ningún filtro!!");
         }
     };    
 
@@ -31,7 +32,7 @@ function Filtros() {
                 tiposDietas?.map(d => {
                     return(
                         <div key={d._id}>
-                            <input type='checkbox' id={d.tipo} value={d.tipo} onClick={handleChecked}/>
+                            <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/>
                             <label>{d.tipo}</label>
                         </div>
                     )
