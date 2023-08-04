@@ -2,7 +2,7 @@ import React from 'react';
 import './estilos.css';
 
 
-function Paginado({paginaActual, totalPag, onChangePag}) {
+function Paginado({paginaActual, totalPag, onChangePag, barbie}) {
     
     const numPage = [];
 
@@ -23,7 +23,7 @@ function Paginado({paginaActual, totalPag, onChangePag}) {
             {
                 numPage && numPage.map((num) => {
                     return(
-                        <button  class="btn btn-primary" key={num}
+                        <button  className={barbie ? "btn btn-info" : "barbieBtn"} key={num}
                             onClick={() => onChangePag(num)}
                         >
                             {num}

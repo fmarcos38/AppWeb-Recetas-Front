@@ -2,8 +2,9 @@ import React from 'react'
 import CardReceta from '../CardRecetas';
 import './estilos.css';
 import Loading from "../Loading"
+import Circle from '../circular';
 
-function ListaRecetas({load, allRecetas}) {
+function ListaRecetas({load, allRecetas, barbie}) {
 
 
     return (
@@ -20,9 +21,18 @@ function ListaRecetas({load, allRecetas}) {
                         allRecetas.recetas[0] ?
                         allRecetas.recetas.map(r => {
                             return(
-                                <div key={r._id}>
-                                    <CardReceta title={r.title} image={r.image} diets={r.diets}/>
-                                </div>
+                                <>
+                                    {
+                                    barbie !== true ?
+                                        <div key={r._id}>
+                                            <Circle title={r.title} image={r.image} diets={r.diets}/>
+                                        </div>
+                                    :
+                                        <div key={r._id}>
+                                            <CardReceta title={r.title} image={r.image} diets={r.diets}/>                                    
+                                        </div>
+                                    }
+                                </>                                                                
                             )
                         }) :
                         <span>No recetas</span>

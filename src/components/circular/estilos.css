@@ -1,0 +1,36 @@
+.circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff1b82e5;
+    border-radius: 10px;
+}
+.containerTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.circle {
+    width: 250px;
+    height: 250px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen{
+    width: 249px;
+    height: 249px;
+    border-radius: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.etiqtaIZQ{
+    margin-right: 1rem;
+}
+.etiqtaDER{
+    margin-left: 1rem;
+}

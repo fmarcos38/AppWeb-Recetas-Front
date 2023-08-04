@@ -1,18 +1,40 @@
 .contIzq{
-    background-color: aquamarine;
     height: 100vh;
 }
-.contMed{    
-    background-color: rgba(49, 208, 110, 0.722);
+.contMed{
     height: 100%;
 }
 .contDer{
-    background-color: rgb(196, 251, 255);
     height: 100vh;
 }
 
+/*----col izq----*/
+.tituloFiltros{
+    margin-top: 1.5rem;
+    color: #ff0080;
+    font-family: 'Heebo', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+    font-size:xx-large;
+}
+.nombDieta{
+    color: #ff0080;
+    margin-left: 0.5rem;
+}
+/*----col central----*/
 .contTituloColMed{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*-------col DER-----*/
+.contBtnsBarbie{
+    margin-top: 2rem;
+}
+.barbie, .luna{
+    color: #ff0080
+}
+.ken, .sol{
+    color: aqua
 }

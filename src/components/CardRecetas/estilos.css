@@ -1,27 +1,26 @@
 .contCard{
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 30px;
-    width: 370px;  
-    height: 550px;  
-    background-color:rgb(230, 223, 223);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
+    width: 270px;  
+    height: 500px;  
+    background-color:rgb(31, 31, 30);
     position: relative;
     min-height: 15rem;
     align-items: flex-start;
     display: flex;
     flex-direction: column;     
     border-radius: 20px;
-    border-color: aqua;
+    border-color:aqua;
+    color: aqua;
     border-style: solid;
 }
 .imgReceta{
-    width: 300px;
-    height: 240px;
+    width: 250px;
+    height: 200px;
     border-radius: 20px;
-    margin-left: 35px;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    margin: 2px 2px 2px 2px
     
 }
 .contBtnsFavElim{

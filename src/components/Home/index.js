@@ -5,8 +5,11 @@ import ListaRecetas from '../ListaRecetas';
 import NavBar from '../NavBar';
 import { getRecetas } from '../../redux/actions';
 import Paginado from '../Paginado';
+import ModeNightIcon from '@mui/icons-material/ModeNight';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Switch from '@mui/material/Switch';
 
-function Home() {
+function Home({ handleClick}) {
 
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
@@ -42,7 +45,16 @@ function Home() {
             alert("No seleccionaste ningún filtro!!");
         }
     };
-    /*--------------------------------------------*/
+    /*--------------------------------------------*/  
+    
+    /*---barbie/ken-------------------------------*/
+    const [barbie, setBarbie] = useState(true);
+
+    const handleChange = (e) => {
+        setBarbie(!barbie);
+    };
+    //----------------------------------------------
+
     useEffect(()=>{
         //para el paginado
         const calculoDesde = (pagAct) => {            
@@ -66,9 +78,10 @@ function Home() {
             <NavBar/>
             <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
                 <div class="row">
-                    <div class="col-2 contIzq"> {/* este div abarca 3 de las 12col */}
-                        <div class="container">
-                            <h3>Filtros</h3>
+                    <div class="col-2 contIzq "> {/* este div abarca 3 de las 12col */}
+                        <div class="container ">                            
+                            <h3 class='tituloFiltros'>Filtros</h3>
+                                                        
 
                             <form onSubmit={handleSubmit}>
                             {
@@ -76,27 +89,27 @@ function Home() {
                                     return(
                                         <div key={d._id}>
                                             <input type='checkbox' id={d.tipo} checked={false} value={d.tipo} onChange={handleChecked}/>
-                                            <label>{d.tipo}</label>
+                                            <label className={"nombDieta"}>{d.tipo}</label>
                                         </div>
                                     )
                                 })
                             }
                                 <button type='submit'>Filtrar</button>
-                            </form>
+                            </form>                            
                         </div>
                     </div>
 
 
                     <div class="container col contMed"> {/* este abarca 9col */}
                         <div class="contTituloColMed">
-                            <h2>Aquí vas a encontrar las mejores recetas y soluciones para tus comidas</h2>
+                            <h2 className='tituloFiltros'>Aquí vas a encontrar las mejores recetas y soluciones para tus comidas</h2>
                         </div>
                         <div>
-                            <ListaRecetas load={load} allRecetas={allRecetas}/>
+                            <ListaRecetas load={load} allRecetas={allRecetas} barbie={barbie}/>
                             {/* paginacion */}
                             {
                                 <div>
-                                    <Paginado paginaActual={paginaActual} totalPag={totalPag} onChangePag={onChangePag}/>
+                                    <Paginado paginaActual={paginaActual} totalPag={totalPag} onChangePag={onChangePag} barbie={barbie}/>
                                 </div>
                             }
                         </div>                        
@@ -104,7 +117,16 @@ function Home() {
 
                     
                     <div class="col-2 contDer"> {/* este abarca 1col */}
-                        queda sin utilizar
+                        <div className='contBtnsBarbie'>
+                            <ModeNightIcon className='luna'/>
+                            <Switch /* checked={barbie} */ onChange={handleClick} inputProps={{ 'aria-label': 'controlled' }} />
+                            <WbSunnyIcon className='sol'/>
+                            
+                            <br/>
+                            <label class="barbie">Barbie</label>
+                            <Switch /* checked={barbie} */ onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
+                            <label class="ken">Ken</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,3 +135,5 @@ function Home() {
 }
 
 export default Home
+
+
