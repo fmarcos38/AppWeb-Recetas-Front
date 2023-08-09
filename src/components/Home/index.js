@@ -18,7 +18,7 @@ function Home({ handleClick}) {
     //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
     //console.log("allRecetas.page.registrosPorPagina: ", allRecetas.page.registrosPorPagina)
     const [paginaActual, setPaginaActual] = useState(1); //estado pagina actual
-    const totalPag =  Math.ceil(19/5);//allRecetas.page.totalRecetasDB / allRecetas.page.registrosPorPagina;    
+    const totalPag =  Math.ceil(100 / 20);//allRecetas.page.totalRecetasDB / allRecetas.page.registrosPorPagina;    
     const onChangePag = (numPag) => {
         setPaginaActual(numPag);
     };   
@@ -28,7 +28,6 @@ function Home({ handleClick}) {
     const [dieta, setDieta] = useState();
 
     const handleChecked = (e) => {
-        console.log("dieta:", e.target.value)
         if(e.target.checked === true){
             setDieta(e.target.value);      
         }else{
@@ -38,8 +37,7 @@ function Home({ handleClick}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(dieta){
-            console.log("dietaSUB:", dieta)
-            //dispatch(getRecetas(paginaActual, dieta));
+            dispatch(getRecetas(paginaActual, dieta));
             //setDieta("");
         }else{
             alert("No seleccionaste ningún filtro!!");
@@ -48,7 +46,7 @@ function Home({ handleClick}) {
     /*--------------------------------------------*/  
     
     /*---barbie/ken-------------------------------*/
-    const [barbie, setBarbie] = useState(true);
+    const [barbie, setBarbie] = useState(false);
 
     const handleChange = (e) => {
         setBarbie(!barbie);
@@ -78,31 +76,41 @@ function Home({ handleClick}) {
             <NavBar/>
             <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
                 <div class="row">
-                    <div class="col-2 contIzq "> {/* este div abarca 3 de las 12col */}
-                        <div class="container ">                            
-                            <h3 class='tituloFiltros'>Filtros</h3>
-                                                        
-
-                            <form onSubmit={handleSubmit}>
-                            {
-                                tiposDietas?.map(d => {
-                                    return(
-                                        <div key={d._id}>
-                                            <input type='checkbox' id={d.tipo} checked={false} value={d.tipo} onChange={handleChecked}/>
-                                            <label className={"nombDieta"}>{d.tipo}</label>
-                                        </div>
-                                    )
-                                })
-                            }
-                                <button type='submit'>Filtrar</button>
-                            </form>                            
+                    {/* contenedor btns dia/noche barbie/ken y filtros */}
+                    <div class="col-2 contIzq container"> {/* este div abarca 3 de las 12col */}                      
+                        <div className='contBtnsBarbie'>
+                            <ModeNightIcon className='luna'/>
+                            <Switch onChange={handleClick} inputProps={{ 'aria-label': 'controlled' }} />
+                            <WbSunnyIcon className='sol'/>
+                        
+                            <br/>
+                            <label class="barbie">Barbie</label>
+                            <Switch onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
+                            <label class="ken">Ken</label>
                         </div>
+
+                        <div>
+                                <h3 class='tituloFiltros'>Filtros</h3>
+                                <form onSubmit={handleSubmit}>
+                                    {
+                                        tiposDietas?.map(d => {
+                                            return(
+                                                <div key={d._id}>
+                                                    <input type='checkbox' id={d.tipo} checked={false} value={d.tipo} onChange={handleChecked}/>
+                                                    <label className={"nombDieta"}>{d.tipo}</label>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    <button type='submit'>Filtrar</button>
+                                </form>
+                        </div>                                                       
                     </div>
 
-
+                    {/* lista recetas */}
                     <div class="container col contMed"> {/* este abarca 9col */}
                         <div class="contTituloColMed">
-                            <h2 className='tituloFiltros'>Aquí vas a encontrar las mejores recetas y soluciones para tus comidas</h2>
+                            <h2 className='tituloFiltros'>Encontrá las mejores recetas y soluciones para tus comidas</h2>
                         </div>
                         <div>
                             <ListaRecetas load={load} allRecetas={allRecetas} barbie={barbie}/>
@@ -113,20 +121,6 @@ function Home({ handleClick}) {
                                 </div>
                             }
                         </div>                        
-                    </div>
-
-                    
-                    <div class="col-2 contDer"> {/* este abarca 1col */}
-                        <div className='contBtnsBarbie'>
-                            <ModeNightIcon className='luna'/>
-                            <Switch /* checked={barbie} */ onChange={handleClick} inputProps={{ 'aria-label': 'controlled' }} />
-                            <WbSunnyIcon className='sol'/>
-                            
-                            <br/>
-                            <label class="barbie">Barbie</label>
-                            <Switch /* checked={barbie} */ onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
-                            <label class="ken">Ken</label>
-                        </div>
                     </div>
                 </div>
             </div>

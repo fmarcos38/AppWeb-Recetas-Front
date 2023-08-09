@@ -8,31 +8,30 @@ function ListaRecetas({load, allRecetas, barbie}) {
 
 
     return (
-        <div class="container-fluid contGralR">
+        <div class="container contGralR">
             {
                 load ? 
                 <>
                     <Loading/>
                 </>
                 :
-                <div class=" contListaRecetas">
+                <div class="container contCadaR">
                     {
-
                         allRecetas.recetas[0] ?
                         allRecetas.recetas.map(r => {
                             return(
-                                <>
+                                <div class="container contReceta">
                                     {
                                     barbie !== true ?
-                                        <div key={r._id}>
-                                            <Circle title={r.title} image={r.image} diets={r.diets}/>
-                                        </div>
+                                        
+                                        <Circle title={r.title} image={r.image} diets={r.diets}/>
+                                        
                                     :
-                                        <div key={r._id}>
-                                            <CardReceta title={r.title} image={r.image} diets={r.diets}/>                                    
-                                        </div>
+                                        
+                                        <CardReceta title={r.title} image={r.image} diets={r.diets}/>                                    
+                                        
                                     }
-                                </>                                                                
+                                </div>                                                                
                             )
                         }) :
                         <span>No recetas</span>

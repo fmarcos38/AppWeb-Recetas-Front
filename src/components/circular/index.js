@@ -1,44 +1,26 @@
 import React from 'react';
-import './estilos.css'; // Importa el archivo CSS donde definiremos los estilos
-import Modal from '../Modal';
+import './estilos.css'; 
 
 const Circle = ({title, image, diets}) => {
 
 
     return (
-        <div class="container-fluid contGralRecetaCircular">
-            <div class="containerTitle ">
-                <label>{title}</label>
-            </div>
-            
-            <div className="circle-container">
-                    <div class="etiqtaIZQ">
-                        {/* btn lanza modal */}
-                        <button type="button" class="btn btnGeoloc" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Dietas
-                        </button>
-                        
-                        {/* Modal */}
-                        <Modal diets={diets}/>
-                    </div>
-                    
-                    <div className="circle">
-                        <img src={image} class="imagen" alt={"not"}/>                    
-                    </div>
-                    
-                    <div class="etiqtaDER">
-                        {/* btn lanza modal */}
-                        <button type="button" class="btn btnGeoloc" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Dietas
-                        </button>
-                        
-                        {/* Modal */}
-                        <Modal diets={diets}/>
-                    </div>
+        <div class="container-fluid contGralRB">
+            <div class="containerTitle">
+                <h6 >{title}</h6>
             </div>
 
             <div class="containerTitle">
-                <label>Paso a paso</label>
+                <img src={image} class="imagen" alt="..."/>
+            </div>
+            
+            <div class="card-body ">
+                <p>Dietas en la que se puede incluir la receta:</p>
+                <ul>
+                    {
+                        diets?.map(d => <li key={d.name}>{d.name}</li>)
+                    }
+                </ul>
             </div>
         </div>
                             

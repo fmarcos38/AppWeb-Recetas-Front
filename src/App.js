@@ -14,7 +14,7 @@ import Circle from './components/circular';
 
 function App() {
 
-  const [diaNoche, setDiaNoche] = useState(true);
+  const [diaNoche, setDiaNoche] = useState(false);
 
   const handleClick = (e) => {
     setDiaNoche(!diaNoche);
