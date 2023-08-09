@@ -9,11 +9,26 @@ import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
 
-function Home({ handleClick}) {
+function Home() {
 
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
     const dispatch = useDispatch();
+
+    /* -------dia noche--------------- */
+    const [diaNoche, setDiaNoche] = useState(false);
+    
+    const handleDN = (e) => {
+        console.log("dia:", diaNoche)
+        setDiaNoche(!diaNoche);
+    };
+    /*---barbie/ken-------------------------------*/
+    const [barbie, setBarbie] = useState(false);
+
+    const handleBK = (e) => {
+        setBarbie(!barbie);
+    };
+    //----------------------------------------------
 
     //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
     //console.log("allRecetas.page.registrosPorPagina: ", allRecetas.page.registrosPorPagina)
@@ -23,7 +38,7 @@ function Home({ handleClick}) {
         setPaginaActual(numPag);
     };   
     
-    /*--------------------------------------------*/
+    /*------------Filtros--------------------------------*/
     const tiposDietas = useSelector(state => state.TiposDietas);
     const [dieta, setDieta] = useState();
 
@@ -45,13 +60,7 @@ function Home({ handleClick}) {
     };
     /*--------------------------------------------*/  
     
-    /*---barbie/ken-------------------------------*/
-    const [barbie, setBarbie] = useState(false);
-
-    const handleChange = (e) => {
-        setBarbie(!barbie);
-    };
-    //----------------------------------------------
+    
 
     useEffect(()=>{
         //para el paginado
@@ -72,7 +81,7 @@ function Home({ handleClick}) {
 
 
     return (
-        <div>
+        <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>
             <NavBar/>
             <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
                 <div class="row">
@@ -80,12 +89,12 @@ function Home({ handleClick}) {
                     <div class="col-2 contIzq container"> {/* este div abarca 3 de las 12col */}                      
                         <div className='contBtnsBarbie'>
                             <ModeNightIcon className='luna'/>
-                            <Switch onChange={handleClick} inputProps={{ 'aria-label': 'controlled' }} />
+                            <Switch onChange={handleDN} inputProps={{ 'aria-label': 'controlled' }} />
                             <WbSunnyIcon className='sol'/>
                         
                             <br/>
                             <label class="barbie">Barbie</label>
-                            <Switch onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
+                            <Switch onChange={handleBK} inputProps={{ 'aria-label': 'controlled' }} />
                             <label class="ken">Ken</label>
                         </div>
 
@@ -113,7 +122,7 @@ function Home({ handleClick}) {
                             <h2 className='tituloFiltros'>Encontrá las mejores recetas y soluciones para tus comidas</h2>
                         </div>
                         <div>
-                            <ListaRecetas load={load} allRecetas={allRecetas} barbie={barbie}/>
+                            <ListaRecetas load={load} allRecetas={allRecetas} diaNoche={diaNoche} barbie={barbie}/>
                             {/* paginacion */}
                             {
                                 <div>

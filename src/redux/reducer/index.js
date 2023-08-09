@@ -1,4 +1,4 @@
-import { FILTROS, GET_RECETAS, LOAD } from "../actions/actionsType";
+import { FILTROS, GET_RECETAS, GET_RECETA_BY_ID, LOAD, RESET_DETALLE } from "../actions/actionsType";
 
 const initialState = {
     allRecetas: [],
@@ -44,7 +44,7 @@ const initialState = {
             descripcion:"Una dieta baja en carbohidratos fermentables (FODMAP, por sus siglas en inglés) que son tipos de carbohidratos en los alimentos, puede ayudar a algunas personas con SII a controlar sus síntomas."
         },
     ],  
-    recetasFiltradas: [],
+    detalleReceta: {},
     load: true,
 };
 
@@ -63,11 +63,16 @@ export default function rootReducer(state = initialState, action){
                 load: false
             }
         }
-        case FILTROS:{
+        case GET_RECETA_BY_ID: {
             return{
                 ...state,
-                allRecetas: action.payload,
-                load:false
+                detalleReceta: action.payload
+            }
+        }
+        case RESET_DETALLE: {
+            return{
+                ...state,
+                detalleReceta: {}
             }
         }
         default:

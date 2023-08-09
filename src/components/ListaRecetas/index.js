@@ -4,7 +4,7 @@ import './estilos.css';
 import Loading from "../Loading"
 import Circle from '../circular';
 
-function ListaRecetas({load, allRecetas, barbie}) {
+function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
 
 
     return (
@@ -24,11 +24,11 @@ function ListaRecetas({load, allRecetas, barbie}) {
                                     {
                                     barbie !== true ?
                                         
-                                        <Circle title={r.title} image={r.image} diets={r.diets}/>
+                                        <Circle _id={r._id} title={r.title} image={r.image} diets={r.diets} diaNoche={diaNoche} barbie={barbie}/>
                                         
                                     :
                                         
-                                        <CardReceta title={r.title} image={r.image} diets={r.diets}/>                                    
+                                        <CardReceta _id={r._id} title={r.title} image={r.image} diets={r.diets} diaNoche={diaNoche} barbie={barbie}/>                                    
                                         
                                     }
                                 </div>                                                                

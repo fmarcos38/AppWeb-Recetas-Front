@@ -10,24 +10,20 @@ import Login from './components/Login';
 import Registrarse from './components/Registrarse';
 import './App.css';
 import Circle from './components/circular';
+import DetalleReceta from './components/DeatalleReceta';
 
 
 function App() {
 
-  const [diaNoche, setDiaNoche] = useState(false);
-
-  const handleClick = (e) => {
-    setDiaNoche(!diaNoche);
-  };
   
 
   return (
-    <div className={diaNoche === true ? 'dia' : 'noche'}>
+    <div>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/home' element={<Home diaNoche={diaNoche} handleClick={handleClick}/>}/>
+        <Route path='/home' element={<Home/>}/>
         <Route path='/createR' element={<CreateR/>}/>
-
+        <Route path='/detalle/:dia/:barbie/:_id' element={<DetalleReceta />}/>
 
         {/* vista solo para desarrollador */}
         <Route path='/cardReceta' element={<CardReceta/>}/>

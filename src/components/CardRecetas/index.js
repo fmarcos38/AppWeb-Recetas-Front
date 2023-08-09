@@ -3,28 +3,44 @@ import './estilos.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function CardReceta({_id, title, image, diets, analyzedInstructions}) {
+function CardReceta({_id, title, image, diets, diaNoche, barbie}) {
     return (
-        <div class="contCard">
-            <img src={image} alt='' class='imgReceta'/>
-            <div class="card-body">
-                <h5 class="card-title">{title}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Tipos de dieta:</h6>
-                {
-                    diets?.map(t => {
-                        return(
-                            <div key={t.name}>
-                                <p>{t.name}</p>
-                            </div>
-                        )
-                    })
-                }                
+        <div class="container contCard">
+            
+            <div class='containerTitle'>
+                <h6>{title}</h6>
             </div>
+
+            <div class='containerTitle '>
+                <img src={image} alt='' class='imgReceta'/>
+            </div>
+            
+            <div class='containerTitle'>
+                    <p>Tipos de dieta:</p>
+            </div>
+            
+            <div class='containerTitle'>
+                    <ul>
+                        {
+                            diets?.map(t => 
+                                <li key={t.name}>
+                                    {t.name}
+                                </li>
+                            )
+                        }
+                    </ul>                
+            </div>
+                
             {/* btns Fav y Delete */}
             <div class="card-footer contBtnsFavElim">
                 <button className='cardButton'>
                     <FavoriteBorderIcon/>
                 </button>
+
+                <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-info">
+                    Paso a Paso
+                </a>
+
                 <button className='cardButton'>
                     <DeleteForeverIcon/>
                 </button>

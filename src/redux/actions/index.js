@@ -1,4 +1,4 @@
-import { FILTROS, GET_RECETAS, LOAD, LOGIN, REGISTRARSE } from "./actionsType";
+import { FILTROS, GET_RECETAS, GET_RECETA_BY_ID, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -19,14 +19,18 @@ export function getRecetas(desde, dieta){
     };
 };
 
-//filtros
-export function filtrar(desde, dieta){
-    return async function(dispatch){        
-console.log("Lo q mandaré:", dieta)
-        const resp = await axios.post(`${urlDesarrollo}/recetas/filtro?desde=${desde}`, dieta);
-        return dispatch({type: FILTROS, payload: resp.data});
+//trae rec por ID
+export function getRecetaById(_id){
+    return async function(dispatch){
+        const resp = await axios.get(`${urlDesarrollo}/recetas/${_id}`);
+        return dispatch({type: GET_RECETA_BY_ID, payload: resp.data});
     }
 };
+export function resetDetalle(){
+    return {type: RESET_DETALLE};
+}
+
+
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){

@@ -1,11 +1,17 @@
+.contHomeN{
+    background-color: black;
+}
+.contHomeD{
+    background-color: white;
+}
 .contIzq{
-    height: 100vh;
+    height: 100%;
 }
 .contMed{
     height: 100%;    
 }
 .contDer{
-    height: 100vh;
+    height: 100%;
 }
 
 /*----col izq----*/
