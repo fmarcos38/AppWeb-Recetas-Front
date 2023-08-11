@@ -78,6 +78,16 @@ export function getUser(email){
 };
 
 //agrega fav
-export async function agregaFav(email, _id){
-    await axios.post(`${urlDesarrollo}/users/${email}`, _id);
+export function agregaFav(email, _id){
+    console.log("email", email);
+    console.log("_id", _id);
+    return async function(){
+        await axios.post(`${urlDesarrollo}/users/agregafav/${email}`,{_id:_id});
+    }
+};
+//elim fav
+export function eliminaFav(email, _id){
+    return async function(){
+        await axios.post(`${urlDesarrollo}/users/elimFav/${email}`,{_id:_id});        
+    }
 };
