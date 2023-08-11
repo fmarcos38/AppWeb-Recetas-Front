@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './estilos.css';
 import ListaRecetas from '../ListaRecetas';
 import NavBar from '../NavBar';
-import { getRecetas } from '../../redux/actions';
+import { agregaFav, getRecetas, getUser } from '../../redux/actions';
 import Paginado from '../Paginado';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
+import userLog from '../../localStorage';
+import swal from 'sweetalert';
+
+
 
 function Home() {
+
+    const userStorage = userLog.getUserActual; //console.log("userS:", userStorage);
+    
+    let userR = useSelector(state => state.user);
+    let arrF = userR.favorites; console.log("arrF:", arrF)
 
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
     const dispatch = useDispatch();
 
-    /* -------dia noche--------------- */
+    /* -------dia noche--------------------------- */
     const [diaNoche, setDiaNoche] = useState(false);
     
     const handleDN = (e) => {
-        console.log("dia:", diaNoche)
         setDiaNoche(!diaNoche);
     };
     /*---barbie/ken-------------------------------*/
@@ -28,8 +36,8 @@ function Home() {
     const handleBK = (e) => {
         setBarbie(!barbie);
     };
-    //----------------------------------------------
-
+    
+    /*---Paginación-------------------------------------------------------------------------------------------*/
     //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
     //console.log("allRecetas.page.registrosPorPagina: ", allRecetas.page.registrosPorPagina)
     const [paginaActual, setPaginaActual] = useState(1); //estado pagina actual
@@ -58,9 +66,6 @@ function Home() {
             alert("No seleccionaste ningún filtro!!");
         }
     };
-    /*--------------------------------------------*/  
-    
-    
 
     useEffect(()=>{
         //para el paginado
@@ -78,6 +83,10 @@ function Home() {
             dispatch(getRecetas(calculoDesde(paginaActual),dieta));//camb en el back
         }        
     },[dieta, dispatch, paginaActual]);
+
+    useEffect(() => {
+        dispatch(getUser(userStorage.email));
+    }, [dispatch, userStorage.email]);
 
 
     return (
@@ -122,7 +131,11 @@ function Home() {
                             <h2 className='tituloFiltros'>Encontrá las mejores recetas y soluciones para tus comidas</h2>
                         </div>
                         <div>
-                            <ListaRecetas load={load} allRecetas={allRecetas} diaNoche={diaNoche} barbie={barbie}/>
+                            <ListaRecetas 
+                                load={load} allRecetas={allRecetas} diaNoche={diaNoche} 
+                                barbie={barbie} arrF={arrF}/* fav={fav} handleFav={handleFav} */
+                            />
+                            
                             {/* paginacion */}
                             {
                                 <div>

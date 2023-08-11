@@ -1,4 +1,4 @@
-import { FILTROS, GET_RECETAS, GET_RECETA_BY_ID, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE } from "./actionsType";
+import { AGREGA_FAV, FILTROS, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -67,4 +67,17 @@ export function login(data){
             return dispatch({type: LOGIN, payload: "nook"});
         }        
     }
+};
+
+//trae user por email
+export function getUser(email){
+    return async function(dispatch){
+        const resp = await axios.get(`${urlDesarrollo}/users/${email}`);
+        return dispatch({type: GET_USER, payload: resp.data});
+    }
+};
+
+//agrega fav
+export async function agregaFav(email, _id){
+    await axios.post(`${urlDesarrollo}/users/${email}`, _id);
 };

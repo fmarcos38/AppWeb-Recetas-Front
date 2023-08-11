@@ -2,9 +2,9 @@ import React from 'react'
 import CardReceta from '../CardRecetas';
 import './estilos.css';
 import Loading from "../Loading"
-import Circle from '../circular';
+import CardBarbie from '../CardBarbie';
 
-function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
+function ListaRecetas({load, allRecetas, diaNoche ,barbie, /* fav, handleFav */}) {
 
 
     return (
@@ -22,9 +22,11 @@ function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
                             return(
                                 <div class="container contReceta">
                                     {
-                                    barbie !== true ?
-                                        
-                                        <Circle _id={r._id} title={r.title} image={r.image} diets={r.diets} diaNoche={diaNoche} barbie={barbie}/>
+                                    barbie !== true ?                                        
+                                        <CardBarbie _id={r._id} title={r.title} image={r.image} 
+                                            diets={r.diets} diaNoche={diaNoche} barbie={barbie}
+                                            /* fav={fav} handleFav={handleFav} */
+                                        />
                                         
                                     :
                                         

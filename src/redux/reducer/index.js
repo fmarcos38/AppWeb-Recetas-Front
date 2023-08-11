@@ -1,4 +1,4 @@
-import { FILTROS, GET_RECETAS, GET_RECETA_BY_ID, LOAD, RESET_DETALLE } from "../actions/actionsType";
+import { GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, RESET_DETALLE } from "../actions/actionsType";
 
 const initialState = {
     allRecetas: [],
@@ -45,6 +45,7 @@ const initialState = {
         },
     ],  
     detalleReceta: {},
+    user: {},
     load: true,
 };
 
@@ -73,6 +74,12 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 detalleReceta: {}
+            }
+        }
+        case GET_USER: {
+            return{
+                ...state,
+                user: action.payload
             }
         }
         default:

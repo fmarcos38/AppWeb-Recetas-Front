@@ -1,7 +1,7 @@
 import React from 'react';
 import './estilos.css';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
+import Favorito from '../Botones/Favoritos';
 
 function CardReceta({_id, title, image, diets, diaNoche, barbie}) {
     return (
@@ -32,18 +32,18 @@ function CardReceta({_id, title, image, diets, diaNoche, barbie}) {
             </div>
                 
             {/* btns Fav y Delete */}
-            <div class="card-footer contBtnsFavElim">
-                <button className='cardButton'>
-                    <FavoriteBorderIcon/>
-                </button>
-
-                <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-info">
-                    Paso a Paso
-                </a>
-
-                <button className='cardButton'>
-                    <DeleteForeverIcon/>
-                </button>
+            <div class="container">
+                <div class="position-absolute bottom-0 start-0 contBotones">
+                    <Favorito/>
+                </div>
+                <div class="position-absolute bottom-0 start-50 translate-middle-x contBotones">
+                    <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark">
+                        Paso a Paso
+                    </a>
+                </div>
+                <div class="position-absolute bottom-0 end-0 contBotones">
+                    
+                </div>               
             </div>
         </div>
     )

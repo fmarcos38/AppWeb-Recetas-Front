@@ -10,11 +10,11 @@ function NavBar() {
     const userData = userLog.getUserActual;  //console.log("data:", userData);
     const navigate = useNavigate();
     const [userActual, setUserActual] = useState(false);
-    const [name, setName] = useState("");
+    const [name, setName] = useState("visitante");
     
     useEffect(()=>{
-        if(userData !== null){
-            setName(userData.user.name);
+        if(userData.name !== null){
+            setName(userData.name);
             setUserActual(true);
         }
     },[userData]);
