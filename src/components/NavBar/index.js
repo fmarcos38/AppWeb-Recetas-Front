@@ -13,7 +13,7 @@ function NavBar() {
     const [name, setName] = useState("visitante");
     
     useEffect(()=>{
-        if(userData.name !== null){
+        if(userData){
             setName(userData.name);
             setUserActual(true);
         }
@@ -29,23 +29,24 @@ function NavBar() {
     return (
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
+                {/* Logo */}
                 <a class="navbar-brand" href="/">
                     <img src={logo} alt='not found' width={"35"} height={"35"}/>
                 </a>
-                
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     {
                         userActual === true &&
-                        <>
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
@@ -57,12 +58,19 @@ function NavBar() {
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
-                        </ul>
-                        </>                        
+                    </ul>
+                    }                    
+
+                    {/* searchBar */}
+                    {
+                        userActual === true &&
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
                     }
 
                     {/* login/Logout Registrarse*/}
@@ -80,22 +88,10 @@ function NavBar() {
                             <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
                         </>
                     }
-
-                    {/* searchBar */}
-                    {
-                        userActual === true &&
-                        <>
-                            <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                        </>
-                    }
-                    
                 </div>
             </div>
         </nav>
     )
 }
 
-export default NavBar
+export default NavBar;

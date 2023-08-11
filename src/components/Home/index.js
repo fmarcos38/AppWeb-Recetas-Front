@@ -9,16 +9,12 @@ import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
 import userLog from '../../localStorage';
-import swal from 'sweetalert';
 
 
 
 function Home() {
 
-    const userStorage = userLog.getUserActual; //console.log("userS:", userStorage);
-    
-    let userR = useSelector(state => state.user);
-    let arrF = userR.favorites; console.log("arrF:", arrF)
+    const userStorage = userLog.getUserActual; console.log("userS:", userStorage);
 
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
@@ -85,8 +81,8 @@ function Home() {
     },[dieta, dispatch, paginaActual]);
 
     useEffect(() => {
-        dispatch(getUser(userStorage.email));
-    }, [dispatch, userStorage.email]);
+        dispatch(getUser(userStorage.user.email));
+    }, [dispatch, userStorage.user.email]);
 
 
     return (
@@ -133,7 +129,7 @@ function Home() {
                         <div>
                             <ListaRecetas 
                                 load={load} allRecetas={allRecetas} diaNoche={diaNoche} 
-                                barbie={barbie} arrF={arrF}/* fav={fav} handleFav={handleFav} */
+                                barbie={barbie} /* fav={fav} handleFav={handleFav} */
                             />
                             
                             {/* paginacion */}

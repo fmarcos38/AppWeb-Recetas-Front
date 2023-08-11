@@ -50,8 +50,7 @@ function Login() {
                 showConfirmButton: false,
                 timer: 2000
             });
-            navigate('/home');
-            
+            navigate('/home');            
         }
     };
 
@@ -66,7 +65,7 @@ function Login() {
                     {errors.email && <span className="error-message">{errors.email}</span>}
                 </div>
                 <div class="mb-3">
-                    <label for="pass" class="form-label">Another label</label>
+                    <label for="pass" class="form-label">Password</label>
                     <input type="password" class="form-control" value={state.pass} id="password" onChange={handleCh} placeholder="your pass"/>
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>

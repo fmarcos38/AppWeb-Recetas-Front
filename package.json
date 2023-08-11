@@ -19,6 +19,7 @@
     "react-sweetalert2": "^0.6.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

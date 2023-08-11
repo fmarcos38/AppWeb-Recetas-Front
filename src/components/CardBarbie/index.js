@@ -2,36 +2,58 @@ import React, {useEffect, useState} from 'react';
 import './estilos.css'; 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import swal from 'sweetalert';
+import userLog from '../../localStorage';
+import { useDispatch } from 'react-redux';
 
-const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie, arrF }) => {
+const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
 
     /*---Favoritos---------------------------------------*/  
+    const userStorage = userLog.getUserActual;
+    const [favStorage, setFavStorage] = useState(userStorage.user.favorites); console.log("favS:", favStorage)
+    const dispatch = useDispatch();
     
-    const [fav, setFav] = useState([]); console.log("favS:", arrF)
+    const handleFav = (_id) => {  
     
-    const handleFav = (_id) => {
-        
-            if(!arrF?.favorites.find(id => id === _id)){
-                //si el id NO esta en favoritos, lo qgrego
-                //dispatch(agregaFav(userStorage.email, _id));
-                setFav([...fav, _id]);
-                localStorage.setItem('user.favorites', fav);
+        if(!userStorage){
+            swal({
+            title: "Debes estar Registrado para poder agregar a Fav",
+            icon: "error",
+            button: "Aceptar",
+        });
+            //navigate("/registrarse");            
+        }else{  
+            if (!favStorage.find(e => e === _id)) {//si el producto NO esta en fav del localStor
+                //dispatch(addFavorites(_id)); 
+                //asigno a state el erray de fav q está en el localStor
+                let state = userStorage.favorites;
+                state.push(_id);//carga array
+                //guarda el nuevo array en fav del localStor
+                localStorage.setItem('user.favorites', favStorage);
+                setFavStorage(state);  //actualizo estado    
                 swal({
-                    title: "Producto Añadido",
-                    text: `agregado a Favoritos`,
+                title: "Producto Añadido",
+                text: `agregado a Favoritos`,
+                icon: "success",
+                button: "Aceptar",
+                });        
+            }
+            if (favStorage.find(e => e === _id)){            
+                //dispatch(deleteFav(_id)); //borro de la DB
+                //asigno a state el erray de fav q está en el localStor
+                let newState = userStorage.favorites;
+                newState = newState.filter((fav) => fav !== _id);
+                //guarda el nuevo array en fav del localStor
+                localStorage.setItem('user.favorites', favStorage);
+                setFavStorage(newState);  //actualizo estado 
+                swal({
+                    title: "Prod Eliminado",
+                    text: "eliminado de Favoritos",
                     icon: "success",
                     button: "Aceptar",
                 });
-            }else{
-                //dispatch(eliminaFav(userStorage.email,_id));
-                let arrTemp = arrF.favorites.filter(id => id !== _id);
-                //guardo en el storage
-                localStorage.setItem('user.favorites', arrTemp);
-                setFav()
             }
-        
-    };
-
+        } 
+    }
     /* useEffect(() => {
         setFav(arrF)
     }, [arrF]); */
@@ -60,7 +82,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie, arrF }) => {
             {/* btns Fav y Delete */}
             <div class="container">
                 <div class="position-absolute bottom-0 start-0 contBotones">
-                <FavoriteBorderIcon className={arrF.find(e => e._id === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
+                <FavoriteBorderIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
                 </div>
                 <div class="position-absolute bottom-0 start-50 translate-middle-x contBotones">
                     <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark">
