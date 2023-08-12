@@ -56,9 +56,8 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             }
         } 
     }
-    /* useEffect(() => {
-        setFav(arrF)
-    }, [arrF]); */
+
+    
     return (
         <div class="container-fluid position-relative contGralRB">
             {/* Titulo */}

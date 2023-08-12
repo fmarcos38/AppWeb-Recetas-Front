@@ -14,8 +14,7 @@ import userLog from '../../localStorage';
 
 function Home() {
 
-    const userStorage = userLog.getUserActual; console.log("userS:", userStorage);
-
+    const userStorage = userLog.getUserActual;
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
     const dispatch = useDispatch();
@@ -33,19 +32,14 @@ function Home() {
         setBarbie(!barbie);
     };
     
-    /*---Paginación-------------------------------------------------------------------------------------------*/
-    //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
-    //console.log("allRecetas.page.registrosPorPagina: ", allRecetas.page.registrosPorPagina)
-    const [paginaActual, setPaginaActual] = useState(1); //estado pagina actual
-    const totalPag =  Math.ceil(100 / 20);//allRecetas.page.totalRecetasDB / allRecetas.page.registrosPorPagina;    
-    const onChangePag = (numPag) => {
-        setPaginaActual(numPag);
-    };   
-    
     /*------------Filtros--------------------------------*/
     const tiposDietas = useSelector(state => state.TiposDietas);
     const [dieta, setDieta] = useState();
-
+    
+    const handleResetFiltro = () => {
+        dispatch(getRecetas(0))
+    };
+    //para la seleccion del filtro
     const handleChecked = (e) => {
         if(e.target.checked === true){
             setDieta(e.target.value);      
@@ -62,6 +56,25 @@ function Home() {
             alert("No seleccionaste ningún filtro!!");
         }
     };
+
+    /*---Paginación-------------------------------------------------------------------------------------------*/
+    //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
+    const [paginaActual, setPaginaActual] = useState(1); //estado pagina actual
+    let totalPag = 0;
+
+    /* utilizo un If para calcular la cantidad de items q debe mostrar el paginado(me refiero a los num de pag [pag1, pag2...etc] segun la cant de recetas retornadas del back) */
+    if(!dieta){
+        totalPag = Math.ceil(100 / 20);   
+    }else{
+        totalPag = Math.ceil(allRecetas.page.totalConsultaAct / 20);
+    }
+    
+    const onChangePag = (numPag) => {
+        setPaginaActual(numPag);
+    };   
+    //----------------------------------------------------------------------------------------------------------
+    
+
 
     useEffect(()=>{
         //para el paginado
@@ -103,21 +116,22 @@ function Home() {
                             <label class="ken">Ken</label>
                         </div>
 
-                        <div>
+                        <div class="container">
                                 <h3 class='tituloFiltros'>Filtros</h3>
                                 <form onSubmit={handleSubmit}>
                                     {
                                         tiposDietas?.map(d => {
                                             return(
                                                 <div key={d._id}>
-                                                    <input type='checkbox' id={d.tipo} checked={false} value={d.tipo} onChange={handleChecked}/>
+                                                    <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/>
                                                     <label className={"nombDieta"}>{d.tipo}</label>
                                                 </div>
                                             )
                                         })
                                     }
-                                    <button type='submit'>Filtrar</button>
+                                    <button type='submit' class="btn btn-info btnFiltro">Filtrar</button>
                                 </form>
+                                <button class="btn btn-info btnFiltro" onClick={handleResetFiltro}>Reset Filtro</button>
                         </div>                                                       
                     </div>
 
@@ -135,7 +149,8 @@ function Home() {
                             {/* paginacion */}
                             {
                                 <div>
-                                    <Paginado paginaActual={paginaActual} totalPag={totalPag} onChangePag={onChangePag} barbie={barbie}/>
+                                    <Paginado paginaActual={paginaActual} totalPag={totalPag}
+                                        onChangePag={onChangePag} barbie={barbie}/>
                                 </div>
                             }
                         </div>                        

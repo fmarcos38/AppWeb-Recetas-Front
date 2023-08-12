@@ -6,3 +6,4 @@ export const GET_RECETA_BY_ID = "GET_RECETA_BY_ID";
 export const RESET_DETALLE = "RESET_DETALLE";
 export const AGREGA_FAV = "AGREGA_FAV";
 export const GET_USER = "GET_USER";
+export const Reset_Filtro = "Reset_Filtro";

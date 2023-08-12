@@ -1,10 +1,18 @@
 import "./estilos.css";
 import NavBar from '../NavBar';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecetas } from "../../redux/actions";
 
 
 function LandingPage() {
 
-    
+    //const allRecetas = useSelector(state => state.allRecetas);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getRecetas(0))
+    }, [dispatch]);
 
     return (
         <>
