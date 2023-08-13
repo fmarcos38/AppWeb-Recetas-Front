@@ -123,13 +123,14 @@ function Home() {
                                         tiposDietas?.map(d => {
                                             return(
                                                 <div key={d._id}>
-                                                    <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/>
+                                                    {/* <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/> */}
+                                                    <input type={"radio"} name={"dieta"} value={d.tipo} onChange={handleChecked}/>
                                                     <label className={"nombDieta"}>{d.tipo}</label>
                                                 </div>
                                             )
                                         })
                                     }
-                                    <button type='submit' class="btn btn-info btnFiltro">Filtrar</button>
+                                    {/* <button type='submit' class="btn btn-info btnFiltro">Filtrar</button> */}
                                 </form>
                                 <button class="btn btn-info btnFiltro" onClick={handleResetFiltro}>Reset Filtro</button>
                         </div>                                                       
