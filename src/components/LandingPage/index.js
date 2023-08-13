@@ -1,7 +1,7 @@
 import "./estilos.css";
 import NavBar from '../NavBar';
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getRecetas } from "../../redux/actions";
 
 

@@ -15,6 +15,15 @@
 }
 
 /*----col izq----*/
+.contBtnsBarbie{
+    margin-top: 2rem;
+}
+.barbie, .luna{
+    color: #ff0080
+}
+.ken, .sol{
+    color: aqua
+}
 .tituloFiltros{
     margin-top: 1.5rem;
     color: #ff0080;
@@ -30,6 +39,18 @@
 .btnFiltro{
     margin-top: 0.5rem;
 }
+.contSearch{
+    border-color: #ff0080;
+    border-style: solid;
+    margin-top: 1rem;
+}
+.labelSearch{
+    color: #ff0080;
+}
+.btnSearch{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
 /*----col central----*/
 .contTituloColMed{
     display: flex;
@@ -38,12 +59,3 @@
 }
 
 /*-------col DER-----*/
-.contBtnsBarbie{
-    margin-top: 2rem;
-}
-.barbie, .luna{
-    color: #ff0080
-}
-.ken, .sol{
-    color: aqua
-}

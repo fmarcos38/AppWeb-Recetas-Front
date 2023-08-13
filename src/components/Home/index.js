@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './estilos.css';
 import ListaRecetas from '../ListaRecetas';
 import NavBar from '../NavBar';
-import { agregaFav, getRecetas, getUser } from '../../redux/actions';
+import { getRecetas, getUser } from '../../redux/actions';
 import Paginado from '../Paginado';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
@@ -117,6 +117,7 @@ function Home() {
                         </div>
 
                         <div class="container">
+                            <div >
                                 <h3 class='tituloFiltros'>Filtros</h3>
                                 <form onSubmit={handleSubmit}>
                                     {
@@ -132,7 +133,20 @@ function Home() {
                                     }
                                     {/* <button type='submit' class="btn btn-info btnFiltro">Filtrar</button> */}
                                 </form>
-                                <button class="btn btn-info btnFiltro" onClick={handleResetFiltro}>Reset Filtro</button>
+                            </div>                                
+                            {/* searchBar */}
+                            <div class="container contSearch">
+                                <form class="container" role="search">
+                                    <label class='labelSearch'>Search by</label>                                        
+                                    <input class="form-control me-2" type="search" placeholder="Ingrediente" aria-label="Search"/>                                        
+                                    <label class='labelSearch'>and</label>                                        
+                                    <input class="form-control me-2" type="search" placeholder="Dieta" aria-label="Search"/>
+                                    
+                                    <button class="btn btn-outline-info btnSearch" type="submit">Search</button>                                        
+                                </form>
+                            </div>                                
+                    
+                            <button class="btn btn-info btnFiltro" onClick={handleResetFiltro}>Reset Filtro</button>
                         </div>                                                       
                     </div>
 
