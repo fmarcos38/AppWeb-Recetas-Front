@@ -10,8 +10,6 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
 import userLog from '../../localStorage';
 
-
-
 function Home() {
 
     const userStorage = userLog.getUserActual;
@@ -81,6 +79,8 @@ function Home() {
         }
     }
     //----------------------------------------------------------------------------------------------------------
+
+    //resetea filtros
     const handleResetFiltro = () => {
         dispatch(getRecetas(calculoDesde(paginaActual)));
         setDieta("");
@@ -88,6 +88,9 @@ function Home() {
         var radio = document.querySelector('input[type=radio][name=dieta]:checked'); //quita la seleccion del radio buttom
         if(radio){ radio.checked = false; }
     };
+
+    
+    
 
 
     useEffect(()=>{        
@@ -158,7 +161,7 @@ function Home() {
                         <div>
                             <ListaRecetas 
                                 load={load} allRecetas={allRecetas} diaNoche={diaNoche} 
-                                barbie={barbie} /* fav={fav} handleFav={handleFav} */
+                                barbie={barbie} 
                             />
                             
                             {/* paginacion */}

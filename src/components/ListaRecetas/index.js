@@ -4,7 +4,7 @@ import './estilos.css';
 import Loading from "../Loading"
 import CardBarbie from '../CardBarbie';
 
-function ListaRecetas({load, allRecetas, diaNoche ,barbie, /* fav, handleFav */}) {
+function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
 
 
     return (
@@ -25,7 +25,6 @@ function ListaRecetas({load, allRecetas, diaNoche ,barbie, /* fav, handleFav */}
                                     barbie !== true ?                                        
                                         <CardBarbie _id={r._id} title={r.title} image={r.image} 
                                             diets={r.diets} diaNoche={diaNoche} barbie={barbie}
-                                            /* fav={fav} handleFav={handleFav} */
                                         />
                                         
                                     :

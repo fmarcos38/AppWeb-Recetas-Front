@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './estilos.css'; 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import swal from 'sweetalert';
 import userLog from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,14 +19,14 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
     
         if(!userStorage){
             swal({
-            title: "Debes estar Registrado para poder agregar a Fav",
+            title: "Debes estar Registrado para poder agregar a Fav/me gusta",
             icon: "error",
             button: "Aceptar",
         });
             //navigate("/registrarse");            
         }else{  
             if (!favStorage.find(e => e === _id)) {//si el producto NO esta en fav del localStor
-                dispatch(agregaFav(userStorage.user.email,_id)); 
+                dispatch(agregaFav(userStorage.user.email, _id)); 
                 //asigno a state el erray de fav q está en el localStor
                 let state = userStorage.user.favorites;
                 state.push(_id);//carga array
@@ -40,7 +41,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                 });        
             }
             if (favStorage.find(e => e === _id)){            
-                dispatch(eliminaFav(userStorage.user.email,_id)); //borro de la DB
+                dispatch(eliminaFav(userStorage.user.email, _id)); //borro de la DB
                 //asigno a state el erray de fav q está en el localStor
                 let newState = userStorage.user.favorites;
                 newState = newState.filter((fav) => fav !== _id);
@@ -91,7 +92,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                     </a>
                 </div>
                 <div class="position-absolute bottom-0 end-0 contBotones">
-                    
+                    <ThumbUpIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)}/>
                 </div>               
             </div>
 

@@ -7,9 +7,7 @@ import { urlDesarrollo } from "./urls";
 export function getRecetas(desde, palabra, dieta){
     return async function (dispatch) {
         dispatch({type: LOAD}); 
-        console.log("desde",desde);
-        console.log("palabra",palabra);
-        console.log("dieta",dieta);
+        
         let resp = [];
         if(palabra && dieta){
             resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&palabra=${palabra}&dieta=${dieta}`);            

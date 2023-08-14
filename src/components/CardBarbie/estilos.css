@@ -18,3 +18,9 @@
 .contBotones{
     margin-bottom: 0.5rem;
 }
+.cardButtonFav{
+    background-color: aqua;
+}
+.cardButton{
+    background-color: blue;
+}
