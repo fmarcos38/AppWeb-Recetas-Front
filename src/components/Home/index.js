@@ -86,12 +86,11 @@ function Home() {
         setDieta("");
         setIngrediente("");
         var radio = document.querySelector('input[type=radio][name=dieta]:checked'); //quita la seleccion del radio buttom
-        radio.checked = false;
+        if(radio){ radio.checked = false; }
     };
 
 
-    useEffect(()=>{
-        
+    useEffect(()=>{        
         //según los params q envio Va con dicha url
         if(!dieta /* && !ingrediente */){
             dispatch(getRecetas(calculoDesde(paginaActual)));
