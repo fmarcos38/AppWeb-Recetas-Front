@@ -14,13 +14,12 @@
     height: 249px;
     border-radius: 20%;    
 }
-
 .contBotones{
     margin-bottom: 0.5rem;
 }
-.cardButtonFav{
-    background-color: aqua;
+.cardButtonFav, .cardButtonMG{
+    color: aqua;
 }
 .cardButton{
-    background-color: blue;
+    color: black;
 }

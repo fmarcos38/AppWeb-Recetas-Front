@@ -4,7 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import swal from 'sweetalert';
 import userLog from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregaFav, eliminaFav } from '../../redux/actions';
+import { agregaFav } from '../../redux/actions';
 
 function CardReceta({_id, title, image, diets, diaNoche, barbie}) {
     
@@ -40,7 +40,7 @@ function CardReceta({_id, title, image, diets, diaNoche, barbie}) {
                 });        
             }
             if (favStorage.find(e => e === _id)){            
-                dispatch(eliminaFav(userStorage.user.email,_id)); //borro de la DB
+                dispatch(agregaFav(userStorage.user.email,_id)); //borro de la DB
                 //asigno a state el erray de fav q está en el localStor
                 let newState = userStorage.user.favorites;
                 newState = newState.filter((fav) => fav !== _id);

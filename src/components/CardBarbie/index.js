@@ -5,7 +5,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import swal from 'sweetalert';
 import userLog from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregaFav, eliminaFav } from '../../redux/actions';
+import { agregaFav, meGusta } from '../../redux/actions';
 
 const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
 
@@ -13,10 +13,11 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
     const userStorage = userLog.getUserActual;
     const userReducer = useSelector(state => state.user);
     const [favStorage, setFavStorage] = useState(userReducer.favorites); 
+    const [meG, setMeG] = useState(userReducer.meGusta); 
     const dispatch = useDispatch();
     
-    const handleFav = (_id) => {  
-    
+    /* btn fav */
+    const handleFav = (_id) => {     
         if(!userStorage){
             swal({
             title: "Debes estar Registrado para poder agregar a Fav/me gusta",
@@ -41,7 +42,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                 });        
             }
             if (favStorage.find(e => e === _id)){            
-                dispatch(eliminaFav(userStorage.user.email, _id)); //borro de la DB
+                dispatch(agregaFav(userStorage.user.email, _id)); //borro de la DB
                 //asigno a state el erray de fav q está en el localStor
                 let newState = userStorage.user.favorites;
                 newState = newState.filter((fav) => fav !== _id);
@@ -57,7 +58,36 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             }
         } 
     }
-
+    /* btn me gusta */
+    const handleMG = (_id) => {      
+        if(!userStorage){
+            swal({
+            title: "Debes estar Registrado para darle Me gusta",
+            icon: "error",
+            button: "Aceptar",
+        });
+            //navigate("/registrarse");            
+        }else{  
+            if (!meG.find(e => e === _id)) {//si el producto NO esta en fav del localStor
+                dispatch(meGusta(userStorage.user.email, _id)); 
+                //asigno a state el erray de fav q está en el localStor
+                let state = userStorage.user.favorites;
+                state.push(_id);//carga array
+                //guarda el nuevo array en fav del localStor
+                //localStorage.setItem('user.favorites', favStorage);
+                setMeG(state);  //actualizo estado                    
+            }
+            if (meG.find(e => e === _id)){            
+                dispatch(meGusta(userStorage.user.email, _id)); //borro de la DB
+                //asigno a state el erray de fav q está en el localStor
+                let newState = userStorage.user.favorites;
+                newState = newState.filter((fav) => fav !== _id);
+                //guarda el nuevo array en fav del localStor
+                //localStorage.setItem('user.favorites', favStorage);
+                setMeG(newState);  //actualizo estado                 
+            }
+        } 
+    }
     
     return (
         <div class="container-fluid position-relative contGralRB">
@@ -84,7 +114,9 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             {/* btns Fav y Delete */}
             <div class="container">
                 <div class="position-absolute bottom-0 start-0 contBotones">
-                    <FavoriteBorderIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
+                    <button class='btn'>
+                        <FavoriteBorderIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
+                    </button>                    
                 </div>
                 <div class="position-absolute bottom-0 start-50 translate-middle-x contBotones">
                     <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark">
@@ -92,7 +124,9 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                     </a>
                 </div>
                 <div class="position-absolute bottom-0 end-0 contBotones">
-                    <ThumbUpIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)}/>
+                    <button class='btn'>
+                        <ThumbUpIcon className={meG?.find(e => e === _id) ? "cardButtonMG" : "cardButton"} onClick={() => handleMG(_id)}/>
+                    </button>                     
                 </div>               
             </div>
 

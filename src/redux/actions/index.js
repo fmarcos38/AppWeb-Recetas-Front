@@ -7,7 +7,7 @@ import { urlDesarrollo } from "./urls";
 export function getRecetas(desde, palabra, dieta){
     return async function (dispatch) {
         dispatch({type: LOAD}); 
-        
+
         let resp = [];
         if(palabra && dieta){
             resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&palabra=${palabra}&dieta=${dieta}`);            
@@ -88,15 +88,14 @@ export function getUser(email){
 
 //agrega fav
 export function agregaFav(email, _id){
-    console.log("email", email);
-    console.log("_id", _id);
     return async function(){
         await axios.post(`${urlDesarrollo}/users/agregafav/${email}`,{_id:_id});
     }
 };
-//elim fav
-export function eliminaFav(email, _id){
+
+//Me gusta -> agrega/borra
+export function meGusta(email, _id){
     return async function(){
-        await axios.post(`${urlDesarrollo}/users/elimFav/${email}`,{_id:_id});        
+        await axios.post(`${urlDesarrollo}/users/meGusta/${email}`,{_id:_id});
     }
-};
+}
