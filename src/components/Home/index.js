@@ -34,11 +34,8 @@ function Home() {
     
     /*------------Filtros--------------------------------*/
     const tiposDietas = useSelector(state => state.TiposDietas);
-    const [dieta, setDieta] = useState();
+    const [dieta, setDieta] = useState();    
     
-    const handleResetFiltro = () => {
-        dispatch(getRecetas(0))
-    };
     //para la seleccion del filtro
     const handleChecked = (e) => {
         if(e.target.checked === true){
@@ -50,8 +47,7 @@ function Home() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(dieta){
-            dispatch(getRecetas(paginaActual, dieta));
-            //setDieta("");
+            dispatch(getRecetas(paginaActual, dieta));            
         }else{
             alert("No seleccionaste ningún filtro!!");
         }
@@ -72,26 +68,33 @@ function Home() {
     const onChangePag = (numPag) => {
         setPaginaActual(numPag);
     };   
+    const calculoDesde = (pagAct) => {            
+        if(pagAct === 1){
+            return 0;
+        }else{
+            return (pagAct - 1) * 5;
+        }
+    }
     //----------------------------------------------------------------------------------------------------------
-    
+    const handleResetFiltro = () => {
+        dispatch(getRecetas(calculoDesde(paginaActual)));
+        setDieta("");
+        var radio = document.querySelector('input[type=radio][name=dieta]:checked');
+        radio.checked = false;
+    };
 
 
     useEffect(()=>{
         //para el paginado
-        const calculoDesde = (pagAct) => {            
-            if(pagAct === 1){
-                return 0;
-            }else{
-                return (pagAct - 1) * 5;
-            }
-        }
+        
         //según los params q envio Va con dicha url
         if(!dieta){
             dispatch(getRecetas(calculoDesde(paginaActual)));
         }else{
             dispatch(getRecetas(calculoDesde(paginaActual),dieta));//camb en el back
         }        
-    },[dieta, dispatch, paginaActual]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[dispatch, paginaActual]);
 
     useEffect(() => {
         dispatch(getUser(userStorage.user.email));
@@ -116,44 +119,37 @@ function Home() {
                             <label class="ken">Ken</label>
                         </div>
 
-                        <div class="container">
-                            <div >
-                                <h3 class='tituloFiltros'>Filtros</h3>
-                                <form onSubmit={handleSubmit}>
+                        <div class="container-fluid">  
+                            <div class={!barbie ? "contSearch" : "contSearchFK"}>
+                                <form onSubmit={handleSubmit} class="formFiltros">
+                                    <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
+                                    <input class="form-control me-2" type="search" placeholder="Ingrediente" aria-label="Search"/>
+
+                                    <h3 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Tipo de dieta</h3>
                                     {
                                         tiposDietas?.map(d => {
                                             return(
                                                 <div key={d._id}>
                                                     {/* <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/> */}
                                                     <input type={"radio"} name={"dieta"} value={d.tipo} onChange={handleChecked}/>
-                                                    <label className={"nombDieta"}>{d.tipo}</label>
+                                                    <label class={!barbie ? "labelSearch" : "labelSearchK"}>{d.tipo}</label>
                                                 </div>
                                             )
                                         })
-                                    }
-                                    {/* <button type='submit' class="btn btn-info btnFiltro">Filtrar</button> */}
-                                </form>
-                            </div>                                
-                            {/* searchBar */}
-                            <div class="container contSearch">
-                                <form class="container" role="search">
-                                    <label class='labelSearch'>Search by</label>                                        
-                                    <input class="form-control me-2" type="search" placeholder="Ingrediente" aria-label="Search"/>                                        
-                                    <label class='labelSearch'>and</label>                                        
-                                    <input class="form-control me-2" type="search" placeholder="Dieta" aria-label="Search"/>
+                                    }                                    
                                     
-                                    <button class="btn btn-outline-info btnSearch" type="submit">Search</button>                                        
-                                </form>
-                            </div>                                
+                                    <button class="btn btn-outline-info btnSearch" type="submit">Search</button>
+                                </form>                                                          
                     
-                            <button class="btn btn-info btnFiltro" onClick={handleResetFiltro}>Reset Filtro</button>
+                                <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>
+                            </div>
                         </div>                                                       
                     </div>
 
                     {/* lista recetas */}
                     <div class="container col contMed"> {/* este abarca 9col */}
                         <div class="contTituloColMed">
-                            <h2 className='tituloFiltros'>Encontrá las mejores recetas y soluciones para tus comidas</h2>
+                            <h2 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Encontrá las mejores recetas y soluciones para tus comidas</h2>
                         </div>
                         <div>
                             <ListaRecetas 

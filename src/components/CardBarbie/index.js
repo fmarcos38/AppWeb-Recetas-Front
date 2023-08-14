@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import './estilos.css'; 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import swal from 'sweetalert';
@@ -11,7 +11,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
     /*---Favoritos---------------------------------------*/  
     const userStorage = userLog.getUserActual;
     const userReducer = useSelector(state => state.user);
-    const [favStorage, setFavStorage] = useState(userReducer.favorites); console.log("favS:", favStorage)
+    const [favStorage, setFavStorage] = useState(userReducer.favorites); 
     const dispatch = useDispatch();
     
     const handleFav = (_id) => {  
@@ -83,7 +83,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             {/* btns Fav y Delete */}
             <div class="container">
                 <div class="position-absolute bottom-0 start-0 contBotones">
-                <FavoriteBorderIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
+                    <FavoriteBorderIcon className={favStorage?.find(e => e === _id) ? "cardButtonFav" : "cardButton"} onClick={() => handleFav(_id)} />
                 </div>
                 <div class="position-absolute bottom-0 start-50 translate-middle-x contBotones">
                     <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark">

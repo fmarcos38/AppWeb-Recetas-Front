@@ -24,7 +24,7 @@
 .ken, .sol{
     color: aqua
 }
-.tituloFiltros{
+.tituloFiltro, .tituloFiltrosK{
     margin-top: 1.5rem;
     color: #ff0080;
     font-family: 'Heebo', sans-serif;
@@ -32,20 +32,32 @@
     font-family: 'Ubuntu', sans-serif;
     font-size:xx-large;
 }
-.nombDieta{
+.tituloFiltrosK{
+    color: aquamarine;
+}
+.nombDieta, .nombDietaK{
     color: #ff0080;
     margin-left: 0.5rem;
+}
+.nombDietaK{
+    color: aquamarine;
 }
 .btnFiltro{
     margin-top: 0.5rem;
 }
-.contSearch{
+.contSearch {
     border-color: #ff0080;
     border-style: solid;
     margin-top: 1rem;
+    width: 98%;
+    padding: 0.5rem;
 }
+
 .labelSearch{
     color: #ff0080;
+}
+.labelSearchK{
+    color: aquamarine;
 }
 .btnSearch{
     margin-top: 0.5rem;

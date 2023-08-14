@@ -1,4 +1,4 @@
-import { AGREGA_FAV, FILTROS, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE } from "./actionsType";
+import { GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -30,7 +30,12 @@ export function resetDetalle(){
     return {type: RESET_DETALLE};
 }
 
-
+export function resetFiltro(desde){
+    return async function(dispatch){
+        const resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
+        return  dispatch({ type: RESET_FILTRO, payload: resp.data });
+    }
+}
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){
