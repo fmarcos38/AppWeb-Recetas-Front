@@ -35,8 +35,9 @@ function Home() {
     /*------------Filtros--------------------------------*/
     const tiposDietas = useSelector(state => state.TiposDietas);
     const [dieta, setDieta] = useState();    
-    
-    //para la seleccion del filtro
+    const [ingrediente, setIngrediente] = useState("");
+
+    //para la seleccion de la dieta
     const handleChecked = (e) => {
         if(e.target.checked === true){
             setDieta(e.target.value);      
@@ -44,10 +45,14 @@ function Home() {
             setDieta("");
         }
     };
+    //para busqueda por ingrediente
+    const handelChangeIng = (e) => {
+        setIngrediente(e.target.value);
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(dieta){
-            dispatch(getRecetas(paginaActual, dieta));            
+        if(dieta || ingrediente){
+            dispatch(getRecetas(paginaActual, ingrediente, dieta));            
         }else{
             alert("No seleccionaste ningún filtro!!");
         }
@@ -59,7 +64,7 @@ function Home() {
     let totalPag = 0;
 
     /* utilizo un If para calcular la cantidad de items q debe mostrar el paginado(me refiero a los num de pag [pag1, pag2...etc] segun la cant de recetas retornadas del back) */
-    if(!dieta){
+    if(!dieta && !ingrediente){
         totalPag = Math.ceil(100 / 20);   
     }else{
         totalPag = Math.ceil(allRecetas.page.totalConsultaAct / 20);
@@ -79,19 +84,19 @@ function Home() {
     const handleResetFiltro = () => {
         dispatch(getRecetas(calculoDesde(paginaActual)));
         setDieta("");
-        var radio = document.querySelector('input[type=radio][name=dieta]:checked');
+        setIngrediente("");
+        var radio = document.querySelector('input[type=radio][name=dieta]:checked'); //quita la seleccion del radio buttom
         radio.checked = false;
     };
 
 
     useEffect(()=>{
-        //para el paginado
         
         //según los params q envio Va con dicha url
-        if(!dieta){
+        if(!dieta /* && !ingrediente */){
             dispatch(getRecetas(calculoDesde(paginaActual)));
         }else{
-            dispatch(getRecetas(calculoDesde(paginaActual),dieta));//camb en el back
+            dispatch(getRecetas(calculoDesde(paginaActual),ingrediente, dieta));//camb en el back
         }        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch, paginaActual]);
@@ -123,7 +128,7 @@ function Home() {
                             <div class={!barbie ? "contSearch" : "contSearchFK"}>
                                 <form onSubmit={handleSubmit} class="formFiltros">
                                     <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
-                                    <input class="form-control me-2" type="search" placeholder="Ingrediente" aria-label="Search"/>
+                                    <input class="form-control me-2" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
 
                                     <h3 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Tipo de dieta</h3>
                                     {

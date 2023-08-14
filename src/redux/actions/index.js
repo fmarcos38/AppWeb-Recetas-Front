@@ -4,15 +4,21 @@ import { urlDesarrollo } from "./urls";
 
 /*---------actions Recetas CRUD----------------*/
 //trae todas las recetas Api + DB
-export function getRecetas(desde, dieta){
+export function getRecetas(desde, palabra, dieta){
     return async function (dispatch) {
         dispatch({type: LOAD}); 
-        
+        console.log("desde",desde);
+        console.log("palabra",palabra);
+        console.log("dieta",dieta);
         let resp = [];
-        if(!dieta){
-            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
-        }else{
+        if(palabra && dieta){
+            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&palabra=${palabra}&dieta=${dieta}`);            
+        }else if(palabra){
+            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&palabra=${palabra}`);
+        }else if(dieta){
             resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}&dieta=${dieta}`);
+        }else{
+            resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
         }
         
         return  dispatch({ type: GET_RECETAS, payload: resp.data });    
