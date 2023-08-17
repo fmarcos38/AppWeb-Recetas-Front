@@ -46,15 +46,7 @@ function Home() {
     //para busqueda por ingrediente
     const handelChangeIng = (e) => {
         setIngrediente(e.target.value);
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(dieta || ingrediente){
-            dispatch(getRecetas(paginaActual, ingrediente, dieta));            
-        }else{
-            alert("No seleccionaste ningún filtro!!");
-        }
-    };
+    };    
 
     /*---Paginación-------------------------------------------------------------------------------------------*/
     //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
@@ -70,15 +62,29 @@ function Home() {
     
     const onChangePag = (numPag) => {
         setPaginaActual(numPag);
-    };   
+    };
+    const calculoHasta = (pagAct) =>{
+        return 20 * pagAct;
+    };
+    //calculo desde y hasta
     const calculoDesde = (pagAct) => {            
         if(pagAct === 1){
             return 0;
         }else{
-            return (pagAct - 1) * 5;
+            return calculoHasta(pagAct) - 20;
         }
     }
-    //----------------------------------------------------------------------------------------------------------
+    
+    
+    //submit btn search
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(dieta || ingrediente){
+            dispatch(getRecetas(paginaActual, ingrediente, dieta, calculoHasta(paginaActual)));            
+        }else{
+            alert("No seleccionaste ningún filtro!!");
+        }
+    };
 
     //resetea filtros
     const handleResetFiltro = () => {
@@ -87,18 +93,16 @@ function Home() {
         setIngrediente("");
         var radio = document.querySelector('input[type=radio][name=dieta]:checked'); //quita la seleccion del radio buttom
         if(radio){ radio.checked = false; }
-    };
+    }; 
 
-    
-    
 
 
     useEffect(()=>{        
         //según los params q envio Va con dicha url
-        if(!dieta /* && !ingrediente */){
+        if(!dieta && !ingrediente){
             dispatch(getRecetas(calculoDesde(paginaActual)));
         }else{
-            dispatch(getRecetas(calculoDesde(paginaActual),ingrediente, dieta));//camb en el back
+            dispatch(getRecetas(calculoDesde(paginaActual),ingrediente, dieta, calculoHasta(paginaActual)));
         }        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch, paginaActual]);

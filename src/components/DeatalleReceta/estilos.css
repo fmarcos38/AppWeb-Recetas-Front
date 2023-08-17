@@ -1,8 +1,13 @@
 .contDN{
     background-color: black;
+    height: 100vh;
 }
 .contDD{
     background-color: white;
+    height: 100vh;
+}
+.contIzqKD, .contMedKD, .contDerKD{
+    color: black;
 }
 .barbieD{
     color: #ff0080;
