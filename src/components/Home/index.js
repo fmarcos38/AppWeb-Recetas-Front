@@ -17,6 +17,8 @@ function Home() {
     const load = useSelector(state => state.load);
     const dispatch = useDispatch();
 
+    const [userActual, setUserActual] = useState(false);
+    const [name, setName] = useState("visitante");
     /* -------dia noche--------------------------- */
     const [diaNoche, setDiaNoche] = useState(false);
     
@@ -73,14 +75,14 @@ function Home() {
         }else{
             return calculoHasta(pagAct) - 20;
         }
-    }
-    
+    }    
     
     //submit btn search
     const handleSubmit = (e) => {
         e.preventDefault();
         if(dieta || ingrediente){
-            dispatch(getRecetas(paginaActual, ingrediente, dieta, calculoHasta(paginaActual)));            
+            dispatch(getRecetas(paginaActual, ingrediente, dieta, calculoHasta(paginaActual)));  
+            setPaginaActual(1);
         }else{
             alert("No seleccionaste ningún filtro!!");
         }
@@ -95,8 +97,7 @@ function Home() {
         if(radio){ radio.checked = false; }
     }; 
 
-
-
+    //para las recetas
     useEffect(()=>{        
         //según los params q envio Va con dicha url
         if(!dieta && !ingrediente){
@@ -107,14 +108,29 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch, paginaActual]);
 
+    //para disparar la action q me trae los datros del user(para favoritos y me gusta)
     useEffect(() => {
-        dispatch(getUser(userStorage.user.email));
-    }, [dispatch, userStorage.user.email]);
+        if(!userStorage){
+            return;
+        }else{
+            dispatch(getUser(userStorage.user.email));
+        }
+    }, [dispatch, userStorage]);
 
+    //para actualizar nombre y userActual
+    useEffect(()=>{
+        if(!userStorage){
+            return;
+        }else{
+            setName(userStorage.user.name);
+            setUserActual(true);
+        }
+    },[name, userStorage,userActual]);
 
     return (
         <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>
-            <NavBar/>
+            <NavBar userStorage={userStorage} userActual={userActual} name={name}/>
+
             <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
                 <div class="row">
                     {/* contenedor btns dia/noche barbie/ken y filtros */}

@@ -6,25 +6,22 @@ import { useNavigate } from 'react-router-dom';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 
 
-function NavBar() {     
+
+function NavBar({userActual, name}) {     
     
     //me traigo la data del user logeado
-    const userData = userLog.getUserActual;  //console.log("data:", userData);
-    const navigate = useNavigate();
-    const [userActual, setUserActual] = useState(false);
-    const [name, setName] = useState("visitante");
     
-    useEffect(()=>{
-        if(userData){
-            setName(userData.user.name);
-            setUserActual(true);
-        }
-    },[userData]);
+    const navigate = useNavigate();
+    
+    
+console.log("userAct:", userActual)
+    
         
 
     const handleLogout = (e) => {
         userLog.logout();
         navigate('/');
+        window.location.reload();
     };
 
 
@@ -48,40 +45,26 @@ function NavBar() {
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"/></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li>
                         </ul>
                     }                    
 
                     {/* login/Logout Registrarse*/}
                     {
-                        userActual === false ?
-                        <>
-                            <span>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas y cocinar como un verdadero CHEFF !!</span>
-                            <a href='/login' class="btn btn-secundary btnLog">Login</a>
-                            {/* registrarse */}
-                            <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
-                        </>
-                        :
+                        userActual === true ?
                         <>
                             <span className='contNombreUser'>Hola, {name} <SentimentSatisfiedAltIcon/> !!</span>
                             <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
                         </>
+                        :
+                        <div class='container'>
+                            <span>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas</span>
+                            
+                            {/* login */}
+                            <a href='/login' class="btn btn-secundary btnLog">Login</a>
+                            {/* registrarse */}
+                            <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
+                        </div>
+                        
                     }
                 </div>
             </div>

@@ -7,3 +7,4 @@ export const RESET_DETALLE = "RESET_DETALLE";
 export const AGREGA_FAV = "AGREGA_FAV";
 export const GET_USER = "GET_USER";
 export const RESET_FILTRO = "RESET_FILTRO";
+export const RESET_USER = "RESET_USER";

@@ -5,7 +5,6 @@ import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import CreateR from './components/FormCreateReceta';
 import DetalleReceta from './components/DeatalleReceta';
-import { Card } from '@mui/material';
 import Login from './components/Login';
 import Registrarse from './components/Registrarse';
 
@@ -19,9 +18,7 @@ function App() {
         <Route path='/registrarse' element={<Registrarse/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/createR' element={<CreateR/>}/>
-        <Route path='/detalle/:dia/:barbie/:_id' element={<DetalleReceta />}/>      
-
-        <Route path='/card' element={<Card/>}/>
+        <Route path='/detalle/:dia/:barbie/:_id' element={<DetalleReceta />}/>
       </Routes>
     </div>
   );
