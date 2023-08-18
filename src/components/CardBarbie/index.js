@@ -105,7 +105,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                 
             </div>
 
-            {/* btns Fav y Delete */}
+            {/* btns Fav y megusta */}
             <div class="container">
                 <div class="position-absolute bottom-0 start-0 contBotones">
                     <button class='btn'>

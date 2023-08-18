@@ -22,7 +22,9 @@
 .contBotones{
     margin-bottom: 0.5rem;
 }
- /* btnS-Admin */
-.btn-elimProd{
-    border-radius: 30px;
+.cardButtonFav, .cardButtonMG{
+    color: aqua;
+}
+.cardButtonK{
+    color: rgb(245, 240, 240);
 }

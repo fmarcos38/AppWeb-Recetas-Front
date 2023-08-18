@@ -18,3 +18,16 @@
         font-weight: bold;
         
 }
+
+.btnKen{
+    margin-left: 0.3rem;    
+}
+.btnKen:hover{
+    background-color: aqua;
+}
+.num{
+    color: #0400ff;
+}
+.btnNext{
+    margin-left: 0.3rem;
+}

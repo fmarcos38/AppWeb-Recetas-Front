@@ -16,17 +16,17 @@ function Paginado({paginaActual, totalPag, onChangePag, barbie}) {
             {/*btn Prev */}
             {
                 numPage && paginaActual > 1 ?
-                <button class="btn btn-secundary" onClick={() => onChangePag(paginaActual - 1)}>Prev</button> : null
+                <button class="btn btn-success" onClick={() => onChangePag(paginaActual - 1)}>Prev</button> : null
             }
 
             {/* btn Paginas ->num paginas-> 1-2-3 etc*/}
             {
                 numPage && numPage.map((num) => {
                     return(
-                        <button  className={barbie ? "btn btn-info" : "barbieBtn"} key={num}
+                        <button  className={barbie ? "btn btn-info btnKen" : "barbieBtn"} key={num}
                             onClick={() => onChangePag(num)}
                         >
-                            {num}
+                            <span className={paginaActual === num ? 'num' : ''}>{num}</span>
                         </button>
                     )
                 })
@@ -35,7 +35,7 @@ function Paginado({paginaActual, totalPag, onChangePag, barbie}) {
             {/*btn  Next*/}
             {
                 numPage && paginaActual < numPage.length ?
-                <button class="btn btn-secundary" onClick={() => onChangePag(paginaActual + 1)}>Next</button> : null
+                <button class="btn btn-success btnNext" onClick={() => onChangePag(paginaActual + 1)}>Next</button> : null
             }
         </nav>
     );
