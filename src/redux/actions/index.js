@@ -64,7 +64,8 @@ export function login(data){
         const resp = await axios.post(`${urlDesarrollo}/auth/login`, data);
         
         if(resp.data.token){
-            localStorage.setItem('user', JSON.stringify(resp.data)); console.log("userLog:", localStorage.getItem('user'));
+            localStorage.setItem('user', JSON.stringify(resp.data)); 
+            console.log("userStorage:", resp.data)
             return dispatch({type: LOGIN, payload: "ok"})
         }else{
             return dispatch({type: LOGIN, payload: "nook"});
@@ -96,3 +97,25 @@ export function meGusta(email, _id){
 export function resetUser(){
     return {type: RESET_USER};
 }
+
+
+
+/*
+
+{
+    user: {
+    _id: '64c2d06f02f69d66256a44bf',
+    name: 'marcos',
+    email: 'fmarcos_23@hotmail.com',
+    password: 'U2FsdGVkX1/zvvdoMq2zS4sz97dkzFTW95/34cu1GYA=',
+    role: 'cliente',
+    favorites: [],
+    verified: false,
+    bloqueado: false,
+    __v: 38,
+    meGusta: [ '64d238e7ddce4c34458a69cc' ]
+    },
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZtYXJjb3NfMjNAaG90bWFpbC5jb20iLCJpYXQiOjE2OTIzNjE0Mjh9.m1gHjbw60x1DtKCPmwHZ7gbUh1ZsjHCVhC0O3rwqBec'
+}
+
+*/

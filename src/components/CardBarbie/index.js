@@ -10,7 +10,7 @@ import { agregaFav, meGusta } from '../../redux/actions';
 const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
 
     /*---Favoritos---------------------------------------*/  
-    const userStorage = userLog.getUserActual;
+    const userStorage = userLog.getUserActual();
     const userReducer = useSelector(state => state.user);
     const [favStorage, setFavStorage] = useState(userReducer.favorites); 
     const [meG, setMeG] = useState(userReducer.meGusta); 
@@ -30,9 +30,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                 dispatch(agregaFav(userStorage.user.email, _id)); 
                 //asigno a state el erray de fav q está en el localStor
                 let state = userStorage.user.favorites;
-                state.push(_id);//carga array
-                //guarda el nuevo array en fav del localStor
-                //localStorage.setItem('user.favorites', favStorage);
+                state.push(_id);
                 setFavStorage(state);  //actualizo estado    
                 swal({
                 title: "Producto Añadido",
@@ -71,19 +69,15 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             if (!meG.find(e => e === _id)) {//si el producto NO esta en fav del localStor
                 dispatch(meGusta(userStorage.user.email, _id)); 
                 //asigno a state el erray de fav q está en el localStor
-                let state = userStorage.user.favorites;
-                state.push(_id);//carga array
-                //guarda el nuevo array en fav del localStor
-                //localStorage.setItem('user.favorites', favStorage);
+                let state = userStorage.user.meGusta;
+                state.push(_id);
                 setMeG(state);  //actualizo estado                    
             }
             if (meG.find(e => e === _id)){            
                 dispatch(meGusta(userStorage.user.email, _id)); //borro de la DB
                 //asigno a state el erray de fav q está en el localStor
-                let newState = userStorage.user.favorites;
-                newState = newState.filter((fav) => fav !== _id);
-                //guarda el nuevo array en fav del localStor
-                //localStorage.setItem('user.favorites', favStorage);
+                let newState = userStorage.user.meGusta;
+                newState = newState.filter((mg) => mg !== _id);
                 setMeG(newState);  //actualizo estado                 
             }
         } 

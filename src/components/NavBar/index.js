@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import logo from '../../imagenes/logo.ico';
 import './estilos.css';
 import userLog from '../../localStorage';
@@ -7,17 +7,9 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 
 
 
-function NavBar({userActual, name}) {     
-    
-    //me traigo la data del user logeado
+function NavBar({userActual, name}) {  
     
     const navigate = useNavigate();
-    
-    
-console.log("userAct:", userActual)
-    
-        
-
     const handleLogout = (e) => {
         userLog.logout();
         navigate('/');

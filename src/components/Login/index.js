@@ -50,8 +50,7 @@ function Login() {
                 showConfirmButton: false,
                 timer: 2000
             });
-            navigate('/home'); 
-           // window.location.reload();           
+            navigate('/home');            
         }
     };
 

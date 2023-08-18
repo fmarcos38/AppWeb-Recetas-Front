@@ -2,7 +2,7 @@ import getUserActual from "./getUserLog";
 import logout from "./logout";
 
 const userLog = {
-    getUserActual: getUserActual(),
+    getUserActual: getUserActual,
     logout: logout
 }
 

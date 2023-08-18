@@ -9,14 +9,21 @@ import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
 import userLog from '../../localStorage';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
+
 
 function Home() {
 
-    const userStorage = userLog.getUserActual;
+    //const userStorage = localStorage.getItem('user');  
+    const userStorage = userLog.getUserActual(); 
+    const navigate = useNavigate();    
+
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
     const dispatch = useDispatch();
-
+    
+    //estados q le paso a la navbar
     const [userActual, setUserActual] = useState(false);
     const [name, setName] = useState("visitante");
     /* -------dia noche--------------------------- */
@@ -127,6 +134,17 @@ function Home() {
         }
     },[name, userStorage,userActual]);
 
+    //dejo entrar en Home SI tiene token
+    if(!userStorage){
+        swal({
+            title: "Debes estar Registrado/Logeado",
+            icon: "error",
+            button: "Aceptar",
+        });
+    navigate('/login')
+    }
+
+    
     return (
         <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>
             <NavBar userStorage={userStorage} userActual={userActual} name={name}/>
