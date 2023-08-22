@@ -48,13 +48,18 @@ function NavBar({userActual, name}) {
                             <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
                         </>
                         :
-                        <div class='container'>
-                            <span>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas</span>
-                            
-                            {/* login */}
-                            <a href='/login' class="btn btn-secundary btnLog">Login</a>
-                            {/* registrarse */}
-                            <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
+                        <div class='container contRegistrarse'> 
+                            <div class="row">
+                                {/* msj bienvenido */}
+                                <div class="container col-11 contBienvenido">
+                                    <span className='msjBienvenido'>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas</span>
+                                </div>
+
+                                {/* login */}
+                                <div class="container col-1 contLogin">
+                                    <a href='/login' class="btn btn-secundary btnLog">Login</a>                            
+                                </div>
+                            </div>                            
                         </div>
                         
                     }

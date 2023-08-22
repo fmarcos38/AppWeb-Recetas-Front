@@ -1,0 +1,17 @@
+.contRecetaMuestra{
+    width: 95%;
+}
+.cardMuestra{
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.titleCardMuestra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgCard{
+    border-radius: 10px;
+    width: 95%;
+    height: 110px;
+}

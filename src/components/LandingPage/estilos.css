@@ -1,7 +1,33 @@
-.cont-principal{
-    background-image: url("../../imagenes/landing.jpg");
-    width: auto;
-    height: 100vh;
-    background-position:center center;
+.contTitulos{
+    width: 100%;
+    background-color: rgb(209, 225, 240);
 }
-
+.titulos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contColIzq{
+    background-color: bisque;
+}
+.contColMedio{
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+}
+.btnLReg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    margin-right: 1rem;
+}
+.contColDer{
+    background-color: bisque;
+}
+.imgDietas{
+    width: 45%;
+    height: 110px;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
