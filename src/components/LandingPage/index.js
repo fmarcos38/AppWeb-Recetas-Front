@@ -17,14 +17,14 @@ function LandingPage() {
         <>
             <NavBar/>
             <div>
-                <div class="contTitulos">
+                {/* <div class="contTitulos">
                     <div class="titulos">
                         <h3>No sabés que cocinar?</h3>                        
                     </div>
                     <div class="titulos">
                         <h4>Te damos las mejores ideas para cada tipo de dieta...</h4>
                     </div>               
-                </div>
+                </div> */}
                 
                 <div class="row">
                     <div class="container col-2 contColIzq">
@@ -33,12 +33,11 @@ function LandingPage() {
                     </div>
                     
                     <div class="container col contColMedio">
-                        
-                                <h3>Más tiempo para hacer lo que quieras</h3>
-                                <h4>recetas fáciles y elegantes para que sigas cocinando toda la semana !!</h4>
-                            
-                        {/* registrarse */}
-                        <a href='/registrarse ' class="btn btn-secundary btnLReg">Registrarse</a>
+                        <h3>No sabés que cocinar?</h3>  
+                        <h4>Te damos las mejores ideas para cada tipo de dieta...</h4>
+                        <div class="contBtnreg">
+                            <a href='/registrarse ' class="btn btn-secundary btnLReg">Registrarse</a>
+                        </div> 
                     </div>
                     
                     <div class="container col-1 contColDer">
