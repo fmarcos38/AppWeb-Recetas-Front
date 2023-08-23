@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
 
     //const userStorage = localStorage.getItem('user');  
-    const userStorage = userLog.getUserActual(); 
+    const userStorage = userLog.getUserActual(); console.log("userLog:", userStorage);
     const navigate = useNavigate();    
 
     const allRecetas = useSelector(state => state.allRecetas);
@@ -135,21 +135,23 @@ function Home() {
     },[name, userStorage,userActual]);
 
     //dejo entrar en Home SI tiene token
-    if(!userStorage){
+   /*  if(userActual === false){
         swal({
             title: "Debes estar Registrado/Logeado",
             icon: "error",
             button: "Aceptar",
         });
-    navigate('/login')
-    }
+    navigate('/')
+    } */
 
     
     return (
         <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>
             <NavBar userStorage={userStorage} userActual={userActual} name={name}/>
 
-            <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
+            {
+                userActual === true ?
+                <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
                 <div class="row">
                     {/* contenedor btns dia/noche barbie/ken y filtros */}
                     <div class="col-2 contIzq container"> {/* este div abarca 3 de las 12col */}                      
@@ -212,7 +214,12 @@ function Home() {
                         </div>                        
                     </div>
                 </div>
-            </div>
+                </div>
+                :
+                <div class="container contHomeRegistrarse">
+                    <a href='/registrarse' className='reg'>Ve a Registrarte</a>
+                </div>
+            }
         </div>
     )
 }

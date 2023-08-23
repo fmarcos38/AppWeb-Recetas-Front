@@ -70,3 +70,19 @@
 }
 
 /*-------col DER-----*/
+
+
+/*---------*/
+.contHomeRegistrarse{
+    height: 91.3vh;
+    width: 100%;
+    background-image: url("../../imagenes/landing.jpg");
+    background-position:center center;
+}
+.reg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;   
+    color: aqua; 
+}

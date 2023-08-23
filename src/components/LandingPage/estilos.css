@@ -1,6 +1,6 @@
 .contTitulos{
     width: 100%;
-    background-color: rgb(209, 225, 240);
+    background-color: rgb(145, 230, 218)
 }
 .titulos{
     display: flex;
@@ -8,7 +8,7 @@
     align-items: center;
 }
 .contColIzq{
-    background-color: bisque;
+    background-color: rgb(145, 230, 218)
 }
 .contColMedio{
     border-radius: 50px;
@@ -20,14 +20,30 @@
     justify-content: center;
     align-items: center;
     background-color: aquamarine;
+    margin-top: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.contColMedio{
+    background-image: url('../../imagenes/fondo.webp');
+    background-size: cover;
+    height: auto;
+} 
+.imgFondo{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    margin-top: 0.5rem;
 }
 .contColDer{
-    background-color: bisque;
+    background-color: rgb(145, 230, 218)
 }
 .imgDietas{
-    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: 110px;
     margin-top: 0.5rem;
-    margin-left: 0.5rem;
 }
+

@@ -6,6 +6,9 @@ import vegan from "../../imagenes/símbolo-vegetariano.jpg";
 import gluten from "../../imagenes/glutenFree.jpg";
 import keto from "../../imagenes/keto.jpg";
 import paleo from "../../imagenes/paleo.avif";
+import proteica from "../../imagenes/proteica.jpg";
+import fondo from "../../imagenes/fondo.webp";
+
 
 function LandingPage() {
 
@@ -13,35 +16,46 @@ function LandingPage() {
     return (
         <>
             <NavBar/>
-            <div class='container-fluid '>
-                <div class="container-fluid contTitulos">
+            <div>
+                <div class="contTitulos">
                     <div class="titulos">
-                        <h1>No sabés que cocinar?</h1>                        
+                        <h3>No sabés que cocinar?</h3>                        
                     </div>
                     <div class="titulos">
-                        <h2>Te damos las mejores ideas para cada tipo de dieta...</h2>
+                        <h4>Te damos las mejores ideas para cada tipo de dieta...</h4>
                     </div>               
                 </div>
                 
                 <div class="row">
                     <div class="container col-2 contColIzq">
-                        <h6>Algunas de nuestras recetas</h6>
+                        <h6 className="titulos">Algunas de nuestras recetas</h6>
                         <ListaRecetasMuestra />
                     </div>
                     
                     <div class="container col contColMedio">
+                        
+                                <h3>Más tiempo para hacer lo que quieras</h3>
+                                <h4>recetas fáciles y elegantes para que sigas cocinando toda la semana !!</h4>
+                            
                         {/* registrarse */}
                         <a href='/registrarse ' class="btn btn-secundary btnLReg">Registrarse</a>
                     </div>
                     
-                    <div class="container col-2 contColDer">
-                        <h6>Tipos de Dietas</h6>
-                        <div class="container">
-                            <img src={vegan} alt="" className="imgDietas"/>
+                    <div class="container col-1 contColDer">
+                        <h6 className="titulos">Dietas</h6>
+                        <div class="container contLogoD">                            
                             <img src={gluten} alt="" className="imgDietas"/>
                         </div>
-                        <div class="container">
+                        <div class="container contLogoD">
+                            <img src={vegan} alt="" className="imgDietas"/>
+                        </div>
+                        <div class="container contLogoD">
+                            <img src={proteica} alt="" className="imgDietas"/>
+                        </div>
+                        <div class="container contLogoD">
                             <img src={keto} alt="" className="imgDietas"/>
+                        </div>
+                        <div class="container contLogoD">                            
                             <img src={paleo} alt="" className="imgDietas"/>
                         </div>
                     </div>

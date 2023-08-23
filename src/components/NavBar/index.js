@@ -18,7 +18,7 @@ function NavBar({userActual, name}) {
 
 
     return (
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-md bg-body-tertiary">
             <div class="container-fluid">
                 {/* Logo */}
                 <a class="navbar-brand" href="/">
