@@ -4,8 +4,8 @@ function ListaRecetasMuestra() {
 
     const listaMuestra = [
         {
-            title:"Cannellini Bean and Asparagus Salad with Mushrooms",
-            image:"https://spoonacular.com/recipeImages/782585-312x231.jpg"
+            title:"Berry Banana Breakfast Smoothie",
+            image:"https://spoonacular.com/recipeImages/715497-312x231.jpg"
         },
         {
             title: "Broccoli and Chickpea Rice Salad",
@@ -16,12 +16,8 @@ function ListaRecetasMuestra() {
             image: "https://spoonacular.com/recipeImages/660306-312x231.jpg"
         },
         {
-            title: "Powerhouse Almond Matcha Superfood Smoothie",
-            image: "https://spoonacular.com/recipeImages/756814-312x231.jpg"
-        },
-        {
-            title: "Broccolini Quinoa Pilaf",
-            image: "https://spoonacular.com/recipeImages/715769-312x231.jpg"
+            title: "Garlicky Kale",
+            image: "https://spoonacular.com/recipeImages/644387-312x231.jpg"
         },
     ];
     
