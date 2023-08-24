@@ -65,13 +65,7 @@
     height: auto;
     width: 100%;
 }
-.contListaAlimentos{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
+
 
 
 .dolar{

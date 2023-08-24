@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./estilos.css";
 
 
@@ -6,18 +6,30 @@ function ListaAlimentos() {
 
     const arrayAlimentos = [
         {
+            id: 1,
             title: 'Curcuma',
             description: "Milagrosa. Dicen las buenas y entendidas lenguas que la nueva estrella de los especieros es, sin temor a exagerar, milagrosa. No solo tiñe de dorado y sazona los platos que toca, sino que es uno de los caballitos de batalla más poderosos y multitasking de la medicina ayurvédica",
-            contenido: "Desde el punto de vista nutricional, el oro en polvo de India es un aliado de la salud. El componente más importante de la raíz se llama curcumina, y a ella le debemos los superpoderes que la catapultaron al estrellato: es un activo antiinflamatorio, antioxidante, antiséptico, antitumoral y antibacterial. Mejora la digestión, cuida la salud del hígado, favorece la circulación de la sangre, disminuye el colesterol malo (LDL) y estimula el sistema inmunológico. ¿Algo más? Sí, es muy utilizada para tratar enfermedades más graves como diabetes, trastornos cardiovasculares, Alzheimer, depresión y obesidad. Bajado a tierra, la cúrcuma es un potente analgésico natural para los dolores de cabeza, óseos, de garganta, menstruales y articulares. Cuida la salud bucal, ayuda a eliminar las bacterias del organismo y a mejorar los estados gripales y de las vías respiratorias. A nivel tópico, es muy usada en el cuidado de la piel porque cicatriza, evita infecciones de las heridas y el desarrollo de hongos y tiene buen efecto sobre el acné.",
+            contenido: [
+                "Desde el punto de vista nutricional, el oro en polvo de India es un aliado de la salud.", 
+                "El componente más importante de la raíz se llama curcumina, y a ella le debemos los superpoderes que la catapultaron al estrellato:", 
+                "es un activo antiinflamatorio, antioxidante, antiséptico, antitumoral y antibacterial. Mejora la digestión, cuida la salud del hígado,",
+                "favorece la circulación de la sangre, disminuye el colesterol malo (LDL) y estimula el sistema inmunológico. ¿Algo más?", 
+                "Sí, es muy utilizada para tratar enfermedades más graves como diabetes, trastornos cardiovasculares, Alzheimer, depresión y obesidad.", 
+                "Bajado a tierra, la cúrcuma es un potente analgésico natural para los dolores de cabeza, óseos, de garganta, menstruales y articulares.", 
+                "Cuida la salud bucal, ayuda a eliminar las bacterias del organismo y a mejorar los estados gripales y de las vías respiratorias.", 
+                "A nivel tópico, es muy usada en el cuidado de la piel porque cicatriza, evita infecciones de las heridas y el desarrollo de hongos y tiene buen efecto sobre el acné.",
+            ],
             image: "https://bucket.somosohlala.com.ar/s3fs-public/styles/internal_990/public/2023-08/gettyimages-1317343720.jpg.webp?itok=HeJciX9J"
         },
-        {
+        {   
+            id: 2,
             title: 'Lengumbres',
             description: "las legumbres son ricas en fibra lo cual mantiene en mejor forma la salud de nuestro sistema digestivo, y reduce los riesgos de sufrir enfermedades cardiovasculares. Son bajas en contenido graso y no tienen colesterol y por ello contribuyen a la prevención de enfermedades cardiovasculares",
             contenido: "Otra característica es que pueden ser almacenadas en lugares frescos y secos durante períodos prolongados, para ser consumidas a lo largo del año, con la alternativa de frisarlas ya cocidas. Asimismo, son una muy rica fuente de hierro ayudando a prevenir problemas de anemia, y una manera de ayudar a la absorción del hierro por las paredes del intestino, es acompañarlas en la misma comida con alimentos ricos en vitamina C como por ejemplo el tomate, el ají morrón, cítricos como el limón, la naranja o el kiwi que también es rico en la referida vitamina. Otro elemento que brindan las legumbres es el potasio, que favorece el buen funcionamiento del corazón, los músculos y del sistema digestivo",
             image: "https://i.blogs.es/23a158/legumbres/840_560.jpg"
         },
-        {
+        {   
+            id: 3,
             title: 'Kale',
             description: "Contiene fibra, antioxidantes, calcio, vitaminas C y K, hierro y una gran variedad de otros nutrientes que pueden ayudar a prevenir diversos problemas de salud. Los antioxidantes ayudan al cuerpo a eliminar toxinas no deseadas que resultan de procesos naturales y presiones ambientales.",
             contenido: [                
@@ -34,7 +46,8 @@ function ListaAlimentos() {
             ],            
             image: "https://i.blogs.es/238e46/7288148804_3d71c2a98a_k/1366_2000.jpg"
         },
-        {
+        {   
+            id: 4,
             title: 'Limón',
             description: "Refuerza el sistema inmunológico. Los limones son ricos en vitamina C, ideal para combatir los resfriados. Son ricos en potasio, que estimula la función del cerebro y los nervios. El potasio también ayuda a controlar la presión sanguínea.",
             contenido: [
@@ -45,7 +58,8 @@ function ListaAlimentos() {
             ],
             image: "https://www.gaia.com/wp-content/uploads/10-Razones-Para-Beber-Agua-Con-Lim%C3%B3n-Por-Las-Ma%C3%B1anas-768x432.jpg"
         },
-        {
+        {   
+            id: 5,
             title: 'Jengibre',
             description: "También conocido como kion, crece en las regiones tropicales de todo el mundo y es famoso, tanto por sus reconocidas propiedades medicinales, como por su uso culinario. Aunque su origen inicial es de China, cultura que popularizó los usos de esta planta a través de su medicina natural.",
             contenido: [
@@ -60,6 +74,7 @@ function ListaAlimentos() {
             image: "https://www.gaia.com/wp-content/uploads/Propiedades-del-jengibre-768x432.jpg"
         },
         {
+            id: 6,
             title: 'Palta',
             description: "Considerada como uno de los alimentos más completos de la tierra -contiene todo lo que une persona necesita para sobrevivir-, esta fruta incluye una amplia variedad de nutrientes. Ácido fólico, fibra, luteína, potasio, hierro, fósforo, magnesio y, el verdadero secreto, doce de las trece vitaminas diferentes que existen, con un alto contenido de los complejos B y E son algunos de sus componentes",
             contenido: [
@@ -72,24 +87,49 @@ function ListaAlimentos() {
         },
     ];
 
+    const [modalTitle, setModalTitle] = useState();
+    const [modalContenido, setModalContenido] = useState();
+    const handleCH = (title, cont) => {
+        setModalTitle(title);
+        setModalContenido(cont)
+    }
 
     return (
-        <div class="container contListaAlimentos">
+        <div class="contListaAlimentos">
             {
                 arrayAlimentos.map(r => {
                     return(
-                        <div class="card cardAlimento" >
+                        <div key={r.id} className="container cardAlimento">
                             <img src={r.image} class="card-img-top" alt="..."/>
                             <div class="card-body">
                                 <h5 class="card-title">{r.title}</h5>
                                 <p class="card-text">{r.description}</p>
-                                <a href="#" class="btn btn-primary">Go more</a>
+                                {/* lanza modal */}
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                                    onClick={() => {handleCH(r.title,r.contenido)}}
+                                >
+                                    Launch demo modal
+                                </button>
+
+                                {/* modal */}
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">{modalTitle}</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        <div class="modal-body">
+                                            {modalContenido}
+                                        </div>                                      
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )
                 })
             }
-
         </div>
     )
 }

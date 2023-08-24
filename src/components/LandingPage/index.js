@@ -68,7 +68,7 @@ function LandingPage() {
                         </div>
                     </div>
 
-                    <div class="container contListaAlimentos">
+                    <div class="container-fluid contListaAlimentos">
                         <ListaAlimentos/>
                     </div>
                 </div>
@@ -82,9 +82,9 @@ function LandingPage() {
                     </div>
 
                     <div class="container contListaAlimentos">
-                        <iframe src="https://dolarhoy.com/i/cotizaciones/dolar-blue" frameborder="0" className="dolar"/>
-                        <iframe  src="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio" frameborder="0" className="dolar"/>
-                        <iframe  src="https://dolarhoy.com/i/cotizaciones/dolar-mep" frameborder="0" className="dolar"/>
+                        <iframe src="https://dolarhoy.com/i/cotizaciones/dolar-blue"  className="dolar"/>
+                        <iframe  src="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio"  className="dolar"/>
+                        <iframe  src="https://dolarhoy.com/i/cotizaciones/dolar-mep"  className="dolar"/>
                     </div>
                 </div>
 

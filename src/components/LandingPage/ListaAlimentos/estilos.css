@@ -1,4 +1,11 @@
+.contListaAlimentos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin-bottom: 1rem;
+}
 .cardAlimento{
-    width: 33%;
+    width: 30%;
     height: 600px;
 }
