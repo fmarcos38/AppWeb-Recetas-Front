@@ -134,16 +134,7 @@ function Home() {
         }
     },[name, userStorage,userActual]);
 
-    //dejo entrar en Home SI tiene token
-   /*  if(userActual === false){
-        swal({
-            title: "Debes estar Registrado/Logeado",
-            icon: "error",
-            button: "Aceptar",
-        });
-    navigate('/')
-    } */
-
+    
     
     return (
         <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>

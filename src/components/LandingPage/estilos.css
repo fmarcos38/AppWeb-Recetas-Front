@@ -1,34 +1,34 @@
-.contTitulos{
-    width: 100%;
-    background-color: rgb(145, 230, 218)
-}
+
 .titulos{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .contColIzq{
-    background-color: rgb(145, 230, 218);
+    background-color: rgb(194, 245, 238);
     height: 90vh;
+    border-radius: 0px 30px 30px 0px;
 }
 
 
 .contColMedio{
     width: 100%;
     height: 100%;
-    background-image: url('../../imagenes/landing.jpg');
+    background-image: url('../../imagenes/fondo.webp');
     background-position: center;
-    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-size: cover; */ /* ocupa todo el div */
     height: 90vh;
 }
-.contSubTitulos{
-    background-color: black;
-    color: white;
+.conttitulosMed{
+    width: 600px;
+    border-radius: 30px;
+    color: blueviolet;
 }
 .contBtnreg{
     margin-top: 32rem;
     display: flex;
-    justify-content: end;
+    justify-content: center;
 }
 .btnLReg{
     /* display: flex;
@@ -45,8 +45,9 @@
 
 
 .contColDer{
-    background-color: rgb(145, 230, 218);
+    background-color: rgb(194, 245, 238);
     height: 90vh;
+    border-radius: 30px 0px 0px 30px;
 }
 .imgDietas{
     display: flex;
@@ -57,3 +58,28 @@
     margin-top: 0.5rem;
 }
 
+
+.contSegundoDIV{
+    margin-top: 1rem;
+    background-color: aliceblue;
+    height: auto;
+    width: 100%;
+}
+.contListaAlimentos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+
+.dolar{
+    width:320px;
+    height:260px;
+    border-radius:10px;
+    box-shadow:2px 4px 4px rgb(0 0 0 / 25%);
+    display:flex;
+    justify-content:center;
+    border:1px solid #bcbcbc;
+}
