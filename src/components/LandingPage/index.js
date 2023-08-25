@@ -8,7 +8,7 @@ import keto from "../../imagenes/keto.jpg";
 import paleo from "../../imagenes/paleo.avif";
 import proteica from "../../imagenes/proteica.jpg";
 import ListaAlimentos from "./ListaAlimentos";
-
+import imgRecetas from "../../imagenes/fondo.webp";
 
 function LandingPage() {
 
@@ -16,29 +16,25 @@ function LandingPage() {
     return (
         <div class="container-fluid contGralLand">
             <NavBar/>
-            <div >                
-                <div class="row">
-                    <div class="container col-2 contColIzq">
-                        <h6 className="titulos">Algunas de nuestras recetas</h6>
-                        <ListaRecetasMuestra />
-                    </div>
-                    
-                    <div class="container col contColMedio">
+            <div class="container-fluid">                     
+                {/* cont 1 */}
+                <div class="container contPrimero">
                         <div class="container conttitulosMed">
                             <div class="titulos">
-                                <h3>No sabés que cocinar?</h3>                              
+                                <h2>No sabés que cocinar?</h2>                              
                             </div>
                             <div class="titulos">
-                                <h4>Te damos las mejores ideas para cada tipo de dieta...</h4>
+                                <h3>Te damos las mejores ideas para cada tipo de dieta...</h3>
                             </div>
-                        </div>                        
-                        <div class="contBtnreg">
-                            <a href='/registrarse ' class="btn btn-secundary btnLReg">Registrarse</a>
+                            <div>
+                                <img src={imgRecetas} alt="" className="imgRecetas"/>
+                            </div>
                         </div> 
-                    </div>
+                </div>
                     
-                    <div class="container col-1 contColDer">
-                        <h6 className="titulos">Dietas</h6>
+                {/* Dietas */}
+                <h4 class="titulos">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
+                <div class="container contSegundo">                        
                         <div class="container contLogoD">                            
                             <img src={gluten} alt="" className="imgDietas"/>
                         </div>
@@ -54,7 +50,12 @@ function LandingPage() {
                         <div class="container contLogoD">                            
                             <img src={paleo} alt="" className="imgDietas"/>
                         </div>
-                    </div>
+                </div>
+
+                {/* cont izq */}
+                <h4 className="titulos">Algunas de nuestras recetas</h4>
+                <div class="container contTercero">                        
+                    <ListaRecetasMuestra />
                 </div>
                 
                 {/* Info alimentos */}

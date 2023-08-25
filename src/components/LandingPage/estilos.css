@@ -3,32 +3,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.contColIzq{
-    background-color: rgb(194, 245, 238);
-    height: 90vh;
-    border-radius: 0px 30px 30px 0px;
-}
-
-
-.contColMedio{
-    width: 100%;
-    height: 100%;
-    background-image: url('../../imagenes/fondo.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-size: cover; */ /* ocupa todo el div */
-    height: 90vh;
-}
-.conttitulosMed{
-    width: 600px;
-    border-radius: 30px;
     color: blueviolet;
 }
-.contBtnreg{
-    margin-top: 32rem;
-    display: flex;
-    justify-content: center;
+.contPrimero{
+    width: 100%;
+    height: auto;
+
+    /* background-image: url('../../imagenes/fondo.webp');
+    background-position: center;
+    background-repeat: no-repeat; */
+    /* background-size: cover; */ /* ocupa todo el div */
+}
+.conttitulosMed{
+    width: 700px;
+    border-radius: 30px;
+    color: blueviolet;
+    margin-bottom: 0.5rem;
+}
+.imgRecetas{
+    width: 685px;
 }
 .btnLReg{
     /* display: flex;
@@ -36,38 +29,29 @@
     align-items: center; */
     background-color: aquamarine;
 }
-.imgFondo{
-    object-fit: cover;
-    width:100%;
-    height:100%;
-    margin-top: 0.5rem;
-}
-
-
-.contColDer{
+.contSegundo, .contTercero{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     background-color: rgb(194, 245, 238);
-    height: 90vh;
-    border-radius: 30px 0px 0px 30px;
+    height: 45vh;
+    border-radius: 10%;
 }
 .imgDietas{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 110px;
-    margin-top: 0.5rem;
+    width: 11rem;
+    height: 150px;
+    margin-top: 1rem;
+    border-radius: 30%;
 }
-
-
 .contSegundoDIV{
     margin-top: 1rem;
     background-color: aliceblue;
     height: auto;
     width: 100%;
 }
-
-
-
 .dolar{
     width:320px;
     height:260px;

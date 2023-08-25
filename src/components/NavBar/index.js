@@ -18,14 +18,14 @@ function NavBar({userActual, name}) {
 
 
     return (
-        <nav class="navbar navbar-expand-md bg-body-tertiary">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-xl bg-body-tertiary contNavGral">
+            <div class="container">
                 {/* Logo */}
                 <a class="navbar-brand" href="/">
-                    <img src={logo} alt='not found' width={"35"} height={"35"}/>
+                    <img src={logo} alt='not found' width={"38"} height={"38"}/>
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler iconoHamburg" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -54,9 +54,10 @@ function NavBar({userActual, name}) {
                                 <div class="container col-11 contBienvenido">
                                     <span className='msjBienvenido'>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas</span>
                                 </div>
-
-                                {/* login */}
+                                
+                                {/* regist - login */}
                                 <div class="container col-1 contLogin">
+                                    <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
                                     <a href='/login' class="btn btn-secundary btnLog">Login</a>                            
                                 </div>
                             </div>                            

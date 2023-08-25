@@ -16,8 +16,12 @@ function ListaRecetasMuestra() {
             image: "https://spoonacular.com/recipeImages/660306-312x231.jpg"
         },
         {
-            title: "Garlicky Kale",
-            image: "https://spoonacular.com/recipeImages/644387-312x231.jpg"
+            title: "Asparagus and Pea Soup: Real Convenience Food",
+            image: "https://spoonacular.com/recipeImages/716406-312x231.jpg"
+        },
+        {
+            title: "Red Lentil Soup with Chicken and Turnips",
+            image: "https://spoonacular.com/recipeImages/715415-312x231.jpg"
         },
     ];
     

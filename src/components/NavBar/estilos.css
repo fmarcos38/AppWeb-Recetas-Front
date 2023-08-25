@@ -1,3 +1,13 @@
+.contNavGral{
+    border-bottom: 1px solid rgb(17, 15, 15);
+    margin-bottom: 1rem;
+    height: 55px;
+}
+.iconoHamburg{
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
 .btnLog{
     background-color: aquamarine;
     margin-right: 1rem;
