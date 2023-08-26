@@ -9,16 +9,31 @@ import paleo from "../../imagenes/paleo.avif";
 import proteica from "../../imagenes/proteica.jpg";
 import ListaAlimentos from "./ListaAlimentos";
 import imgRecetas from "../../imagenes/fondo.webp";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 function LandingPage() {
 
+    //--url whatsapp-------------------------------
+    let whatsapp = `https://wa.me/2281460124`;
 
     return (
         <div class="container-fluid contGralLand">
             <NavBar/>
-            <div class="container-fluid">                     
-                {/* cont 1 */}
-                <div class="container contPrimero">
+            <div class="container-fluid">   
+                <div className="row contRedesYPrimero">
+                    <div class="container col-1 contRedes">
+                        <div className="divLinks">
+                            <a href="https://www.instagram.com/fmarcos_casla/">
+                                <InstagramIcon className="insta"/>
+                            </a>
+                            <a href={whatsapp}>
+                                <WhatsAppIcon className="whats"/>
+                            </a>                  
+                        </div>                                  
+                    </div>
+                    {/* cont 1 */}
+                    <div class="container col contPrimero">
                         <div class="container conttitulosMed">
                             <div class="titulos">
                                 <h2>No sabés que cocinar?</h2>                              
@@ -30,7 +45,9 @@ function LandingPage() {
                                 <img src={imgRecetas} alt="" className="imgRecetas"/>
                             </div>
                         </div> 
+                    </div>
                 </div>
+                
                     
                 {/* Dietas */}
                 <h4 class="titulos">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
