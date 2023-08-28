@@ -79,10 +79,14 @@ function LandingPage() {
                 
                 
 
-                {/* cont izq */}
+                {/* cont recetas */}
                 <h4 className="titulos">Algunas de nuestras recetas</h4>
-                <div class="container-fluid contTercero">                        
+                {/* <div class="container-fluid contTercero">                        
                     <ListaRecetasMuestra />
+                </div> */}
+                {/* pantalla CH recetas */}
+                <div class="container row ">                        
+                <ListaRecetasMuestra />                        
                 </div>
                 
                 {/* Info alimentos */}

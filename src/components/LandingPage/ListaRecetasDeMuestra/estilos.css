@@ -1,20 +1,19 @@
-.contRecetaMuestra{
+.contListareceta{
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin-bottom: 0.5rem;
+    background-color: rgb(194, 245, 238);
 }
-.cardMuestra{
-    width: 100%;
-    margin-top: 0.5rem;
+.cardReceta{
+    width: 30%;
+    height: 220px;
 }
-.titleCardMuestra{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.imgCard{
-    border-radius: 10px;
-    width: 100%;
-    height: 170px;
+
+@media screen and (max-width:560px){
+    .cardReceta{
+        width: 40%;
+        height: 220px;
+    }
 }

@@ -27,18 +27,16 @@ function ListaRecetasMuestra() {
     
     
     return (
-        <div class="container contRecetaMuestra">
+        <div class="contListareceta">
             {
-                listaMuestra?.map(r => 
-                    {
-                    return(                        
-                        <div key={r._id} class="container cardMuestra">
-                            <img src={r.image} class="card-img-top imgCard" alt="..."/>
-                            <div class="card-body ">
-                                <h6 class="card-title titleCardMuestra">{r.title}</h6>                                
+                listaMuestra.map(r => {
+                    return(
+                        <div key={r.id} className="container cardReceta">
+                            <img src={r.image} class="card-img-top" alt="..."/>
+                            <div class="card-body">
+                                <h5 class="card-title">{r.title}</h5>                                
                             </div>
                         </div>
-
                     )
                 })
             }
