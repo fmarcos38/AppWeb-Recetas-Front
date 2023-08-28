@@ -1,0 +1,22 @@
+.footIzq{
+    background-color: grey;    
+}
+.titulosIzq{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footCen{
+    background-color: grey; 
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.titulosMed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footDer{
+    background-color: grey; 
+}

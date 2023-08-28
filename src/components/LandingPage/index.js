@@ -11,6 +11,7 @@ import ListaAlimentos from "./ListaAlimentos";
 import imgRecetas from "../../imagenes/fondo.webp";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import Footer from "../Footer";
 
 function LandingPage() {
 
@@ -18,8 +19,9 @@ function LandingPage() {
     let whatsapp = `https://wa.me/2281460124`;
 
     return (
-        <div class="container-fluid contGralLand">
+        <div class="container-fluid">
             <NavBar/>
+            
             <div class="container-fluid">   
                 <div className="row contRedesYPrimero">
                     <div class="container col-1 contRedes">
@@ -33,25 +35,23 @@ function LandingPage() {
                         </div>                                  
                     </div>
                     {/* cont 1 */}
-                    <div class="container col contPrimero">
-                        <div class="container conttitulosMed">
-                            <div class="titulos">
-                                <h2>No sabés que cocinar?</h2>                              
+                    <div class="container col">                        
+                            <div class="container titulos">
+                                <h2 className="titulo">No sabés que cocinar?</h2>                              
                             </div>
-                            <div class="titulos">
-                                <h3>Te damos las mejores ideas para cada tipo de dieta...</h3>
+                            <div class="container titulos">
+                                <img src={imgRecetas} className="imgPrinc" alt="" />
                             </div>
-                            <div>
-                                <img src={imgRecetas} alt="" className="imgRecetas"/>
+                            <div class="container titulos">
+                                <h3 className="titulo">Te damos las mejores ideas para cada tipo de dieta...</h3>
                             </div>
-                        </div> 
                     </div>
                 </div>
                 
                     
                 {/* Dietas */}
-                <h4 class="titulos">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
-                <div class="container contSegundo">                        
+                <h4 className="titulo">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
+                <div class="container-fluid contSegundo">                        
                         <div class="container contLogoD">                            
                             <img src={gluten} alt="" className="imgDietas"/>
                         </div>
@@ -68,10 +68,20 @@ function LandingPage() {
                             <img src={paleo} alt="" className="imgDietas"/>
                         </div>
                 </div>
+                {/* Dietas pantalla chica */}
+                <div class="container row contSegundoPChica">                        
+                    <img src={gluten} alt="" className="imgDietas"/>
+                    <img src={vegan} alt="" className="imgDietas"/>
+                    <img src={proteica} alt="" className="imgDietas"/>
+                    <img src={keto} alt="" className="imgDietas"/>
+                    <img src={paleo} alt="" className="imgDietas"/>                        
+                </div>
+                
+                
 
                 {/* cont izq */}
                 <h4 className="titulos">Algunas de nuestras recetas</h4>
-                <div class="container contTercero">                        
+                <div class="container-fluid contTercero">                        
                     <ListaRecetasMuestra />
                 </div>
                 
@@ -107,6 +117,8 @@ function LandingPage() {
                 </div>
 
             </div>
+
+            <Footer/>
         </div>        
     )
 }

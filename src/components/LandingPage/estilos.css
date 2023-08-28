@@ -1,15 +1,11 @@
-
-.titulos{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: blueviolet;
-}
 .contRedesYPrimero{
     display: flex;
     align-items: center;
     background-color: aquamarine;
+    height: 600px;
+    border-radius: 10%;
 }
+/*--REDES--*/
 .contRedes{
     width: 3rem;
     height: 8rem;
@@ -35,20 +31,28 @@
 .whats:hover{
     color:rgb(22, 179, 218)
 }
-.contPrimero{
-    width: 100%;
-    height: auto;
+/*--------------*/
 
-    /* background-image: url('../../imagenes/fondo.webp');
-    background-position: center;
-    background-repeat: no-repeat; */
-    /* background-size: cover; */ /* ocupa todo el div */
+.titulos, .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blueviolet;
 }
+
 .conttitulosMed{
-    width: 700px;
+    width: auto;
     border-radius: 30px;
     color: blueviolet;
     margin-bottom: 0.5rem;
+}
+.imgPrinc{
+    width: 65%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
 }
 .imgRecetas{
     width: 685px;
@@ -59,23 +63,36 @@
     align-items: center; */
     background-color: aquamarine;
 }
-.contSegundo, .contTercero{
+.contSegundo{
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: rgb(194, 245, 238);
-    height: 45vh;
+    height: 30vh;
     border-radius: 10%;
+}
+.contLogoD{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .imgDietas{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 11rem;
-    height: 150px;
-    margin-top: 1rem;
-    border-radius: 30%;
+    width: 75%;
+    height: auto;
+    border-radius: 40%;
 }
+.contTercero{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(194, 245, 238);
+    height: 37vh;
+    border-radius: 10%;
+}
+
 .contSegundoDIV{
     margin-top: 1rem;
     background-color: aliceblue;
@@ -90,4 +107,63 @@
     display:flex;
     justify-content:center;
     border:1px solid #bcbcbc;
+}
+
+/*----responsive----*/
+/*---quito redes--*/
+@media screen and (max-width:777px){
+    .contRedes{
+        display: none;
+    }
+}
+/*--imagen Principal--*/
+@media screen and (max-width:770px){
+    .contRedesYPrimero{
+        height: 500px;
+    }
+    .imgPrinc{
+        width: 95%;
+        height: 350px;
+    }
+    .titulo{
+        font-size:large;
+        color: blueviolet;
+    }
+}
+@media screen and (max-width:400px){
+    .contRedesYPrimero{
+        height: 400px;
+    }
+    .imgPrinc{
+        width: 95%;
+        height: 250px;
+    }
+}
+/*--imgDietas--*/
+@media screen and (max-width:990px){
+    .contSegundo{
+        height: 27vh;
+    }
+    .imgDietas{
+        width: 95%;
+
+    }
+}
+@media screen and (min-width:561px){
+    .contSegundoPChica{
+        display: none;
+    }
+}
+@media screen and (max-width:560px){
+    .contSegundo{
+        display: none;
+    }
+    .contSegundoPChica{
+        display: flex;
+        justify-content: center;
+    }
+    .imgDietas{
+        width: 50%;
+
+    }
 }
