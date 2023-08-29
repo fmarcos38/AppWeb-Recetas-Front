@@ -142,24 +142,64 @@ function Home() {
 
             {
                 userActual === true &&
-                <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
-                    <div class="row">
-                        {/* contenedor btns dia/noche barbie/ken y filtros */}
-                        <div class="col-3 container contIzq"> {/* este div abarca 3 de las 12col */}                      
-                            <div className='contBtnsBarbie'>
+                <div class="container-fluid">{/* boostrap divide en 12 columnas */} 
+                    <div class="container-fluid">
+                        {/* contenedor PANTALLA Chica btns dia/noche barbie/ken y filtros */}
+                        <div class="contSolNochePC">
                             <ModeNightIcon className='luna'/>
                             <Switch onChange={handleDN} inputProps={{ 'aria-label': 'controlled' }} />
                             <WbSunnyIcon className='sol'/>
                         
-                            <br/>
                             <label class="barbie">Barbie</label>
                             <Switch onChange={handleBK} inputProps={{ 'aria-label': 'controlled' }} />
                             <label class="ken">Ken</label>
+                        </div>                            
+                        {/* SearchBar y Dietas*/}                        
+                        <div class={!barbie ? "contSearch" : "contSearchFK"}>
+                                    <form onSubmit={handleSubmit} class="formFiltros">
+                                        <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
+                                        <input class="form-control me-2" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
+
+                                        <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by Diets</label>
+                                        <div class="row">
+                                        {
+                                            tiposDietas?.map(d => {
+                                                return(
+                                                    <div key={d._id} class="col-4">{/* divido el contenedor de a 4partes x columna */}
+                                                        {/* <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/> */}
+                                                        <input type={"radio"} name={"dieta"} value={d.tipo} onChange={handleChecked}/>
+                                                        <label class={!barbie ? "labelSearch" : "labelSearchK"}>{d.tipo}</label>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        </div>
+                                                                            
+                                        <button class="btn btn-outline-info btnSearch" type="submit">Search</button>
+                                    </form>
+                                    <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>
+                        </div>                        
+                    </div>
+                    {/* FIN filtros P.chica */}
+
+                    <div class="row">
+                        {/* contenedor PANTALLA Grande btns dia/noche barbie/ken y filtros */}
+                        <div class="col-3 container contIzq"> {/* este div abarca 3 de las 12col */}                      
+                            <div className='contBtnsBarbie'>
+                                <ModeNightIcon className='luna'/>
+                                <Switch onChange={handleDN} inputProps={{ 'aria-label': 'controlled' }} />
+                                <WbSunnyIcon className='sol'/>
+                        
+                                <br/>
+                                <label class="barbie">Barbie</label>
+                                <Switch onChange={handleBK} inputProps={{ 'aria-label': 'controlled' }} />
+                                <label class="ken">Ken</label>
                             </div>
+                            
                             {/* SearchBar y Dietas */}
                             <div class="container-fluid">  
-                            <div class={!barbie ? "contSearch" : "contSearchFK"}>
-                                <form onSubmit={handleSubmit} class="formFiltros">
+                                <div class={!barbie ? "contSearch" : "contSearchFK"}>
+                                    <form onSubmit={handleSubmit} class="formFiltros">
                                     <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
                                     <input class="form-control me-2" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
 
@@ -177,13 +217,14 @@ function Home() {
                                     }                                    
                                     
                                     <button class="btn btn-outline-info btnSearch" type="submit">Search</button>
-                                </form>                                                          
+                                    </form>                                                          
                     
-                                <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>
-                            </div>
+                                    <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>
+                                </div>
                             </div>                                                       
-                        </div>
-    
+                        </div>                       
+
+
                         {/* lista recetas */}
                         <div class="container-fluid col contMed"> {/* este abarca 9col */}
                             <div class="contTituloColMed">
