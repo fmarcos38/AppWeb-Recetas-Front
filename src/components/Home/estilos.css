@@ -86,6 +86,11 @@
 }
 
 /*--responsive--*/
+@media screen and (min-width:754px){
+    .contFiltrosPC{
+        display: none;
+    }
+}
 /*--Titulo Home--*/
 @media screen and (max-width:1100px){
     .tituloFiltro, .tituloFiltrosK{
