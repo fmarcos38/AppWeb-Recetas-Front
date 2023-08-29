@@ -1,19 +1,50 @@
 .contListareceta{
     width: 100%;
+    height: 37vh;
     display: flex;
     flex-wrap: wrap;
     justify-content:space-around;
-    margin-bottom: 0.5rem;
-    background-color: rgb(194, 245, 238);
+    margin-bottom: 1rem;
+    background-color: aquamarine;
+    border-radius: 5%;
 }
 .cardReceta{
-    width: 30%;
-    height: 220px;
+    width: 20%;
+    height: 150px;
+    margin-top: 0.5rem;
 }
-
-@media screen and (max-width:560px){
+.imgRecetaMuestra{
+    border-radius: 5%;
+}
+@media screen and (max-width:700px){
+    .contListareceta{
+        height: auto;
+    }
     .cardReceta{
-        width: 40%;
-        height: 220px;
+        width: 34%;
+        height: 205px;
+        margin-bottom: 0.5rem;
+    }
+}
+@media screen and (max-width:600px){
+    .contListareceta{
+        height: auto;
+    }
+    .cardReceta{
+        width: 47%;
+        height: 205px;
+        margin-bottom: 0.5rem;
+    }
+}
+@media screen and (max-width:300px){
+    
+    .cardReceta{
+        width: 47%;
+        height: 185px;
+        margin-bottom: 0.2rem;
+        
+    }
+    .tituloRM{
+        font-size: medium;
     }
 }

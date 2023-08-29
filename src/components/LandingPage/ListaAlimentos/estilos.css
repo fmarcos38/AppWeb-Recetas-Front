@@ -9,3 +9,27 @@
     width: 30%;
     height: 600px;
 }
+
+@media screen and (max-width:777px){
+    .contListaAlimentos{
+        height: auto;
+        background-color: aliceblue;
+    }
+    .cardAlimento{    
+        width: 48%;    
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+}
+@media screen and (max-width:500px){
+    .cardAlimento{
+        width: 48%;
+        height: auto;
+    }
+    .tituloA{
+        font-size: large;
+    }
+    .btnModal{
+        font-size: small;
+    }
+}

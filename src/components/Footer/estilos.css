@@ -1,22 +1,19 @@
-.footIzq{
-    background-color: grey;    
+.contFooter{
+    background-color: grey;
+    width: 100%;
 }
-.titulosIzq{
+.footCen{     
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.footCen{
-    background-color: grey; 
-    display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;   
 }
 .titulosMed{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 .footDer{
-    background-color: grey; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

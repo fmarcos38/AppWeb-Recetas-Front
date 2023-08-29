@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(194, 245, 238);
+    background-color: aquamarine;
     height: 30vh;
     border-radius: 10%;
 }
@@ -84,21 +84,19 @@
     height: auto;
     border-radius: 40%;
 }
-
-.contTercero{
+.recetasPChica{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(194, 245, 238);
-    height: 37vh;
+    background-color: aquamarine;
+    height: 30vh;
     border-radius: 10%;
 }
-
 .contSegundoDIV{
     margin-top: 1rem;
     background-color: aliceblue;
     height: auto;
-    width: 100%;
+    width: 100%;    
 }
 .dolar{
     width:320px;
@@ -162,9 +160,20 @@
     .contSegundoPChica{
         display: flex;
         justify-content: center;
+        background-color: aquamarine;
+        height: auto;
+        border-radius: 5%;
     }
     .imgDietas{
-        width: 50%;
-
+        width: 47%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;        
+    }
+}
+/*---Salud--*/
+@media screen and (max-width:777px){
+    .contSegundoDIV{
+        height: auto;
+        margin-bottom: 1rem;
     }
 }

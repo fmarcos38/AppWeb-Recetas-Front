@@ -16,10 +16,6 @@ function ListaRecetasMuestra() {
             image: "https://spoonacular.com/recipeImages/660306-312x231.jpg"
         },
         {
-            title: "Asparagus and Pea Soup: Real Convenience Food",
-            image: "https://spoonacular.com/recipeImages/716406-312x231.jpg"
-        },
-        {
             title: "Red Lentil Soup with Chicken and Turnips",
             image: "https://spoonacular.com/recipeImages/715415-312x231.jpg"
         },
@@ -27,14 +23,14 @@ function ListaRecetasMuestra() {
     
     
     return (
-        <div class="contListareceta">
+        <div class="container-fluid contListareceta">
             {
                 listaMuestra.map(r => {
                     return(
-                        <div key={r.id} className="container cardReceta">
-                            <img src={r.image} class="card-img-top" alt="..."/>
+                        <div key={r.id} className="container-fluid cardReceta">
+                            <img src={r.image} class="card-img-top imgRecetaMuestra" alt="..."/>
                             <div class="card-body">
-                                <h5 class="card-title">{r.title}</h5>                                
+                                <h5 class="card-title tituloRM">{r.title}</h5>                                
                             </div>
                         </div>
                     )

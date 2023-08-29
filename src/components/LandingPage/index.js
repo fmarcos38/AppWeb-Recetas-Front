@@ -69,7 +69,7 @@ function LandingPage() {
                         </div>
                 </div>
                 {/* Dietas pantalla chica */}
-                <div class="container row contSegundoPChica">                        
+                <div class="row contSegundoPChica">                        
                     <img src={gluten} alt="" className="imgDietas"/>
                     <img src={vegan} alt="" className="imgDietas"/>
                     <img src={proteica} alt="" className="imgDietas"/>
@@ -80,22 +80,22 @@ function LandingPage() {
                 
 
                 {/* cont recetas */}
-                <h4 className="titulos">Algunas de nuestras recetas</h4>
+                <h4 className="titulo">Algunas de nuestras recetas</h4>
                 {/* <div class="container-fluid contTercero">                        
                     <ListaRecetasMuestra />
                 </div> */}
                 {/* pantalla CH recetas */}
-                <div class="container row ">                        
-                <ListaRecetasMuestra />                        
+                <div class="row">                        
+                    <ListaRecetasMuestra />                        
                 </div>
                 
                 {/* Info alimentos */}
                 <div class="container-fluid contSegundoDIV">
                     <div class="container conttitulosMed">
-                        <div class="titulos">
+                        <div class="titulo">
                             <h3>Salud</h3>                              
                         </div>
-                        <div class="titulos">
+                        <div class="titulo">
                             <h4>Conocé los beneficios naturales de los alimentos</h4>
                         </div>
                     </div>

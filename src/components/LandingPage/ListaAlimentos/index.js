@@ -95,20 +95,20 @@ function ListaAlimentos() {
     }
 
     return (
-        <div class="contListaAlimentos">
+        <div class="container-fluid contListaAlimentos">
             {
                 arrayAlimentos.map(r => {
                     return(
-                        <div key={r.id} className="container cardAlimento">
+                        <div key={r.id} className="container-fluid cardAlimento">
                             <img src={r.image} class="card-img-top" alt="..."/>
                             <div class="card-body">
-                                <h5 class="card-title">{r.title}</h5>
+                                <h5 class="card-title tituloA">{r.title}</h5>
                                 <p class="card-text">{r.description}</p>
                                 {/* lanza modal */}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                                <button type="button" class="btn btn-primary btnModal" data-bs-toggle="modal" data-bs-target="#exampleModal" 
                                     onClick={() => {handleCH(r.title,r.contenido)}}
                                 >
-                                    Launch demo modal
+                                    + Info
                                 </button>
 
                                 {/* modal */}
