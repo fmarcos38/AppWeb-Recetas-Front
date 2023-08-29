@@ -141,12 +141,12 @@ function Home() {
             <NavBar userStorage={userStorage} userActual={userActual} name={name}/>
 
             {
-                userActual === true ?
+                userActual === true &&
                 <div class="container-fluid">{/* boostrap divide en 12 columnas */}            
-                <div class="row">
-                    {/* contenedor btns dia/noche barbie/ken y filtros */}
-                    <div class="col-2 contIzq container"> {/* este div abarca 3 de las 12col */}                      
-                        <div className='contBtnsBarbie'>
+                    <div class="row">
+                        {/* contenedor btns dia/noche barbie/ken y filtros */}
+                        <div class="col-3 container contIzq"> {/* este div abarca 3 de las 12col */}                      
+                            <div className='contBtnsBarbie'>
                             <ModeNightIcon className='luna'/>
                             <Switch onChange={handleDN} inputProps={{ 'aria-label': 'controlled' }} />
                             <WbSunnyIcon className='sol'/>
@@ -155,9 +155,9 @@ function Home() {
                             <label class="barbie">Barbie</label>
                             <Switch onChange={handleBK} inputProps={{ 'aria-label': 'controlled' }} />
                             <label class="ken">Ken</label>
-                        </div>
-
-                        <div class="container-fluid">  
+                            </div>
+                            {/* SearchBar y Dietas */}
+                            <div class="container-fluid">  
                             <div class={!barbie ? "contSearch" : "contSearchFK"}>
                                 <form onSubmit={handleSubmit} class="formFiltros">
                                     <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
@@ -181,32 +181,34 @@ function Home() {
                     
                                 <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>
                             </div>
-                        </div>                                                       
-                    </div>
-
-                    {/* lista recetas */}
-                    <div class="container col contMed"> {/* este abarca 9col */}
-                        <div class="contTituloColMed">
-                            <h2 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Encontrá las mejores recetas y soluciones para tus comidas</h2>
+                            </div>                                                       
                         </div>
-                        <div>
-                            <ListaRecetas 
-                                load={load} allRecetas={allRecetas} diaNoche={diaNoche} 
-                                barbie={barbie} 
-                            />
+    
+                        {/* lista recetas */}
+                        <div class="container-fluid col contMed"> {/* este abarca 9col */}
+                            <div class="contTituloColMed">
+                                <h2 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Encontrá las mejores recetas y soluciones para tus comidas</h2>
+                            </div>
+                            <div class="container-fluid">
+                                <ListaRecetas 
+                                    load={load} allRecetas={allRecetas} diaNoche={diaNoche} 
+                                    barbie={barbie} 
+                                />
                             
-                            {/* paginacion */}
-                            {
-                                <div>
-                                    <Paginado paginaActual={paginaActual} totalPag={totalPag}
-                                        onChangePag={onChangePag} barbie={barbie}/>
-                                </div>
-                            }
-                        </div>                        
+                                {/* paginacion */}
+                                {
+                                    <div>
+                                        <Paginado paginaActual={paginaActual} totalPag={totalPag}
+                                            onChangePag={onChangePag} barbie={barbie}/>
+                                    </div>
+                                }
+                            </div>                        
+                        </div>
                     </div>
-                </div>
-                </div>
-                :
+                </div>               
+            }
+            {
+                userActual === false &&
                 <div class="container contHomeRegistrarse">
                     <a href='/registrarse' className='reg'>Ve a Registrarte</a>
                 </div>

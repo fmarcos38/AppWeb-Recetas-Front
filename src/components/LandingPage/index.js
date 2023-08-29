@@ -48,7 +48,6 @@ function LandingPage() {
                     </div>
                 </div>
                 
-                    
                 {/* Dietas */}
                 <h4 className="titulo">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
                 <div class="container-fluid contSegundo">                        
@@ -75,8 +74,7 @@ function LandingPage() {
                     <img src={proteica} alt="" className="imgDietas"/>
                     <img src={keto} alt="" className="imgDietas"/>
                     <img src={paleo} alt="" className="imgDietas"/>                        
-                </div>
-                
+                </div>                
                 
 
                 {/* cont recetas */}

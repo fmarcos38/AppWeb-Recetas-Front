@@ -91,7 +91,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             </div>
             {/* img */}
             <div class="containerTitle">
-                <img src={image} class="imagen" alt="..."/>
+                <img src={image} class="img-fluid imagen" alt="..."/>
             </div>
             {/*dietas */}
             <div>
@@ -113,7 +113,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                     </button>                    
                 </div>
                 <div class="position-absolute bottom-0 start-50 translate-middle-x contBotones">
-                    <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark">
+                    <a href={`/detalle/${diaNoche}/${barbie}/${_id}`} class="btn btn-dark btnPasoA">
                         Paso a Paso
                     </a>
                 </div>

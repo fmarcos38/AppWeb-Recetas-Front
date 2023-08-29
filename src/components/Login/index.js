@@ -57,7 +57,7 @@ function Login() {
 
     return (        
         <section>
-            <h1>Logeate para cocinar como un hijo de re mil puta, con las mejores recetas</h1>
+            <h1>Logeate para cocinar como un/a verdader@ cheff, con las mejores recetas</h1>
             <form class="card" onSubmit={handleSub}>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>

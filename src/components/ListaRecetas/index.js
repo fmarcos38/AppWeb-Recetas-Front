@@ -8,36 +8,33 @@ function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
 
 
     return (
-        <div class="container contGralR">
+        <div class="container-fluid contGralR">
             {
                 load ? 
                 <>
                     <Loading/>
                 </>
                 :
-                <div class="container contCadaR">
+                <>
                     {
                         allRecetas.recetas[0] ?
                         allRecetas.recetas.map(r => {
                             return(
-                                <div class="container contReceta">
+                                <div class="container-fluid contReceta">
                                     {
                                     barbie !== true ?                                        
                                         <CardBarbie _id={r._id} title={r.title} image={r.image} 
                                             diets={r.diets} diaNoche={diaNoche} barbie={barbie}
                                         />
-                                        
                                     :
-                                        
                                         <CardReceta _id={r._id} title={r.title} image={r.image} diets={r.diets} diaNoche={diaNoche} barbie={barbie}/>                                    
-                                        
                                     }
                                 </div>                                                                
                             )
                         }) :
                         <span className={barbie !== true ? "msgNorecetas" : "msgNorecetasK"}>No se encontron recetas para dicha busqueda</span>
                     }
-                </div>                
+                </>                
             }
             
         </div>

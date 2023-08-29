@@ -23,3 +23,9 @@
 .cardButton{
     color: black;
 }
+
+@media screen and (max-width:870px){
+    .imagen{
+        height: 219px;
+    }
+}
