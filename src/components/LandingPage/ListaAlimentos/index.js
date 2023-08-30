@@ -95,11 +95,11 @@ function ListaAlimentos() {
     }
 
     return (
-        <div class="container-fluid contListaAlimentos">
+        <div class="contListaAlimentos">
             {
                 arrayAlimentos.map(r => {
                     return(
-                        <div key={r.id} className="container-fluid cardAlimento">
+                        <div key={r.id} className="cardAlimento">
                             <img src={r.image} class="card-img-top" alt="..."/>
                             <div class="card-body">
                                 <h5 class="card-title tituloA">{r.title}</h5>

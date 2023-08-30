@@ -8,7 +8,7 @@ function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
 
 
     return (
-        <div class="container-fluid contGralR">
+        <div class="contGralR">
             {
                 load ? 
                 <>

@@ -20,7 +20,7 @@ const initialState = {
         },
         {
             _id:5,
-            tipo: "lacto ovo vegetarian",
+            tipo: "lacto ovo veg",
             descripcion: "Todos los ingredientes deben ser vegetarianos y ninguno de los ingredientes puede ser o contener lácteos."
         },
         {

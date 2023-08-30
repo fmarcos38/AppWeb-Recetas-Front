@@ -158,7 +158,7 @@ function Home() {
                         <div class={!barbie ? "contSearch" : "contSearchFK"}>
                             <form onSubmit={handleSubmit} class="formFiltros">
                                 <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
-                                <input class="form-control me-2" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
+                                <input class="form-control me-2 inputFiltro" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
 
                                 <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by Diets</label>
                                 <div class="row">
@@ -167,14 +167,14 @@ function Home() {
                                         return(
                                             <div key={d._id} class="col-4">{/* divido el contenedor de a 4partes x columna */}
                                                 {/* <input type='checkbox' id={d.tipo} value={d.tipo} onChange={handleChecked}/> */}
-                                                <input type={"radio"} name={"dieta"} value={d.tipo} onChange={handleChecked}/>
+                                                <input type={"radio"} name={"dieta"} value={d.tipo} onChange={handleChecked} />
                                                 <label class={!barbie ? "labelSearch" : "labelSearchK"}>{d.tipo}</label>
                                             </div>
                                         )
                                     })
                                 }
                                 </div>
-                                                                            
+                                
                                 <button class="btn btn-outline-info btnSearch" type="submit">Search</button>
                             </form>
                             <button class="btn btn-info btnFiltro btnSearch" onClick={handleResetFiltro}>Reset Filtro</button>

@@ -6,7 +6,7 @@
     margin-bottom: 1rem;
 }
 .cardAlimento{
-    width: 30%;
+    width: 32%;
     height: 600px;
 }
 
@@ -23,7 +23,7 @@
 }
 @media screen and (max-width:500px){
     .cardAlimento{
-        width: 48%;
+        width: 95%;
         height: auto;
     }
     .tituloA{

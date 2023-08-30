@@ -60,10 +60,13 @@ function Registrarse() {
 
     
     return (
-        <div class="container contGralReg">
-            <h1>Registrate para acceder a todas las recetas</h1>
-            <form onSubmit={handleSub} class="card">
-                
+        <div class="contGralReg">
+                <form onSubmit={handleSub} class="container card">
+                <h1>Registrate para acceder a todas las recetas</h1>
+                <div class="tituloP">
+                    <img src='https://img1.picmix.com/output/stamp/normal/3/1/6/8/498613_71577.gif' class="imgLog1" alt=''/>
+                    <img src='https://www.gifsanimados.org/data/media/92/cocinero-y-chef-imagen-animada-0002.gif' class="imgLog2" alt=''/>
+                </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" value={state.name} onChange={handleChange} id="name" placeholder="your name"/>

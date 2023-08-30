@@ -56,24 +56,30 @@ function Login() {
 
 
     return (        
-        <section>
-            <h1>Logeate para cocinar como un/a verdader@ cheff, con las mejores recetas</h1>
-            <form class="card" onSubmit={handleSub}>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" value={state.email} id="email" onChange={handleCh} placeholder="your email"/>
-                    {errors.email && <span className="error-message">{errors.email}</span>}
+        <div class="contGralLogin">
+            <form class="container login" onSubmit={handleSub}>
+                <div class="contTituloP">
+                    <h1 class="tituloP">Login</h1>
+                    <h5 class="tituloP">Enter your credentials</h5>
                 </div>
-                <div class="mb-3">
-                    <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" value={state.pass} id="password" onChange={handleCh} placeholder="your pass"/>
+                <div class="tituloP">
+                    <img src='https://img1.picmix.com/output/stamp/normal/3/1/6/8/498613_71577.gif' class="imgLog1" alt=''/>
+                    <img src='https://www.gifsanimados.org/data/media/92/cocinero-y-chef-imagen-animada-0002.gif' class="imgLog2" alt=''/>
+                </div>
+                <div cclass="tituloP">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control inputLog" value={state.email} id="email" onChange={handleCh} placeholder="your email"/>
+                    {errors.email && <span className="error-message">{errors.email}</span>}
+
+                    <label for="email" class="form-label labelPass">Password</label>
+                    <input type="password" class="form-control inputLog" value={state.pass} id="password" onChange={handleCh} placeholder="your pass"/>
                     {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary" type='submit'>Login</button>
+                <div class="tituloP">
+                    <button class="btn btn-primary btnLogin" type='submit'>Login</button>
                 </div>                
             </form>
-        </section>
+        </div>
     )
 }
 

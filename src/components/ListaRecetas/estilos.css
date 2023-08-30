@@ -27,3 +27,13 @@
     width: 50%;
   }
 }
+@media screen and (max-width:570px){
+  .contReceta{
+    width: 80%;
+  }
+}
+@media screen and (max-width:470px){
+  .contReceta{
+    width: 100%;
+  }
+}
