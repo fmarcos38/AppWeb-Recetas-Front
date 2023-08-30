@@ -201,7 +201,9 @@ function Home() {
                                 <div class={!barbie ? "contSearch" : "contSearchFK"}>
                                     <form onSubmit={handleSubmit} class="formFiltros">
                                     <label class={!barbie ? "labelSearch" : "labelSearchK"}>Search by</label>                                        
-                                    <input class="form-control me-2" type="search" value={ingrediente} onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"/>
+                                    <input class="form-control me-2 inputSearch" type="search" value={ingrediente} 
+                                        onChange={handelChangeIng} placeholder="Ingrediente" aria-label="Search"
+                                    />
 
                                     <h3 class={!barbie ? "tituloFiltro" : "tituloFiltrosK"}>Tipo de dieta</h3>
                                     {

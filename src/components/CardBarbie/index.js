@@ -84,7 +84,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
     }
     
     return (
-        <div class="container-fluid position-relative contGralRB">
+        <div class=" position-relative contGralRB">
             {/* Titulo */}
             <div class="containerTitle">
                 <h6 >{title}</h6>

@@ -8,6 +8,9 @@
     display: flex;
     align-items: center;
 }
+.menuEmergente{
+    background-color: aquamarine;
+}
 .btnLog{
     background-color: aquamarine;
     margin-right: 1rem;

@@ -51,6 +51,7 @@
     border-style: solid;
     margin-top: 1rem;
     width: 100%;
+    padding: 0.5rem;
 }
 .labelSearch{
     color: #ff0080;
@@ -63,6 +64,9 @@
 .btnSearch{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+.inputSearch{
+    width: 95%;
 }
 /*----col central----*/
 .contTituloColMed{
