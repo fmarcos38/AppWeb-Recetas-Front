@@ -138,7 +138,7 @@ function Home() {
     
     return (
         <div className={diaNoche === false ? "contHomeN" : "contHomeD"}>
-            <NavBar userStorage={userStorage} userActual={userActual} name={name}/>
+            <NavBar userActual={userActual} name={name}/>
 
             {
                 userActual === true &&

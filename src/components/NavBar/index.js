@@ -25,45 +25,49 @@ function NavBar({userActual, name}) {
                     <img src={logo} alt='not found' width={"38"} height={"38"}/>
                 </a>
 
+                {/* login/Logout Registrarse*/}
+                {
+                        userActual === true &&
+                        <>
+                            <span className='contNombreUser'>Hola, {name} <SentimentSatisfiedAltIcon/> !!</span>
+                        </>
+                    }
+
                 <button class="navbar-toggler iconoHamburg" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 {/* menu barra y hamburguesa TODO junto */}
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse contMenu" id="navbarSupportedContent">
                     {
-                        userActual === true &&
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
+                        <ul class="listaMenu">
+                            {
+                                userActual === true &&
+                                <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                            </li>
-                        </ul>
-                    }                    
-
-                    {/* login/Logout Registrarse*/}
-                    {
-                        userActual === true ?
-                        <>
-                            <span className='contNombreUser'>Hola, {name} <SentimentSatisfiedAltIcon/> !!</span>
-                            <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
-                        </>
-                        :
-                        <div class='container contRegistrarse'> 
-                            <div class="row">
-                                {/* msj bienvenido */}
-                                <div class="container col-11 contBienvenido">
-                                    <span className='msjBienvenido'>Bienvenido visitante, registrate para acceder a la mayor Base de datos de Recetas</span>
-                                </div>
-                                
-                                {/* regist - login */}
-                                <div class="container col-1 contLogin">
+                                </li>
+                            }
+                            {
+                                userActual === true &&
+                                <li>
+                                <button class="btn btn-secundary btnLog" onClick={handleLogout}>Logout</button>
+                                </li>
+                            }
+                            
+                            {
+                                userActual === false &&
+                                <il>
                                     <a href='/registrarse ' class="btn btn-secundary btnLog">Registrarse</a>
-                                    <a href='/login' class="btn btn-secundary btnLog">Login</a>                            
-                                </div>
-                            </div>                            
-                        </div>
-                        
-                    }
+                                </il>
+                            }
+                            {
+                                userActual === false &&
+                                <il>
+                                    <a href='/login' class="btn btn-secundary btnLog">Login</a>
+                                </il>
+                            }
+                        </ul>
+                    }                  
                 </div>
             </div>
         </nav>
@@ -71,3 +75,4 @@ function NavBar({userActual, name}) {
 }
 
 export default NavBar;
+

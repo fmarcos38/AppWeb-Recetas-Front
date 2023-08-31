@@ -2,6 +2,17 @@
     border-bottom: 1px solid rgb(17, 15, 15);
     margin-bottom: 1rem;
     height: 55px;
+    
+}
+.contMenu{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 50%
+}
+.listaMenu{
+    background-color: azure;
+    ;
 }
 .iconoHamburg{
     height: 35px;

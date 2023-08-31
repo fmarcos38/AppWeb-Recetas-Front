@@ -1,17 +1,17 @@
 import "./estilos.css";
 import NavBar from '../NavBar';
 import ListaRecetasMuestra from "./ListaRecetasDeMuestra";
+import ListaAlimentos from "./ListaAlimentos";
+import imgRecetas from "../../imagenes/fondo.webp";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import Footer from "../Footer";
 
 import vegan from "../../imagenes/símbolo-vegetariano.jpg";
 import gluten from "../../imagenes/glutenFree.jpg";
 import keto from "../../imagenes/keto.jpg";
 import paleo from "../../imagenes/paleo.avif";
 import proteica from "../../imagenes/proteica.jpg";
-import ListaAlimentos from "./ListaAlimentos";
-import imgRecetas from "../../imagenes/fondo.webp";
-import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import Footer from "../Footer";
 
 function LandingPage() {
 
