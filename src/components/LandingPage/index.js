@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from "react";
 import "./estilos.css";
 import NavBar from '../NavBar';
 import ListaRecetasMuestra from "./ListaRecetasDeMuestra";
@@ -6,6 +7,7 @@ import imgRecetas from "../../imagenes/fondo.webp";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Footer from "../Footer";
+import userLog from '../../localStorage';
 
 import vegan from "../../imagenes/símbolo-vegetariano.jpg";
 import gluten from "../../imagenes/glutenFree.jpg";
@@ -17,10 +19,25 @@ function LandingPage() {
 
     //--url whatsapp-------------------------------
     let whatsapp = `https://wa.me/2281460124`;
+    const userStorage = userLog.getUserActual(); //console.log("userLog:", userStorage);
+    //estados q le paso a la navbar
+    const [userActual, setUserActual] = useState(false);
+    const [name, setName] = useState("visitante");
+
+    //para actualizar nombre y userActual
+    useEffect(()=>{
+        if(!userStorage){
+            return;
+        }else{
+            setName(userStorage.user.name);
+            setUserActual(true);
+        }
+    },[name, userStorage,userActual]);
+
 
     return (
         <div class="container-fluid">
-            <NavBar/>
+            <NavBar userActual={userActual} name={name}/>
             
             <div class="container-fluid">   
                 <div className="row contRedesYPrimero">

@@ -15,8 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
-    //const userStorage = localStorage.getItem('user');  
-    const userStorage = userLog.getUserActual(); console.log("userLog:", userStorage);
+    const userStorage = userLog.getUserActual(); //console.log("userLog:", userStorage);
     const navigate = useNavigate();    
 
     const allRecetas = useSelector(state => state.allRecetas);

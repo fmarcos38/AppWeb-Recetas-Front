@@ -1,27 +1,19 @@
 .contNavGral{
     border-bottom: 1px solid rgb(17, 15, 15);
-    margin-bottom: 1rem;
-    height: 55px;
-    
+    margin-bottom: 1rem;   
 }
-.contMenu{
+.contLogo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 0.7rem;
+}
+.contNombre{
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 50%
 }
-.listaMenu{
-    background-color: azure;
-    ;
-}
-.iconoHamburg{
-    height: 35px;
-    display: flex;
-    align-items: center;
-}
-.menuEmergente{
-    background-color: aquamarine;
-}
+
 .btnLog{
     background-color: aquamarine;
     margin-right: 1rem;
@@ -39,8 +31,8 @@
 .msjBienvenido{
     margin-right: 0.5rem;
 }
-
 .contLogin{
     display: flex;
     justify-content: end;
 }
+
