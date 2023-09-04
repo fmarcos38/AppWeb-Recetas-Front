@@ -7,6 +7,7 @@ import CreateR from './components/FormCreateReceta';
 import DetalleReceta from './components/DeatalleReceta';
 import Login from './components/Login';
 import Registrarse from './components/Registrarse';
+import CardBarbie from './components/CardBarbie';
 
 function App() {  
 
@@ -19,6 +20,9 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/createR' element={<CreateR/>}/>
         <Route path='/detalle/:dia/:barbie/:_id' element={<DetalleReceta />}/>
+
+        {/* para el desarrollador */}
+        <Route path='/cardBarbie' element={<CardBarbie/>}/>
       </Routes>
     </div>
   );
