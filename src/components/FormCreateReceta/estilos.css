@@ -1,9 +1,54 @@
+.contGralCR{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: deepskyblue;
+    width: 100%;
+    height: 100vh;
+}
+.contForm{
+    width: 600px;
+    background-color: aliceblue;
+}
+.tituloReceta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grupo1{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.contInputLabel{
+    width: 80%;
+}
+.labelCR{
+    font-size: large;
+}
 .imgPre{
-    width: 15%;
+    width: 100%;
     height: 140px;
-    margin-top: 10px;
-    margin-left: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.btnSgt{
+    margin-top: 15px;
 }
 .btnCreateR{
     width: auto;
+}
+.contBtnElimDieta{
+    margin-right: 5px;
+}
+.btnElimDieta{
+    width: 15px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.tipoDieta{
+    font-size: large;
 }

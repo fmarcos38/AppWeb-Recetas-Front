@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import HelpIcon from '@mui/icons-material/Help';
 import "./estilos.css";
 
 function CreateR() {
@@ -30,10 +29,7 @@ function CreateR() {
     const [contadorPIng, setContadorIng] = useState(1);
 
     const onClickBtnSgt = () => {
-        
-            setGrupo(grupo + 1);
-            console.log("grupo:", grupo)
-              
+        setGrupo(grupo + 1);
     };
     const onClickBtnAtras = () => {
         if(grupo === 1){
@@ -131,51 +127,48 @@ function CreateR() {
 
 
     return (
-        <div class="contGralLogin">
-            <form class="container login" onSubmit={handleSub}>
+        <div class="container-fluid contGralCR">     
+            <form class="container-fluid contForm" onSubmit={handleSub}>
+                <h3 class="tituloReceta">Crea tu propia Receta</h3>
+                {/* Grupo 1 */}
+                {
+                    grupo === 1 &&
+                    <div class='container-fluid grupo1'>                        
+                        {/* titulo */}
+                        <div class="contInputLabel">
+                            <label class="form-label labelCR">Titulo receta</label>
+                            <input type="text" id="title" value={receta.title} class="form-control" onChange={handleCH}/>
+                            {errors.title && <span className="error-message">{errors.title}</span>}
+                        </div>
+                        {/* image */} 
+                        <div lass="contInputLabel">
+                            <label class="form-label labelCR">Imagen del prod: </label>
+                            <input class="form-control" type="file" accept="imagen/*" id="image" onChange={handleCH}/>
+                        </div>
+                        {/* muestra img previa */}
+                        <div>
+                            <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
+                        </div>
+                        <div>
+                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        </div>
+                    </div>
+                }
+                
+                {/* Grupo 2 */}
                 <div className='grupo1'>
-                    {
-                        grupo === 1 &&
-                        <>
-                            <div class="contTituloP">
-                                <h3 class="tituloP">Crea Receta</h3>
-                            </div>
-                            {/* titulo */}
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Titulo receta</label>
-                                <input type="text" id="title" value={receta.title} class="form-control" onChange={handleCH}/>
-                                {errors.title && <span className="error-message">{errors.title}</span>}
-                            </div>
-                            {/* image */} 
-                            <div>
-                                <label cclass="form-label">Imagen del prod: </label>
-                                <input class="form-control" type="file" accept="imagen/*" id="image" onChange={handleCH}/>
-                            </div>
-                            {/* muestra img previa */}
-                            <div>
-                                <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
-                            </div>
-
-                            <div>
-                                <button onClick={onClickBtnSgt}>Siguiente</button>
-                            </div>
-                        </>
-                    }
-                </div>
-                
-                
-                <div className='grupo2'>
                     {
                         grupo === 2 &&
                         <>
                             {/* dietas */}
                             <div>
-                                <label>Tipos de Dietas</label>
-                                <select className='' onChange={handleCH} id='diets'>
+                                <label class="form-label labelCR">Tipos de Dietas</label>
+                                <select class="form-select" onChange={handleCH} id='diets'>
+                                    <option>Menu</option>
                                 {
                                     tiposDietas.map(d => {
                                     return(
-                                        <option key={d._id} value={d.tipo} class="form-check">
+                                        <option key={d._id} value={d.tipo} class="labelCR">
                                             {d.tipo}
                                         </option>
                                     )                
@@ -185,14 +178,18 @@ function CreateR() {
                 
                                 {/* muestra los types seleccionads*/}
                                 <div >
-                                <label>Tipos de Dietas agregadas:</label>
+                                <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
                                     {
                                             
                                         receta.diets.map((dieta, index) => {
                                             return (
-                                                <div key={index} >
-                                                    <button type="button" className="btn-delete" onClick={() => handlerDelete(dieta)}>x</button>
-                                                    <span className="nameType">{dieta}</span>
+                                                <div key={index} class="row">
+                                                    <div class="col-1 contBtnElimDieta">
+                                                        <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handlerDelete(dieta)}>X</button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span className="tipoDieta">{dieta}</span>
+                                                    </div>
                                                 </div>
                                             );
                                         }) 
@@ -201,15 +198,15 @@ function CreateR() {
                                 </div>
                             </div>
                             <div>
-                                <button onClick={onClickBtnAtras}>Atrás</button> 
-                                <button onClick={onClickBtnSgt}>Siguiente</button>
+                                <button class="btn btn-dark btnSgt" onClick={onClickBtnAtras}>Atrás</button> 
+                                <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                             </div>
                         </>
                     }
                 </div>
                 
 
-                <div className='grupo3'>
+                <div className='grupo1'>
                     {
                         grupo === 3 &&
                         <>
