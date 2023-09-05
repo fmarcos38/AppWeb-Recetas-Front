@@ -17,11 +17,13 @@ function CreateR() {
     //estado pre imagen
     const [vistaPrevia, setVistaPrevia] = useState('');//vista previa
     const tiposDietas = useSelector(state => state.TiposDietas);
-    //estado paso a paso
+    //estado y contador d paso a paso
     const [paso, setPaso] = useState("");
-    //estado contador
     const [contadorP, setContadorP] = useState(1);
-
+    //estado y contador de Ingredientes
+    const [ingrediente, setIngrediente] = useState("");
+    const [ingredientes, setIngredientes] = useState([]);
+    const [contadorPIng, setContadorIng] = useState(1);
     //funcion para manipulación de la pre-imagen
     const previewFile = (file) => {
         const reader = new FileReader();//lector de archivo
@@ -42,25 +44,40 @@ function CreateR() {
             else{setReceta({...receta, diets: [...receta.diets, e.target.value]})}
         }else if(e.target.id === 'paso'){
             setPaso(e.target.value);
+        }else if(e.target.id === 'ingrediente'){
+            setIngrediente(e.target.value);
         }else{
             setReceta({...receta, [e.target.id]:e.target.value});
         }
+    };
+    //ingredientes  
+    const handleClickIngrediente = (e) => {
+        setIngredientes([...ingredientes, {name: ingrediente}]);
+        console.log("Ing:", ingrediente);
+        console.log("Ings:", ingredientes);
+        setContadorIng(contadorPIng + 1);
     };
     //para paso a paso
     const handleClickPaso = (e) => {               
         setReceta({...receta, analyzedInstructions: [...receta.analyzedInstructions,
             {
                 number: contadorP,
-                step: paso
+                step: paso,
+                ingredients: ingredientes  
             }]
         });
         
         setContadorP(contadorP + 1);
-    };   
+    }; 
+    console.log("receta:", receta);
+    
+    
+    //elim dieta
     const handlerDelete = (dieta) => {
         setReceta({...receta, diets: receta.diets.filter(d => d !== dieta)})
     };
-
+    //elim paso a paso
+    //elim ingrediente
     const handleSub = (e) => {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
@@ -153,9 +170,27 @@ function CreateR() {
                 </div>
 
                 {/* Paso a Paso */}
-                <div className='paso'>
+                <div className='paso'>                 
+                    {/* ingredientes x paso */}
+                    <div>
+                        <label class="form-label">Ingrediente {contadorPIng} para el paso {contadorP}</label>
+                        <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
+                        <button onClick={handleClickIngrediente}>Cargar Ingrediente n° {contadorPIng}</button>
+                    </div>
+                    {/* muestra los ing cargados */}
+                    {
+                        ingredientes?.map(ing => {
+                            return(
+                                <div>
+                                    {
+                                        <p>{ing.name}</p>
+                                    }
+                                </div>
+                            )
+                        })
+                    }
                     <div className=''>
-                        <label for="exampleFormControlInput1" class="form-label">Paso {contadorP}</label>
+                        <label for="exampleFormControlInput1" class="form-label">Descripción Paso {contadorP}</label>
                         <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
                         {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
                     </div>
@@ -174,7 +209,12 @@ function CreateR() {
                                             !paso ?
                                             <span>No step</span>
                                             :
-                                            <p>{paso.number}-{paso.step}</p>
+                                            <>
+                                                <p>{paso.number}-{paso.step}</p>
+                                            {
+                                                paso.ingredients?.map(ing => <p>{ing.name}</p>)
+                                            }
+                                            </>                                                                                        
                                         }
                                     </div>
                                 )
