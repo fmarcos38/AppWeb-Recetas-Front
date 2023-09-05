@@ -11,8 +11,12 @@ function CreateR() {
         diets: [],
         analyzedInstructions: []
     };
-    
+
+    //estado grupo de carga
+    const [grupo, setGrupo] = useState(1);
+    //estado receta
     const [receta, setReceta] = useState(initialState);
+    //estado error
     const [errors, setErrors] = useState(initialState);
     //estado pre imagen
     const [vistaPrevia, setVistaPrevia] = useState('');//vista previa
@@ -24,6 +28,21 @@ function CreateR() {
     const [ingrediente, setIngrediente] = useState("");
     const [ingredientes, setIngredientes] = useState([]);
     const [contadorPIng, setContadorIng] = useState(1);
+
+    const onClickBtnSgt = () => {
+        
+            setGrupo(grupo + 1);
+            console.log("grupo:", grupo)
+              
+    };
+    const onClickBtnAtras = () => {
+        if(grupo === 1){
+            return
+        }else{
+            setGrupo(grupo - 1);
+        }
+    };
+
     //funcion para manipulación de la pre-imagen
     const previewFile = (file) => {
         const reader = new FileReader();//lector de archivo
@@ -68,9 +87,7 @@ function CreateR() {
         });
         
         setContadorP(contadorP + 1);
-    }; 
-    console.log("receta:", receta);
-    
+    };     
     
     //elim dieta
     const handlerDelete = (dieta) => {
@@ -114,119 +131,154 @@ function CreateR() {
 
 
     return (
-        <div class="container-fluid">
+        <div class="contGralLogin">
             <form class="container login" onSubmit={handleSub}>
-                <div class="contTituloP">
-                    <h3 class="tituloP">Crea Receta</h3>
-                </div>
-                {/* titulo */}
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Titulo receta</label>
-                    <input type="text" id="title" value={receta.title} class="form-control" onChange={handleCH}/>
-                    {errors.title && <span className="error-message">{errors.title}</span>}
-                </div>
-
-                {/* image */} 
-                <div>
-                    <label cclass="form-label">Imagen del prod: </label>
-                    <input class="form-control" type="file" accept="imagen/*" id="image" onChange={handleCH}/>
-                </div>
-                {/* muestra img previa */}
-                <div>
-                    <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
-                </div>
-
-                {/* dietas */}
-                <div>
-                    <label>Tipos de Dietas</label>
-                    <select className='' onChange={handleCH} id='diets'>
+                <div className='grupo1'>
                     {
-                        tiposDietas.map(d => {
-                        return(
-                            <option key={d._id} value={d.tipo} class="form-check">
-                                {d.tipo}
-                            </option>
-                        )                
-                        })
+                        grupo === 1 &&
+                        <>
+                            <div class="contTituloP">
+                                <h3 class="tituloP">Crea Receta</h3>
+                            </div>
+                            {/* titulo */}
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Titulo receta</label>
+                                <input type="text" id="title" value={receta.title} class="form-control" onChange={handleCH}/>
+                                {errors.title && <span className="error-message">{errors.title}</span>}
+                            </div>
+                            {/* image */} 
+                            <div>
+                                <label cclass="form-label">Imagen del prod: </label>
+                                <input class="form-control" type="file" accept="imagen/*" id="image" onChange={handleCH}/>
+                            </div>
+                            {/* muestra img previa */}
+                            <div>
+                                <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
+                            </div>
+
+                            <div>
+                                <button onClick={onClickBtnSgt}>Siguiente</button>
+                            </div>
+                        </>
                     }
-                    </select>
-                
-                    {/* muestra los types seleccionads*/}
-                    <div >
-                    <label>Tipos de Dietas agregadas:</label>
-                        {
-                                
-                            receta.diets.map((dieta, index) => {
-                                return (
-                                    <div key={index} >
-                                        <button type="button" className="btn-delete" onClick={() => handlerDelete(dieta)}>x</button>
-                                        <span className="nameType">{dieta}</span>
-                                    </div>
-                                );
-                            }) 
-                                
-                        }
-                    </div>
                 </div>
-
-                {/* Paso a Paso */}
-                <div className='paso'>                 
-                    {/* ingredientes x paso */}
-                    <div>
-                        <label class="form-label">Ingrediente {contadorPIng} para el paso {contadorP}</label>
-                        <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
-                        <button onClick={handleClickIngrediente}>Cargar Ingrediente n° {contadorPIng}</button>
-                    </div>
-                    {/* muestra los ing cargados */}
+                
+                
+                <div className='grupo2'>
                     {
-                        ingredientes?.map(ing => {
-                            return(
-                                <div>
+                        grupo === 2 &&
+                        <>
+                            {/* dietas */}
+                            <div>
+                                <label>Tipos de Dietas</label>
+                                <select className='' onChange={handleCH} id='diets'>
+                                {
+                                    tiposDietas.map(d => {
+                                    return(
+                                        <option key={d._id} value={d.tipo} class="form-check">
+                                            {d.tipo}
+                                        </option>
+                                    )                
+                                    })
+                                }
+                                </select>
+                
+                                {/* muestra los types seleccionads*/}
+                                <div >
+                                <label>Tipos de Dietas agregadas:</label>
                                     {
-                                        <p>{ing.name}</p>
+                                            
+                                        receta.diets.map((dieta, index) => {
+                                            return (
+                                                <div key={index} >
+                                                    <button type="button" className="btn-delete" onClick={() => handlerDelete(dieta)}>x</button>
+                                                    <span className="nameType">{dieta}</span>
+                                                </div>
+                                            );
+                                        }) 
+                                            
                                     }
                                 </div>
-                            )
-                        })
+                            </div>
+                            <div>
+                                <button onClick={onClickBtnAtras}>Atrás</button> 
+                                <button onClick={onClickBtnSgt}>Siguiente</button>
+                            </div>
+                        </>
                     }
-                    <div className=''>
-                        <label for="exampleFormControlInput1" class="form-label">Descripción Paso {contadorP}</label>
-                        <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
-                        {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
-                    </div>
-                    {/* btn cargaPaso */}
-                    <div>
-                        <button onClick={handleClickPaso}>Cargar Paso n° {contadorP}</button>
-                    </div>
-                    {/* muestra el paso cargado */}
-                    <div>
-                        <label for="exampleFormControlInput1" class="form-label">Pasos:</label>
+                </div>
+                
+
+                <div className='grupo3'>
+                    {
+                        grupo === 3 &&
+                        <>
+                            {/* Paso a Paso */}
+                            <div className='paso'>                 
+                        {/* ingredientes x paso */}
+                        <div>
+                            <label class="form-label">Ingrediente {contadorPIng} para el paso {contadorP}</label>
+                            <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
+                            <button onClick={handleClickIngrediente}>Cargar Ingrediente n° {contadorPIng}</button>
+                        </div>
+                        {/* muestra los ing cargados */}
                         {
-                            receta.analyzedInstructions?.map(paso => {
+                            ingredientes?.map(ing => {
                                 return(
                                     <div>
                                         {
-                                            !paso ?
-                                            <span>No step</span>
-                                            :
-                                            <>
-                                                <p>{paso.number}-{paso.step}</p>
-                                            {
-                                                paso.ingredients?.map(ing => <p>{ing.name}</p>)
-                                            }
-                                            </>                                                                                        
+                                            <p>{ing.name}</p>
                                         }
                                     </div>
                                 )
                             })
                         }
-                    </div>                                       
-                </div>
+                        <div className=''>
+                            <label for="exampleFormControlInput1" class="form-label">Descripción Paso {contadorP}</label>
+                            <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
+                            {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
+                        </div>
+                        {/* btn cargaPaso */}
+                        <div>
+                            <button onClick={handleClickPaso}>Cargar Paso n° {contadorP}</button>
+                        </div>
+                        {/* muestra el paso cargado */}
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label">Pasos:</label>
+                            {
+                                receta.analyzedInstructions?.map(paso => {
+                                    return(
+                                        <div>
+                                            {
+                                                !paso ?
+                                                <span>No step</span>
+                                                :
+                                                <>
+                                                    <p>{paso.number}-{paso.step}</p>
+                                                {
+                                                    paso.ingredients?.map(ing => <p>{ing.name}</p>)
+                                                }
+                                                </>                                                                                        
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>                                       
+                            </div>
 
-                {/* btn sub */}
-                <div class="tituloP btnCreateR">
-                    <button class="btn btn-primary btnLogin" onClick={handleClickPaso}>Create Recipe</button>
-                </div>            
+                            {/* btn sub */}
+                            <div class="tituloP btnCreateR">
+                                <button class="btn btn-primary btnLogin" onClick={handleClickPaso}>Create Recipe</button>
+                            </div>
+                            <div>
+                                <button onClick={onClickBtnAtras}>Atrás</button>                               
+                            </div>
+                        </>
+                    }
+                    
+                </div>
+                            
             </form>
         </div>
     )
