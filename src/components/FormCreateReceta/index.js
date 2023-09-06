@@ -127,8 +127,8 @@ function CreateR() {
 
 
     return (
-        <div class="container-fluid contGralCR">     
-            <form class="container-fluid contForm" onSubmit={handleSub}>
+        <div class="contGralCR">     
+            <form class="container contForm" onSubmit={handleSub}>
                 <h3 class="tituloReceta">Crea tu propia Receta</h3>
                 {/* Grupo 1 */}
                 {
@@ -137,13 +137,13 @@ function CreateR() {
                         {/* titulo */}
                         <div class="contInputLabel">
                             <label class="form-label labelCR">Titulo receta</label>
-                            <input type="text" id="title" value={receta.title} class="form-control" onChange={handleCH}/>
+                            <input type="text" id="title" value={receta.title} onChange={handleCH} class="form-control inputCR"/>
                             {errors.title && <span className="error-message">{errors.title}</span>}
                         </div>
                         {/* image */} 
-                        <div lass="contInputLabel">
+                        <div class="contInputLabel">
                             <label class="form-label labelCR">Imagen del prod: </label>
-                            <input class="form-control" type="file" accept="imagen/*" id="image" onChange={handleCH}/>
+                            <input  type="file" accept="imagen/*" id="image" onChange={handleCH} class="form-control inputCR"/>
                         </div>
                         {/* muestra img previa */}
                         <div>
@@ -156,14 +156,13 @@ function CreateR() {
                 }
                 
                 {/* Grupo 2 */}
-                <div className='grupo1'>
-                    {
-                        grupo === 2 &&
-                        <>
-                            {/* dietas */}
-                            <div>
+                {
+                    grupo === 2 &&
+                    <div class='container-fluid grupo1'>
+                        {/* dietas */}
+                        <div class="contInputLabel">
                                 <label class="form-label labelCR">Tipos de Dietas</label>
-                                <select class="form-select" onChange={handleCH} id='diets'>
+                                <select class="form-select inputCR" onChange={handleCH} id='diets'>
                                     <option>Menu</option>
                                 {
                                     tiposDietas.map(d => {
@@ -177,7 +176,7 @@ function CreateR() {
                                 </select>
                 
                                 {/* muestra los types seleccionads*/}
-                                <div >
+                                <div class="contInputLabel">
                                 <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
                                     {
                                             
@@ -196,27 +195,25 @@ function CreateR() {
                                             
                                     }
                                 </div>
-                            </div>
-                            <div>
-                                <button class="btn btn-dark btnSgt" onClick={onClickBtnAtras}>Atrás</button> 
-                                <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
-                            </div>
-                        </>
-                    }
-                </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-dark btnSgt" onClick={onClickBtnAtras}>Atrás</button> 
+                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        </div>
+                    </div>
+                }
                 
-
-                <div className='grupo1'>
-                    {
-                        grupo === 3 &&
-                        <>
-                            {/* Paso a Paso */}
-                            <div className='paso'>                 
+                {/* grupo 3 */}
+                {
+                    grupo === 3 &&
+                    <div class='container-fluid grupo3'>
+                        {/* Paso a Paso */}
+                        <div className='paso'>                 
                         {/* ingredientes x paso */}
                         <div>
-                            <label class="form-label">Ingrediente {contadorPIng} para el paso {contadorP}</label>
+                            <label class="form-label labelCR">Ingrediente {contadorPIng} para el paso {contadorP}</label>
                             <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
-                            <button onClick={handleClickIngrediente}>Cargar Ingrediente n° {contadorPIng}</button>
+                            <button onClick={handleClickIngrediente} class="btn btn-dark cargaIng">Cargar Ingrediente n° {contadorPIng}</button>
                         </div>
                         {/* muestra los ing cargados */}
                         {
@@ -231,17 +228,17 @@ function CreateR() {
                             })
                         }
                         <div className=''>
-                            <label for="exampleFormControlInput1" class="form-label">Descripción Paso {contadorP}</label>
+                            <label for="exampleFormControlInput1" class="form-label labelCR">Descripción Paso {contadorP}</label>
                             <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
                             {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
                         </div>
                         {/* btn cargaPaso */}
                         <div>
-                            <button onClick={handleClickPaso}>Cargar Paso n° {contadorP}</button>
+                            <button onClick={handleClickPaso} class="btn btn-dark cargaIng">Cargar Paso n° {contadorP}</button>
                         </div>
                         {/* muestra el paso cargado */}
                         <div>
-                            <label for="exampleFormControlInput1" class="form-label">Pasos:</label>
+                            <label for="exampleFormControlInput1" class="form-label labelCR">Pasos:</label>
                             {
                                 receta.analyzedInstructions?.map(paso => {
                                     return(
@@ -262,20 +259,19 @@ function CreateR() {
                                 })
                             }
                         </div>                                       
-                            </div>
+                    </div>
 
-                            {/* btn sub */}
-                            <div class="tituloP btnCreateR">
-                                <button class="btn btn-primary btnLogin" onClick={handleClickPaso}>Create Recipe</button>
-                            </div>
-                            <div>
-                                <button onClick={onClickBtnAtras}>Atrás</button>                               
-                            </div>
-                        </>
-                    }
-                    
-                </div>
-                            
+                    {/* btn crea */}
+                    <div class="tituloP btnCreateR">
+                        <button class="btn btn-primary " onClick={handleClickPaso}>Create Recipe</button>
+                    </div>
+                    {/* btn atras */}
+                    <div>
+                        <button onClick={onClickBtnAtras} class="btn btn-dark btnAtrasUltimo">Atrás</button>                               
+                    </div>
+                    </div>
+                }
+                                                
             </form>
         </div>
     )
