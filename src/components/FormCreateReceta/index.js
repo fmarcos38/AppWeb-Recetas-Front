@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
-
+import {urlDesarrollo} from "../../redux/actions/urls";
 
 function CreateR() {
 
@@ -69,13 +69,13 @@ function CreateR() {
     
     //ingredientes  
     const handleClickIngrediente = (e) => {
+        e.preventDefault();
         setIngredientes([...ingredientes, {name: ingrediente}]);
-        console.log("Ing:", ingrediente);
-        console.log("Ings:", ingredientes);
         setContadorIng(contadorPIng + 1);
     };
     //para paso a paso
-    const handleClickPaso = (e) => {               
+    const handleClickPaso = (e) => {   
+        e.preventDefault();            
         setReceta({...receta, analyzedInstructions: [...receta.analyzedInstructions,
             {
                 number: contadorP,
@@ -112,7 +112,7 @@ function CreateR() {
         }
         //actualizo errores
         setErrors(newErrors);
-        if(newErrors){
+        if(!!receta.title || !!receta.image || !receta.diets[0] || !receta.analyzedInstructions[0]){
             Swal.fire({
                 position: 'top-center',
                 icon: 'error',
@@ -120,27 +120,35 @@ function CreateR() {
                 showConfirmButton: false,
                 timer: 2000
             });
-        }
-        try{
-            let formData = new FormData();            
-            formData.append("title", receta.title);
-            formData.append("image", receta.image);//este nombre "imagen" es el q va en upload.single("imagen") en el back
-            formData.append("diets", receta.diets);
-            formData.append("analyzedInstructions", receta.analyzedInstructions);
-
-            fetch(`http://localhost:3001/products/create`, {
-                method: "POST",
-                body: formData,
-            });
-        }catch (error) {
-            console.log(error);
-        }
+        }else{
+            try{
+                let formData = new FormData();            
+                formData.append("title", receta.title);
+                formData.append("image", receta.image);//este nombre "imagen" es el q va en upload.single("imagen") en el back
+                formData.append("diets", receta.diets);
+                formData.append("analyzedInstructions", receta.analyzedInstructions);
+    console.log("data:", formData);
+                fetch(`${urlDesarrollo}/recetas/createR`, {
+                    method: "POST",
+                    body: formData,
+                });
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Creado correctamente!!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }catch (error) {
+                console.log(error);
+            }
+        }        
     };
-
+    console.log("receta:", receta);
 
     return (
         <div class="contGralCR">     
-            <form class="container contForm" onSubmit={handleSub}>
+            <form class="container contForm">
                 <h3 class="tituloReceta">Crea tu propia Receta</h3>
                 {/* Grupo 1 */}
                 {
@@ -150,13 +158,13 @@ function CreateR() {
                         <div class="contInputLabel">
                             <label class="form-label labelCR">Titulo receta</label>
                             <input type="text" id="title" value={receta.title} onChange={handleCH} class="form-control inputCR"/>
-                            {errors.title && <span className="error-message">{errors.title}</span>}
+                            {!receta.title && <span className="error-message">{errors.title}</span>}
                         </div>
                         {/* image */} 
                         <div class="contInputLabel">
                             <label class="form-label labelCR">Imagen del prod: </label>
                             <input  type="file" accept="imagen/*" id="image" onChange={handleCH} class="form-control inputCR"/>
-                            {errors.image && <span className="error-message">{errors.image}</span>}
+                            {!receta.image && <span className="error-message">{errors.image}</span>}
                         </div>
                         {/* muestra img previa */}
                         <div>
@@ -187,7 +195,7 @@ function CreateR() {
                                     })
                                 }
                                 </select>
-                                {errors.diets && <span className="error-message">{errors.diets}</span>}
+                                {!receta.diets[0] && <span className="error-message">{errors.diets}</span>}
                                 {/* muestra los types seleccionads*/}
                                 <div class="contInputLabel">
                                 <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
@@ -223,10 +231,10 @@ function CreateR() {
                         {/* Paso a Paso */}
                         <div className='paso'>                 
                         {/* ingredientes x paso */}
-                        <div>
+                        <div class="contIng">
                             <label class="form-label labelCR">Ingrediente {contadorPIng} para el paso {contadorP}</label>
                             <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
-                            {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
+                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
                             <button onClick={handleClickIngrediente} class="btn btn-dark cargaIng">Cargar Ingrediente n° {contadorPIng}</button>
                         </div>
                         {/* muestra los ing cargados */}
@@ -241,10 +249,11 @@ function CreateR() {
                                 )
                             })
                         }
+                        {/* carga paso */}
                         <div className=''>
                             <label for="exampleFormControlInput1" class="form-label labelCR">Descripción Paso {contadorP}</label>
                             <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
-                            {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
+                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
                         </div>
                         {/* btn cargaPaso */}
                         <div>
@@ -272,17 +281,18 @@ function CreateR() {
                                     )
                                 })
                             }
-                        </div>                                       
+                        </div>      
+
+                        {/* btn crea */}
+                        <div class="tituloP btnCreateR">
+                            <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button>
+                            <button class="btn btn-primary " type='submit' onClick={handleSub}>Create Recipe</button>
+                        </div>
                     </div>
 
-                    {/* btn crea */}
-                    <div class="tituloP btnCreateR">
-                        <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button> 
-                        <button class="btn btn-primary " onClick={handleClickPaso}>Create Recipe</button>
+                    
                     </div>
-                </div>
-                }
-                                                
+                }                
             </form>
         </div>
     )

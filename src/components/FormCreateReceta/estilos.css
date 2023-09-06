@@ -66,6 +66,11 @@
 .tipoDieta{
     font-size: large;
 }
+.contIng{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
 .cargaIng{
     margin-top: 0.5rem;
 }
