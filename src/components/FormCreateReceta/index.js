@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import "./estilos.css";
+import Swal from "sweetalert2";
+
 
 function CreateR() {
 
@@ -28,8 +30,25 @@ function CreateR() {
     const [ingredientes, setIngredientes] = useState([]);
     const [contadorPIng, setContadorIng] = useState(1);
 
+    const handleCH = (e) => {
+        if(e.target.id === 'image'){
+            setReceta({...receta, image: e.target.files[0]});
+            previewFile(e.target.files[0]);//invoco la funcio q muestra la pre-imagen
+        }else if(e.target.id === 'diets'){
+            //busca si ya existe esa dieta
+            let dieta = receta.diets.find(d => d.tipo === e.target.value);
+            if(dieta){alert("Ya se ingresó ese type")}
+            else{setReceta({...receta, diets: [...receta.diets, e.target.value]})}
+        }else if(e.target.id === 'paso'){
+            setPaso(e.target.value);
+        }else if(e.target.id === 'ingrediente'){
+            setIngrediente(e.target.value);
+        }else{
+            setReceta({...receta, [e.target.id]:e.target.value});
+        }
+    };
     const onClickBtnSgt = () => {
-        setGrupo(grupo + 1);
+        setGrupo(grupo + 1);   
     };
     const onClickBtnAtras = () => {
         if(grupo === 1){
@@ -48,23 +67,6 @@ function CreateR() {
         };
     };
     
-    const handleCH = (e) => {
-        if(e.target.id === 'image'){
-            setReceta({...receta, image: e.target.files[0]});
-            previewFile(e.target.files[0]);//invoco la funcio q muestra la pre-imagen
-        }else if(e.target.id === 'diets'){
-            //busca si ya existe esa dieta
-            let dieta = receta.diets.find(d => d.tipo === e.target.value);
-            if(dieta){alert("Ya se ingresó ese type")}
-            else{setReceta({...receta, diets: [...receta.diets, e.target.value]})}
-        }else if(e.target.id === 'paso'){
-            setPaso(e.target.value);
-        }else if(e.target.id === 'ingrediente'){
-            setIngrediente(e.target.value);
-        }else{
-            setReceta({...receta, [e.target.id]:e.target.value});
-        }
-    };
     //ingredientes  
     const handleClickIngrediente = (e) => {
         setIngredientes([...ingredientes, {name: ingrediente}]);
@@ -95,6 +97,7 @@ function CreateR() {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
         //errores
+        
         if(!receta.title){
             newErrors.title = "Ingrese titulo";
         }
@@ -109,6 +112,15 @@ function CreateR() {
         }
         //actualizo errores
         setErrors(newErrors);
+        if(newErrors){
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Faltan datos verifique!!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
         try{
             let formData = new FormData();            
             formData.append("title", receta.title);
@@ -144,13 +156,14 @@ function CreateR() {
                         <div class="contInputLabel">
                             <label class="form-label labelCR">Imagen del prod: </label>
                             <input  type="file" accept="imagen/*" id="image" onChange={handleCH} class="form-control inputCR"/>
+                            {errors.image && <span className="error-message">{errors.image}</span>}
                         </div>
                         {/* muestra img previa */}
                         <div>
                             <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
                         </div>
                         <div>
-                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                            <button disabled={!errors} class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
                 }
@@ -174,7 +187,7 @@ function CreateR() {
                                     })
                                 }
                                 </select>
-                
+                                {errors.diets && <span className="error-message">{errors.diets}</span>}
                                 {/* muestra los types seleccionads*/}
                                 <div class="contInputLabel">
                                 <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
@@ -213,6 +226,7 @@ function CreateR() {
                         <div>
                             <label class="form-label labelCR">Ingrediente {contadorPIng} para el paso {contadorP}</label>
                             <input type="text" id="ingrediente" value={ingrediente} class="form-control" onChange={handleCH}/>
+                            {errors.analyzedInstructions && <span className="error-message">{errors.analyzedInstructions}</span>}
                             <button onClick={handleClickIngrediente} class="btn btn-dark cargaIng">Cargar Ingrediente n° {contadorPIng}</button>
                         </div>
                         {/* muestra los ing cargados */}
@@ -263,13 +277,10 @@ function CreateR() {
 
                     {/* btn crea */}
                     <div class="tituloP btnCreateR">
+                        <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button> 
                         <button class="btn btn-primary " onClick={handleClickPaso}>Create Recipe</button>
                     </div>
-                    {/* btn atras */}
-                    <div>
-                        <button onClick={onClickBtnAtras} class="btn btn-dark btnAtrasUltimo">Atrás</button>                               
-                    </div>
-                    </div>
+                </div>
                 }
                                                 
             </form>
