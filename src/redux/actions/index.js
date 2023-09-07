@@ -1,4 +1,4 @@
-import { GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
+import { CREATE_R, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -29,14 +29,23 @@ export function getRecetaById(_id){
         return dispatch({type: GET_RECETA_BY_ID, payload: resp.data});
     }
 };
+//reset detalle
 export function resetDetalle(){
     return {type: RESET_DETALLE};
 }
-
+//reset filtro
 export function resetFiltro(desde){
     return async function(dispatch){
         const resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
         return  dispatch({ type: RESET_FILTRO, payload: resp.data });
+    }
+}
+//crea receta
+export function createR(data){
+    return async function(dispatch){
+        console.log("dataAct:", data);
+        const resp = await axios.post(`http://localhost:8000/recetas/createR`, data);
+        return dispatch({type: CREATE_R, payload: resp});
     }
 }
 /*---------actions User----------------*/

@@ -4,6 +4,7 @@ export const LOAD = "LOAD";
 export const GET_RECETAS = "GET_RECETAS";
 export const GET_RECETA_BY_ID = "GET_RECETA_BY_ID";
 export const RESET_DETALLE = "RESET_DETALLE";
+export const CREATE_R = "CREATE_R";
 export const AGREGA_FAV = "AGREGA_FAV";
 export const GET_USER = "GET_USER";
 export const RESET_FILTRO = "RESET_FILTRO";

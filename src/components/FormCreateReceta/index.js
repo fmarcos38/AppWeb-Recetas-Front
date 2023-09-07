@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
-import {urlDesarrollo} from "../../redux/actions/urls";
+import { createR } from '../../redux/actions';
+//import {urlDesarrollo} from "../../redux/actions/urls";
 
 function CreateR() {
 
     const initialState = {
         title: "",
-        image: "",
+        image: null,
         diets: [],
         analyzedInstructions: []
     };
-
+    const dispatch = useDispatch();
     //estado grupo de carga
     const [grupo, setGrupo] = useState(1);
     //estado receta
@@ -93,11 +94,10 @@ function CreateR() {
     };
     //elim paso a paso
     //elim ingrediente
-    const handleSub = (e) => {
+    const handleSub = async (e) => {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
-        //errores
-        
+        //errores        
         if(!receta.title){
             newErrors.title = "Ingrese titulo";
         }
@@ -112,7 +112,7 @@ function CreateR() {
         }
         //actualizo errores
         setErrors(newErrors);
-        if(!!receta.title || !!receta.image || !receta.diets[0] || !receta.analyzedInstructions[0]){
+        if(!receta.title || !receta.image || !receta.diets[0] || !receta.analyzedInstructions[0]){
             Swal.fire({
                 position: 'top-center',
                 icon: 'error',
@@ -121,25 +121,51 @@ function CreateR() {
                 timer: 2000
             });
         }else{
-            try{
-                let formData = new FormData();            
+            /* try{
+                dispatch(createR(receta))
+                .then(() => {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Creado correctamente!!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                })
+                .catch((error) => {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'error',
+                        title: 'Algo salió mal!!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                })
+                
+            }catch (error) {
+                console.log(error);
+            } */
+            try {
+                let formData = new FormData();
                 formData.append("title", receta.title);
-                formData.append("image", receta.image);//este nombre "imagen" es el q va en upload.single("imagen") en el back
+                formData.append('image', receta.image);
                 formData.append("diets", receta.diets);
                 formData.append("analyzedInstructions", receta.analyzedInstructions);
-    console.log("data:", formData);
-                fetch(`${urlDesarrollo}/recetas/createR`, {
+
+                const res = await fetch(`http://localhost:8000/recetas/createR`, {
                     method: "POST",
                     body: formData,
-                });
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Creado correctamente!!',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            }catch (error) {
+                })
+                if((res.ok)){
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Creado correctamente!!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            } catch (error) {
                 console.log(error);
             }
         }        
@@ -148,7 +174,7 @@ function CreateR() {
 
     return (
         <div class="contGralCR">     
-            <form class="container contForm">
+            <form class="container contForm" onSubmit={handleSub}>
                 <h3 class="tituloReceta">Crea tu propia Receta</h3>
                 {/* Grupo 1 */}
                 {
@@ -163,7 +189,7 @@ function CreateR() {
                         {/* image */} 
                         <div class="contInputLabel">
                             <label class="form-label labelCR">Imagen del prod: </label>
-                            <input  type="file" accept="imagen/*" id="image" onChange={handleCH} class="form-control inputCR"/>
+                            <input  type="file" accept="image/*" id="image" onChange={handleCH} class="form-control inputCR"/>
                             {!receta.image && <span className="error-message">{errors.image}</span>}
                         </div>
                         {/* muestra img previa */}
@@ -286,7 +312,7 @@ function CreateR() {
                         {/* btn crea */}
                         <div class="tituloP btnCreateR">
                             <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button>
-                            <button class="btn btn-primary " type='submit' onClick={handleSub}>Create Recipe</button>
+                            <button class="btn btn-primary " type='submit' /* onClick={handleSub} */>Create Recipe</button>
                         </div>
                     </div>
 
