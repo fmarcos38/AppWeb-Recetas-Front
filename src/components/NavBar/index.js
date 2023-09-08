@@ -30,10 +30,18 @@ function NavBar({userActual, name}) {
             {/* menu nav y hambur */}
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav listaMenu">                
+                {/* home */}
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li> 
-
+                {/* crear R */}
+                {
+                  userActual.role === "admin" &&
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/createR">Crea receta</a>
+                  </li>
+                }                
+                
                 {/* nombr user */}
                 <li class="nav-item">                  
                 {

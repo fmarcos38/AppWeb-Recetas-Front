@@ -89,8 +89,15 @@ function CreateR() {
     };     
     
     //elim dieta
-    const handlerDelete = (dieta) => {
+    const handlerDeleteDieta = (dieta) => {
         setReceta({...receta, diets: receta.diets.filter(d => d !== dieta)})
+    };
+    //elim ingrediente
+    const handlerDeleteIng = (ing) => {
+        setIngrediente({...ingredientes, ingredientes: ingredientes.filter(ingre => ingre.name !== ing.name)});
+    };
+    const handleDeletePaso = (paso) => {
+        setReceta({...receta, analyzedInstructions: receta.analyzedInstructions.filter(p => p.step !== paso.step)})
     };
     //elim paso a paso
     //elim ingrediente
@@ -121,30 +128,6 @@ function CreateR() {
                 timer: 2000
             });
         }else{
-            /* try{
-                dispatch(createR(receta))
-                .then(() => {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'Creado correctamente!!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                })
-                .catch((error) => {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'error',
-                        title: 'Algo salió mal!!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                })
-                
-            }catch (error) {
-                console.log(error);
-            } */
             try {
                 let formData = new FormData();
                 formData.append("title", receta.title);
@@ -152,25 +135,24 @@ function CreateR() {
                 formData.append("diets", receta.diets);
                 formData.append("analyzedInstructions", receta.analyzedInstructions);
 
-                const res = await fetch(`http://localhost:8000/recetas/createR`, {
+                await fetch(`http://localhost:8000/recetas/createR`, {
                     method: "POST",
                     body: formData,
-                })
-                if((res.ok)){
+                });
                     Swal.fire({
-                        position: 'top-center',
                         icon: 'success',
                         title: 'Creado correctamente!!',
                         showConfirmButton: false,
                         timer: 2000
                     });
-                }
+                    setReceta(initialState);
+                    setGrupo(1);
+                
             } catch (error) {
                 console.log(error);
             }
         }        
     };
-    console.log("receta:", receta);
 
     return (
         <div class="contGralCR">     
@@ -231,7 +213,7 @@ function CreateR() {
                                             return (
                                                 <div key={index} class="row">
                                                     <div class="col-1 contBtnElimDieta">
-                                                        <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handlerDelete(dieta)}>X</button>
+                                                        <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handlerDeleteDieta(dieta)}>X</button>
                                                     </div>
                                                     <div class="col">
                                                         <span className="tipoDieta">{dieta}</span>
@@ -268,9 +250,8 @@ function CreateR() {
                             ingredientes?.map(ing => {
                                 return(
                                     <div>
-                                        {
-                                            <p>{ing.name}</p>
-                                        }
+                                        <p>{ing.name}</p>
+                                        <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handlerDeleteIng(ing)}>X</button>                                        
                                     </div>
                                 )
                             })
@@ -298,6 +279,7 @@ function CreateR() {
                                                 :
                                                 <>
                                                     <p>{paso.number}-{paso.step}</p>
+                                                    <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handleDeletePaso(paso)}>X</button>
                                                 {
                                                     paso.ingredients?.map(ing => <p>{ing.name}</p>)
                                                 }

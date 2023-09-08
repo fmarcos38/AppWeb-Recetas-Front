@@ -14,6 +14,8 @@ import gluten from "../../imagenes/glutenFree.jpg";
 import keto from "../../imagenes/keto.jpg";
 import paleo from "../../imagenes/paleo.avif";
 import proteica from "../../imagenes/proteica.jpg";
+import { useDispatch } from "react-redux";
+import { getRecetas } from "../../redux/actions";
 
 function LandingPage() {
 
@@ -23,7 +25,7 @@ function LandingPage() {
     //estados q le paso a la navbar
     const [userActual, setUserActual] = useState(false);
     const [name, setName] = useState("visitante");
-
+    const dispatch = useDispatch();
     //para actualizar nombre y userActual
     useEffect(()=>{
         if(!userStorage){
@@ -31,6 +33,7 @@ function LandingPage() {
         }else{
             setName(userStorage.user.name);
             setUserActual(true);
+            dispatch(getRecetas());
         }
     },[name, userStorage,userActual]);
 

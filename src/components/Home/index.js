@@ -9,14 +9,11 @@ import ModeNightIcon from '@mui/icons-material/ModeNight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Switch from '@mui/material/Switch';
 import userLog from '../../localStorage';
-import swal from 'sweetalert';
-import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
 
-    const userStorage = userLog.getUserActual(); //console.log("userLog:", userStorage);
-    const navigate = useNavigate();    
+    const userStorage = userLog.getUserActual(); //console.log("userLog:", userStorage);   
 
     const allRecetas = useSelector(state => state.allRecetas);
     const load = useSelector(state => state.load);
@@ -63,7 +60,7 @@ function Home() {
 
     /* utilizo un If para calcular la cantidad de items q debe mostrar el paginado(me refiero a los num de pag [pag1, pag2...etc] segun la cant de recetas retornadas del back) */
     if(!dieta && !ingrediente){
-        totalPag = Math.ceil(100 / 20);   
+        totalPag = Math.ceil(103 / 20);   
     }else{
         totalPag = Math.ceil(allRecetas.page.totalConsultaAct / 20);
     }
