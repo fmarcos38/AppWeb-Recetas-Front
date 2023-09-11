@@ -4,9 +4,10 @@ import "./estilos.css";
 import Swal from "sweetalert2";
 import userLog from '../../localStorage';
 
-function CreateR() {
+function FormEdit({_id}) {
 
     const userStorage = userLog.getUserActual(); console.log("userLog:", userStorage); 
+    
     const initialState = {
         title: "",
         image: null,
@@ -343,4 +344,4 @@ function CreateR() {
     )
 }
 
-export default CreateR
+export default FormEdit

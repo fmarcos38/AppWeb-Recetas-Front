@@ -8,6 +8,7 @@ import DetalleReceta from './components/DeatalleReceta';
 import Login from './components/Login';
 import Registrarse from './components/Registrarse';
 import CardBarbie from './components/CardBarbie';
+import FormEdit from './components/FormEdit';
 
 function App() {  
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/createR' element={<CreateR/>}/>
         <Route path='/detalle/:dia/:barbie/:_id' element={<DetalleReceta />}/>
+        <Route path='/formEdit/:_id' element={<FormEdit/>}/>
 
         {/* para el desarrollador */}
         <Route path='/cardBarbie' element={<CardBarbie/>}/>

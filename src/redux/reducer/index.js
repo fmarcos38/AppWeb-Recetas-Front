@@ -75,7 +75,7 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 detalleReceta: {}
             }
-        }
+        }        
         case RESET_FILTRO: {
             return{
                 ...state,

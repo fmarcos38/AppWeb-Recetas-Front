@@ -7,8 +7,8 @@ import './estilos.css';
 
 function NavBar({userActual, name}) {
 
-    const navigate = useNavigate();
-    
+  const navigate = useNavigate();
+  const userStorage = userLog.getUserActual();   
     const handleLogout = (e) => {
         userLog.logout();
         navigate('/');
@@ -36,7 +36,7 @@ function NavBar({userActual, name}) {
                 </li> 
                 {/* crear R */}
                 {
-                  userActual.role === "admin" &&
+                  userStorage.user.role === "admin" &&
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/createR">Crea receta</a>
                   </li>

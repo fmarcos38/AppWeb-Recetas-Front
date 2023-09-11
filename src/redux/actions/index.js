@@ -41,6 +41,12 @@ export function resetFiltro(desde){
     }
 }
 
+//elim receta de la DB
+export function elimR(_id){
+    return async function(dispatch){
+        await axios.delete(`${urlDesarrollo}/recetas/elimR/${_id}`);
+    }
+};
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){
