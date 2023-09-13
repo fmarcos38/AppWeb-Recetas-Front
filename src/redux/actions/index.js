@@ -1,4 +1,4 @@
-import { ELIM_DIET_DB, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
+import { EDITA_RECETA, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -49,10 +49,10 @@ export function elimR(_id){
 };
 
 //elim dieta existente, en el form modificar datos
-export function elim_diet_db(data){
+export function editaReceta(data){
     return async function(dispatch){ console.log("data:", data)
-        const resp = await axios.post(`${urlDesarrollo}/recetas/elimDietDB`, data);
-        return dispatch({type: ELIM_DIET_DB, payload:resp.data})
+        const resp = await axios.post(`${urlDesarrollo}/recetas/modifR`, data);
+        return dispatch({type: EDITA_RECETA, payload:resp.data})
     }
 };
 /*---------actions User----------------*/

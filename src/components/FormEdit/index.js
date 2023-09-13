@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
 import userLog from '../../localStorage';
-import { elim_diet_db, getRecetaById, resetDetalle } from '../../redux/actions';
+import { editaReceta, getRecetaById, resetDetalle } from '../../redux/actions';
 import { useParams } from 'react-router-dom';
 
 function FormEdit() {
@@ -84,10 +84,7 @@ function FormEdit() {
             setGrupo(grupo - 1);
         }
     };
-    //elim dieta existente(la q viene de la DB)
-    const handlerDeleteDietaExistente = (dietExist) => {
-        dispatch(elim_diet_db({_id:_id, dieta:dietExist}))
-    };
+    
     //elim dieta
     const handlerDeleteDieta = (dieta) => {
         setReceta({...receta, diets: receta.diets.filter(d => d !== dieta)})
@@ -142,6 +139,38 @@ function FormEdit() {
         }        
     };
 
+     //ingredientes  
+    const handleClickIngrediente = (e) => {
+        e.preventDefault();
+        setIngredientes([...ingredientes, {name: ingrediente}]);
+        setContadorIng(contadorPIng + 1);
+    };
+    //para paso a paso
+    const handleClickPaso = (e) => {   
+        e.preventDefault();            
+        setReceta({...receta, analyzedInstructions: [...receta.analyzedInstructions,
+            {
+                number: contadorP,
+                step: paso,
+                ingredients: ingredientes  
+            }]
+        });
+        
+        setContadorP(contadorP + 1);
+        setIngrediente("");
+        document.getElementById("ingrediente").value = "";
+        setIngredientes([]);
+        setContadorIng(1);
+    }; 
+    const handleDeletePaso = (paso) => {
+        setReceta({...receta, analyzedInstructions: receta.analyzedInstructions.filter(p => p.step !== paso.step)})
+        setContadorP(contadorP -1);
+    };
+     //elim ingrediente
+    const handlerDeleteIng = (ingre,i) => {
+        setIngrediente({...receta, analyzedInstructions: receta.analyzedInstructions[i].ingredients.filter(ing => ing.name !== ingre.name)});
+    };
+
 
     return (
         <div>
@@ -184,26 +213,7 @@ function FormEdit() {
                 {/* dietas */}
                 {
                     grupo === 2 &&
-                    <div class='container-fluid grupo1'>
-                        {/* muestra los types exist*/}
-                        <div class="contInputLabel">
-                                <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
-                                    {
-                                        recetaD.diets?.map(dieta => {
-                                            return (
-                                                <div key={dieta.name} class="row">
-                                                    <div class="col-1 contBtnElimDieta">
-                                                        <button type="button" class="btn btn-danger btnElimDieta" onClick={() => handlerDeleteDietaExistente(dieta.name)}>X</button>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span className="tipoDieta">{dieta.name}</span>
-                                                    </div>
-                                                </div>
-                                            );
-                                        }) 
-                                            
-                                    }
-                                </div>
+                    <div class='container-fluid grupo1'>                        
                         {/* dietas */}
                         <div class="contInputLabel">
                                 <label class="form-label labelCR">Tipos de Dietas</label>
@@ -246,7 +256,100 @@ function FormEdit() {
                             <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
-                }                
+                }      
+                
+                {/* grupo 3 */}
+                {
+                    grupo === 3 &&
+                    <div class='container-fluid grupo3'>
+                        {/* Paso a Paso */}
+                        <div className='paso'>                 
+                        {/* ingredientes x paso */}
+                        <div class="contIng">
+                            <label class="form-label labelCR">Ingrediente {contadorPIng} para el paso {contadorP}</label>
+                            <input type="text" id="ingrediente" value={ingrediente.name} class="form-control" onChange={handleCH}/>
+                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
+                            <button onClick={handleClickIngrediente} class="btn btn-dark cargaIng">Cargar Ingrediente n° {contadorPIng}</button>
+                        </div>
+                        {/* muestra los ing cargados */}
+                        {
+                            ingredientes?.map(ing => {
+                                return(
+                                    <div class="row">
+                                        <div class= "col">
+                                            <p>{ing.name}</p>
+                                        </div>
+                                        <div class= "col">
+                                            <button type="button" class="btn btn-danger btnElim" onClick={() => handlerDeleteIng(ing)}>X</button>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                        {/* carga paso */}
+                        <div className=''>
+                            <label for="exampleFormControlInput1" class="form-label labelCR">Descripción Paso {contadorP}</label>
+                            <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
+                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
+                        </div>
+                        {/* btn cargaPaso */}
+                        <div>
+                            <button onClick={handleClickPaso} class="btn btn-dark cargaIng">Cargar Paso n° {contadorP}</button>
+                        </div>
+                        {/* muestra el paso cargado */}
+                        <div>
+                            <label for="exampleFormControlInput1" class="form-label labelCR">Pasos:</label>
+                            {
+                                receta.analyzedInstructions?.map((paso,i) => {
+                                    return(
+                                        <div>
+                                            {
+                                                !paso ?
+                                                <span>No step</span>
+                                                :
+                                                <>
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                        <p>{paso.number}-{paso.step}</p>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button type="button" class="btn btn-danger btnElim" onClick={() => handleDeletePaso(paso)}>X</button>
+                                                        </div>                                                        
+                                                    </div>
+                                                    <span>Ingredientes del paso {contadorP -1}</span>    
+                                                    {
+                                                        paso.ingredients?.map((ing) =>{
+                                                            return(
+                                                                <div class="row">
+                                                                    <div class= "col-9">
+                                                                        <p>{ing.name}</p>
+                                                                    </div>
+                                                                    <div class= "col">
+                                                                        <button type="button" class="btn btn-danger btnElim" onClick={() => handlerDeleteIng(ing, i)}>X</button>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        }
+                                                        )
+                                                    }
+                                                </>                                                                                        
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>      
+
+                        {/* btn crea */}
+                        <div class="tituloP btnCreateR">
+                            <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button>
+                            <button class="btn btn-primary " type='submit' >Create Recipe</button>
+                        </div>
+                    </div>
+
+                    
+                    </div>
+                }
             </form>
             </div>
         }

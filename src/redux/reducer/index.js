@@ -1,4 +1,4 @@
-import { ELIM_DIET_DB, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "../actions/actionsType";
+import { EDITA_RECETA, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "../actions/actionsType";
 
 const initialState = {
     allRecetas: [],
@@ -70,7 +70,7 @@ export default function rootReducer(state = initialState, action){
                 detalleReceta: action.payload
             }
         }
-        case ELIM_DIET_DB: {
+        case EDITA_RECETA: {
             return{
                 ...state,
                 detalleReceta: action.payload
