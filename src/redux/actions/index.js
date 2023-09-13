@@ -1,4 +1,4 @@
-import { GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
+import { ELIM_DIET_DB, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -45,6 +45,14 @@ export function resetFiltro(desde){
 export function elimR(_id){
     return async function(dispatch){
         await axios.delete(`${urlDesarrollo}/recetas/elimR/${_id}`);
+    }
+};
+
+//elim dieta existente, en el form modificar datos
+export function elim_diet_db(data){
+    return async function(dispatch){ console.log("data:", data)
+        const resp = await axios.post(`${urlDesarrollo}/recetas/elimDietDB`, data);
+        return dispatch({type: ELIM_DIET_DB, payload:resp.data})
     }
 };
 /*---------actions User----------------*/
