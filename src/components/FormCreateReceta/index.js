@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
 import userLog from '../../localStorage';
+import NavBar from '../NavBar';
 
 function CreateR() {
 
@@ -190,8 +191,12 @@ function CreateR() {
                         <div>
                             <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
                         </div>
-                        <div>
-                            <button disabled={!errors} class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        <div class="contBotones">
+                            <a href='/home'>
+                                <button class="btn btn-dark btnSgt">Go Home</button>
+                            </a>
+                            
+                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
                 }
@@ -199,12 +204,12 @@ function CreateR() {
                 {/* Grupo 2 */}
                 {
                     grupo === 2 &&
-                    <div class='container-fluid grupo1'>
+                    <div class='container-fluid grupo2'>
                         {/* dietas */}
-                        <div class="contInputLabel">
-                                <label class="form-label labelCR">Tipos de Dietas</label>
-                                <select class="form-select inputCR" onChange={handleCH} id='diets'>
-                                    <option>Menu</option>
+                        <div class="selectDietas">
+                            <label class="form-label labelCR">Tipos de Dietas</label>
+                            <select class="form-select " onChange={handleCH} id='diets'>
+                                <option>Menu</option>
                                 {
                                     tiposDietas.map(d => {
                                     return(
@@ -214,11 +219,12 @@ function CreateR() {
                                     )                
                                     })
                                 }
-                                </select>
-                                {!receta.diets[0] && <span className="error-message">{errors.diets}</span>}
-                                {/* muestra los types seleccionads*/}
-                                <div class="contInputLabel">
-                                <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
+                            </select>
+                            {!receta.diets[0] && <span className="error-message">{errors.diets}</span>}
+                        </div>
+                        {/* muestra los types seleccionads*/}
+                        <div class="contInputLabel">
+                                <label class="form-label labelTiposD">Tipos de Dietas agregadas:</label>
                                     {
                                             
                                         receta.diets.map((dieta, index) => {
@@ -235,11 +241,11 @@ function CreateR() {
                                         }) 
                                             
                                     }
-                                </div>
                         </div>
-                        <div>
-                            <button class="btn btn-dark btnSgt" onClick={onClickBtnAtras}>Atrás</button> 
-                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        {/* botones */}
+                        <div class="contBotones2">
+                            <button class="btn btn-dark btnSgt2" onClick={onClickBtnAtras}>Atrás</button> 
+                            <button class="btn btn-dark btnSgt2" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
                 }
@@ -248,16 +254,15 @@ function CreateR() {
                 {
                     grupo === 3 &&
                     <div class='container-fluid grupo3'>
-                        {/* Paso a Paso */}
-                        <div className='paso'>                 
                         {/* ingredientes x paso */}
                         <div class="contIng">
                             <label class="form-label labelCR">Ingrediente {contadorPIng} para el paso {contadorP}</label>
-                            <input type="text" id="ingrediente" value={ingrediente.name} class="form-control" onChange={handleCH}/>
+                            <input type="text" id="ingrediente" value={ingrediente.name} class="form-control selectDietas" onChange={handleCH}/>
                             {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
                             <button onClick={handleClickIngrediente} class="btn btn-dark cargaIng">Cargar Ingrediente n° {contadorPIng}</button>
                         </div>
                         {/* muestra los ing cargados */}
+                        <div>
                         {
                             ingredientes?.map(ing => {
                                 return(
@@ -272,14 +277,13 @@ function CreateR() {
                                 )
                             })
                         }
-                        {/* carga paso */}
-                        <div className=''>
-                            <label for="exampleFormControlInput1" class="form-label labelCR">Descripción Paso {contadorP}</label>
-                            <input type="text" id="paso" value={paso} class="form-control" onChange={handleCH}/>
-                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
                         </div>
-                        {/* btn cargaPaso */}
-                        <div>
+                                        
+                        {/* carga paso */}
+                        <div className='contIng'>
+                            <label for="exampleFormControlInput1" class="form-label labelCR">Descripción Paso {contadorP}</label>
+                            <input type="text" id="paso" value={paso} class="form-control selectDietas" onChange={handleCH}/>
+                            {!receta.analyzedInstructions[0] && <span className="error-message">{errors.analyzedInstructions}</span>}
                             <button onClick={handleClickPaso} class="btn btn-dark cargaIng">Cargar Paso n° {contadorP}</button>
                         </div>
                         {/* muestra el paso cargado */}
@@ -328,10 +332,10 @@ function CreateR() {
 
                         {/* btn crea */}
                         <div class="tituloP btnCreateR">
-                            <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button>
-                            <button class="btn btn-primary " type='submit' /* onClick={handleSub} */>Create Recipe</button>
+                            <button onClick={onClickBtnAtras} class="btn btn-dark btnSgt">Atrás</button>
+                            <button class="btn btn-primary btnSgt" type='submit' /* onClick={handleSub} */>Create Recipe</button>
                         </div>
-                    </div>
+                    
 
                     
                     </div>

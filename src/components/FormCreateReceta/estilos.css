@@ -9,7 +9,6 @@
     width: 600px;
     height: auto;
     background-color: aliceblue;
-    display: grid;
     align-items: center;
     justify-content: center;
 }
@@ -18,11 +17,15 @@
     align-items: center;
     justify-content: center;
 }
-.grupo1, .grupo3{
+.grupo1{
     display: grid;
     align-items: center;
     justify-content: center;
-    width: 100%;
+}
+.grupo2{
+    display:grid;
+    /* align-items: center;
+    justify-content: center; */
 }
 .grupo3{
     height: 100%;
@@ -46,9 +49,23 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.labelTiposD{
+    margin-top: 1rem;
+}
+.selectDietas{
+    width: 100%;
+}
 .btnSgt{
     margin-top: 4rem;
     margin-right: 1rem;
+    width: 45.5%;
+    margin-bottom: 0.5rem;
+}
+.btnSgt2{
+    margin-top: 1rem;
+    margin-right: 1rem;
+    width: 43%;
+    margin-bottom: 0.5rem;
 }
 .btnCreateR{
     width: auto;
@@ -67,12 +84,12 @@
     font-size: large;
 }
 .contIng{
-    display: grid;
     align-items: center;
     justify-content: center;
 }
 .cargaIng{
     margin-top: 0.5rem;
+    width: 100%;
 }
 .btnAtrasUltimo{
     margin-top: 1rem;
@@ -87,8 +104,29 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width:850px){
+    .btnSgt2{
+        margin-top: 1rem;
+        margin-right: 1rem;
+        width: auto;
+        margin-bottom: 0.5rem;
+    }   
+}
 @media screen and (max-width:600px){
     .contForm{
-        width: 90%;        
+        width: 95%;        
+    }    
+}
+@media screen and (max-width:450px){
+    .contBotones{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+    .btnSgt{
+        width: auto;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
     }
 }

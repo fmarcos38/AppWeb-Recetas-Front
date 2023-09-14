@@ -89,7 +89,40 @@ function FormEdit() {
     const handlerDeleteDieta = (dieta) => {
         setReceta({...receta, diets: receta.diets.filter(d => d !== dieta)})
     };
-    const handleSub = async (e) => {
+    
+     //ingredientes  
+    const handleClickIngrediente = (e) => {
+        e.preventDefault();
+        setIngredientes([...ingredientes, {name: ingrediente}]);
+        setContadorIng(contadorPIng + 1);
+    };
+    //para paso a paso
+    const handleClickPaso = (e) => {   
+        e.preventDefault();            
+        setReceta({...receta, analyzedInstructions: [...receta.analyzedInstructions,
+            {
+                number: contadorP,
+                step: paso,
+                ingredients: ingredientes  
+            }]
+        });
+        
+        setContadorP(contadorP + 1);
+        setIngrediente("");
+        document.getElementById("ingrediente").value = "";
+        setIngredientes([]);
+        setContadorIng(1);
+    }; 
+    const handleDeletePaso = (paso) => {
+        setReceta({...receta, analyzedInstructions: receta.analyzedInstructions.filter(p => p.step !== paso.step)})
+        setContadorP(contadorP -1);
+    };
+     //elim ingrediente
+    const handlerDeleteIng = (ingre,i) => {
+        setIngrediente({...receta, analyzedInstructions: receta.analyzedInstructions[i].ingredients.filter(ing => ing.name !== ingre.name)});
+    };
+
+    const handleSubModif = async (e) => {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
         //errores        
@@ -138,40 +171,6 @@ function FormEdit() {
             }
         }        
     };
-
-     //ingredientes  
-    const handleClickIngrediente = (e) => {
-        e.preventDefault();
-        setIngredientes([...ingredientes, {name: ingrediente}]);
-        setContadorIng(contadorPIng + 1);
-    };
-    //para paso a paso
-    const handleClickPaso = (e) => {   
-        e.preventDefault();            
-        setReceta({...receta, analyzedInstructions: [...receta.analyzedInstructions,
-            {
-                number: contadorP,
-                step: paso,
-                ingredients: ingredientes  
-            }]
-        });
-        
-        setContadorP(contadorP + 1);
-        setIngrediente("");
-        document.getElementById("ingrediente").value = "";
-        setIngredientes([]);
-        setContadorIng(1);
-    }; 
-    const handleDeletePaso = (paso) => {
-        setReceta({...receta, analyzedInstructions: receta.analyzedInstructions.filter(p => p.step !== paso.step)})
-        setContadorP(contadorP -1);
-    };
-     //elim ingrediente
-    const handlerDeleteIng = (ingre,i) => {
-        setIngrediente({...receta, analyzedInstructions: receta.analyzedInstructions[i].ingredients.filter(ing => ing.name !== ingre.name)});
-    };
-
-
     return (
         <div>
         {
@@ -181,7 +180,7 @@ function FormEdit() {
             </>
             :
             <div class="contGralCR">     
-            <form class="container contForm" onSubmit={handleSub}>
+            <form class="container contForm" onSubmit={handleSubModif}>
                 <h3 class="tituloReceta">Modificar Receta existente:</h3>
                 {/* Grupo 1 */}
                 {
@@ -343,7 +342,7 @@ function FormEdit() {
                         {/* btn crea */}
                         <div class="tituloP btnCreateR">
                             <button onClick={onClickBtnAtras} class="btn btn-dark ">Atrás</button>
-                            <button class="btn btn-primary " type='submit' >Create Recipe</button>
+                            <button class="btn btn-primary " type='submit' >Modificar Recipe</button>
                         </div>
                     </div>
 
