@@ -28,7 +28,7 @@ function FormEdit() {
     //estado error
     const [errors, setErrors] = useState(initialState);
     //estado pre imagen
-    const [vistaPrevia, setVistaPrevia] = useState("");//vista previa
+    const [vistaPrevia, setVistaPrevia] = useState(recetaD.image);//vista previa
     const tiposDietas = useSelector(state => state.TiposDietas);
     //estado y contador d paso a paso
     const [paso, setPaso] = useState("");
@@ -83,13 +83,11 @@ function FormEdit() {
         }else{
             setGrupo(grupo - 1);
         }
-    };
-    
+    };    
     //elim dieta
     const handlerDeleteDieta = (dieta) => {
         setReceta({...receta, diets: receta.diets.filter(d => d !== dieta)})
-    };
-    
+    };    
      //ingredientes  
     const handleClickIngrediente = (e) => {
         e.preventDefault();
@@ -150,8 +148,8 @@ function FormEdit() {
                 let formData = new FormData();
                 formData.append("title", recetaD.title);
                 formData.append('image', recetaD.image);
-                formData.append("diets", recetaD.diets);
-                formData.append("analyzedInstructions", recetaD.analyzedInstructions);
+                formData.append("diets",JSON.stringify(recetaD.diets));
+                formData.append("analyzedInstructions", JSON.stringify(recetaD.analyzedInstructions));
 
                 await fetch(`http://localhost:8000/recetas/createR`, {
                     method: "POST",
@@ -188,22 +186,27 @@ function FormEdit() {
                     <div class='container-fluid grupo1'>                        
                         {/* titulo */}
                         <div class="contInputLabel">
-                            <label class="form-label labelCR">Titulo receta</label>
-                            <input type="text" id="title" value={recetaD.title} onChange={handleCH} class="form-control inputCR" /* placeholder={recetaD.title} *//>
+                            <label class="form-label labelCR">Titulo actual: {recetaD.title}</label>
+                            <label class="form-label labelCR">Nuevo Titulo:</label>
+                            <input type="text" id="title" value={receta.title} onChange={handleCH} class="form-control inputCR"/>
                             {!receta.title && <span className="error-message">{errors.title}</span>}
                         </div>
                         {/* image */} 
-                        <div class="contInputLabel">
+                        <div class="contInputLabel">                            
                             <label class="form-label labelCR">Imagen del prod: </label>
                             <input  type="file" accept="image/*" id="image" onChange={handleCH} class="form-control inputCR"/>
-                            
+                            {!receta.image && <span className="error-message">{errors.image}</span>}
                         </div>
                         {/* muestra img previa */}
                         <div>
+                            <label class="form-label labelCR">Imagen actual: </label> <br/>
                             <img src={recetaD.image} alt="Sin cargar" className={"imgPre"}/>
+                            <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
                         </div>
-                        <div>
-                            <button disabled={!errors} class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        <div class="contBotones">
+                            <a href='/home' class="btn btn-dark btnSgt">Go Home</a>
+                            
+                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
                 }
@@ -212,12 +215,25 @@ function FormEdit() {
                 {/* dietas */}
                 {
                     grupo === 2 &&
-                    <div class='container-fluid grupo1'>                        
-                        {/* dietas */}
+                    <div class='container-fluid grupo2'>
+                        {/* muestra los types actuales*/}
                         <div class="contInputLabel">
-                                <label class="form-label labelCR">Tipos de Dietas</label>
-                                <select class="form-select inputCR" onChange={handleCH} id='diets'>
-                                    <option>Menu</option>
+                            <label class="form-label labelTiposD">Tipos de Dietas actuales:</label>
+                                {
+                                    recetaD.diets?.map((dieta, index) => {
+                                        return (
+                                            <ul key={index} class="row">
+                                                <li className="tipoDietaA">{dieta.name}</li>                                                
+                                            </ul>
+                                        );
+                                    })
+                                }
+                        </div>
+                        {/* dietas */}
+                        <div class="selectDietas">
+                            <label class="form-label labelCR">Ingresar los tipos de Dietas:</label>
+                            <select class="form-select " onChange={handleCH} id='diets'>
+                                <option>Dietas</option>
                                 {
                                     tiposDietas.map(d => {
                                     return(
@@ -227,13 +243,14 @@ function FormEdit() {
                                     )                
                                     })
                                 }
-                                </select>
-                                {!receta.diets[0] && <span className="error-message">{errors.diets}</span>}
-
-                                {/* muestra los types seleccionads*/}
-                                <div class="contInputLabel">
-                                <label class="form-label labelCR">Tipos de Dietas agregadas:</label>
+                            </select>
+                            {!receta.diets[0] && <span className="error-message">{errors.diets}</span>}
+                        </div>
+                        {/* muestra los types seleccionads*/}
+                        <div class="contInputLabel">
+                                <label class="form-label labelTiposD">Tipos de Dietas agregadas:</label>
                                     {
+                                            
                                         receta.diets.map((dieta, index) => {
                                             return (
                                                 <div key={index} class="row">
@@ -248,11 +265,11 @@ function FormEdit() {
                                         }) 
                                             
                                     }
-                                </div>
                         </div>
-                        <div>
-                            <button class="btn btn-dark btnSgt" onClick={onClickBtnAtras}>Atrás</button> 
-                            <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
+                        {/* botones */}
+                        <div class="contBotones2">
+                            <button class="btn btn-dark btnSgt2" onClick={onClickBtnAtras}>Atrás</button> 
+                            <button class="btn btn-dark btnSgt2" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
                     </div>
                 }      

@@ -47,6 +47,7 @@
     width: 140px;
     height: 140px;
     margin-top: 5px;
+    margin-right: 0.5rem;
     margin-bottom: 5px;
 }
 .labelTiposD{
@@ -64,7 +65,7 @@
 .btnSgt2{
     margin-top: 1rem;
     margin-right: 1rem;
-    width: 43%;
+    width: 47%;
     margin-bottom: 0.5rem;
 }
 .btnCreateR{
@@ -105,13 +106,10 @@
     justify-content: center;
 }
 
-@media screen and (max-width:850px){
+@media screen and (max-width:770px){
     .btnSgt2{
-        margin-top: 1rem;
-        margin-right: 1rem;
-        width: auto;
-        margin-bottom: 0.5rem;
-    }   
+        width: 40%;
+    }
 }
 @media screen and (max-width:600px){
     .contForm{

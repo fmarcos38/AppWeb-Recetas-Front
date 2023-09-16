@@ -1,4 +1,4 @@
-import { EDITA_RECETA, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
+import { CREATE_R, EDITA_RECETA, GET_RECETAS, GET_RECETA_BY_ID, GET_USER, LOAD, LOGIN, REGISTRARSE, RESET_DETALLE, RESET_FILTRO, RESET_USER } from "./actionsType";
 import axios from "axios";
 import { urlDesarrollo } from "./urls";
 
@@ -21,7 +21,6 @@ export function getRecetas(desde, palabra, dieta, hasta){
         return  dispatch({ type: GET_RECETAS, payload: resp.data });    
     };
 };
-
 //trae rec por ID
 export function getRecetaById(_id){
     return async function(dispatch){
@@ -32,29 +31,36 @@ export function getRecetaById(_id){
 //reset detalle
 export function resetDetalle(){
     return {type: RESET_DETALLE};
-}
+};
 //reset filtro
 export function resetFiltro(desde){
     return async function(dispatch){
         const resp = await axios.get(`${urlDesarrollo}/recetas?desde=${desde}`);
         return  dispatch({ type: RESET_FILTRO, payload: resp.data });
     }
-}
-
+};
+export function createR (data, formData){
+    return async function(dispatch){
+        console.log("recACT:", data);
+        const resp = await axios.post(`http://localhost:8000/recetas/createR`, data, formData);
+        return dispatch({type: CREATE_R, payload: resp.data});
+    }
+};
 //elim receta de la DB
 export function elimR(_id){
     return async function(dispatch){
         await axios.delete(`${urlDesarrollo}/recetas/elimR/${_id}`);
     }
 };
-
-//elim dieta existente, en el form modificar datos
+//edita receta
 export function editaReceta(data){
     return async function(dispatch){ console.log("data:", data)
         const resp = await axios.post(`${urlDesarrollo}/recetas/modifR`, data);
         return dispatch({type: EDITA_RECETA, payload:resp.data})
     }
 };
+
+
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){

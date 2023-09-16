@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
 import userLog from '../../localStorage';
-import NavBar from '../NavBar';
+import { createR } from '../../redux/actions';
 
 function CreateR() {
 
-    const userStorage = userLog.getUserActual(); console.log("userLog:", userStorage); 
+    const userStorage = userLog.getUserActual();  
     const initialState = {
         title: "",
         image: null,
@@ -30,6 +30,7 @@ function CreateR() {
     const [ingrediente, setIngrediente] = useState("");
     const [ingredientes, setIngredientes] = useState([]);
     const [contadorPIng, setContadorIng] = useState(1);
+    const dispatch = useDispatch();
 
     const handleCH = (e) => {
         if(e.target.id === 'image'){
@@ -106,7 +107,7 @@ function CreateR() {
     const handlerDeleteIng = (ingre,i) => {
         setIngrediente({...receta, analyzedInstructions: receta.analyzedInstructions[i].ingredients.filter(ing => ing.name !== ingre.name)});
     };
-
+    console.log("receta:", receta);
     const handleSub = async (e) => {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
@@ -138,8 +139,8 @@ function CreateR() {
                 let formData = new FormData();
                 formData.append("title", receta.title);
                 formData.append('image', receta.image);
-                formData.append("diets", receta.diets);
-                formData.append("analyzedInstructions", receta.analyzedInstructions);
+                formData.append("diets",JSON.stringify(receta.diets));
+                formData.append("analyzedInstructions", JSON.stringify(receta.analyzedInstructions));
 
                 await fetch(`http://localhost:8000/recetas/createR`, {
                     method: "POST",
@@ -169,7 +170,7 @@ function CreateR() {
             </>
             :
             <div class="contGralCR">     
-            <form class="container contForm" onSubmit={handleSub}>
+                <form class="container contForm" onSubmit={handleSub}>
                 <h3 class="tituloReceta">Crea tu propia Receta</h3>
                 {/* Grupo 1 */}
                 {
@@ -192,9 +193,7 @@ function CreateR() {
                             <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
                         </div>
                         <div class="contBotones">
-                            <a href='/home'>
-                                <button class="btn btn-dark btnSgt">Go Home</button>
-                            </a>
+                            <a href='/home' class="btn btn-dark btnSgt">Go Home</a>
                             
                             <button class="btn btn-dark btnSgt" onClick={onClickBtnSgt}>Siguiente</button>
                         </div>
@@ -209,7 +208,7 @@ function CreateR() {
                         <div class="selectDietas">
                             <label class="form-label labelCR">Tipos de Dietas</label>
                             <select class="form-select " onChange={handleCH} id='diets'>
-                                <option>Menu</option>
+                                <option>Dietas</option>
                                 {
                                     tiposDietas.map(d => {
                                     return(
@@ -314,9 +313,9 @@ function CreateR() {
                                                                     <div class= "col-9">
                                                                         <p>{ing.name}</p>
                                                                     </div>
-                                                                    <div class= "col">
+                                                                    {/* <div class= "col">
                                                                         <button type="button" class="btn btn-danger btnElim" onClick={() => handlerDeleteIng(ing, i)}>X</button>
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             )
                                                         }
@@ -340,7 +339,7 @@ function CreateR() {
                     
                     </div>
                 }                
-            </form>
+                </form>
             </div>
         }
         </div>
