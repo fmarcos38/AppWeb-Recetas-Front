@@ -39,13 +39,6 @@ export function resetFiltro(desde){
         return  dispatch({ type: RESET_FILTRO, payload: resp.data });
     }
 };
-export function createR (data, formData){
-    return async function(dispatch){
-        console.log("recACT:", data);
-        const resp = await axios.post(`http://localhost:8000/recetas/createR`, data, formData);
-        return dispatch({type: CREATE_R, payload: resp.data});
-    }
-};
 //elim receta de la DB
 export function elimR(_id){
     return async function(dispatch){

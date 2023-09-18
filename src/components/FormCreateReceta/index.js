@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import "./estilos.css";
 import Swal from "sweetalert2";
 import userLog from '../../localStorage';
-import { createR } from '../../redux/actions';
 
 function CreateR() {
 
@@ -21,7 +20,7 @@ function CreateR() {
     //estado error
     const [errors, setErrors] = useState(initialState);
     //estado pre imagen
-    const [vistaPrevia, setVistaPrevia] = useState('');//vista previa
+    //const [vistaPrevia, setVistaPrevia] = useState('');//vista previa
     const tiposDietas = useSelector(state => state.TiposDietas);
     //estado y contador d paso a paso
     const [paso, setPaso] = useState("");
@@ -29,14 +28,13 @@ function CreateR() {
     //estado y contador de Ingredientes
     const [ingrediente, setIngrediente] = useState("");
     const [ingredientes, setIngredientes] = useState([]);
-    const [contadorPIng, setContadorIng] = useState(1);
-    const dispatch = useDispatch();
+    const [contadorPIng, setContadorIng] = useState(1);   
 
     const handleCH = (e) => {
-        if(e.target.id === 'image'){
+        /* if(e.target.id === 'image'){
             setReceta({...receta, image: e.target.files[0]});
             previewFile(e.target.files[0]);//invoco la funcio q muestra la pre-imagen
-        }else if(e.target.id === 'diets'){
+        }else */ if(e.target.id === 'diets'){
             //busca si ya existe esa dieta
             let dieta = receta.diets.find(d => d.tipo === e.target.value);
             if(dieta){alert("Ya se ingresó ese type")}
@@ -61,13 +59,13 @@ function CreateR() {
     };
 
     //funcion para manipulación de la pre-imagen
-    const previewFile = (file) => {
+    /* const previewFile = (file) => {
         const reader = new FileReader();//lector de archivo
         reader.readAsDataURL(file);//convierte la img en una url
         reader.onloadend = () => {
             setVistaPrevia(reader.result);
         };
-    };
+    }; */
     
     //ingredientes  
     const handleClickIngrediente = (e) => {
@@ -136,24 +134,28 @@ function CreateR() {
             });
         }else{
             try {
-                let formData = new FormData();
-                formData.append("title", receta.title);
+                //let formData = new FormData();
+                /* formData.append("title", receta.title); 
                 formData.append('image', receta.image);
-                formData.append("diets",JSON.stringify(receta.diets));
-                formData.append("analyzedInstructions", JSON.stringify(receta.analyzedInstructions));
-
+                formData.append("diets",receta.diets);
+                formData.append("analyzedInstructions", receta.analyzedInstructions); */
+                
                 await fetch(`http://localhost:8000/recetas/createR`, {
                     method: "POST",
-                    body: formData,
+                    headers: {
+                        "content-Type": "application/json"
+                    },
+                    body: JSON.stringify(receta),
                 });
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Creado correctamente!!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    setReceta(initialState);
-                    setGrupo(1);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Creado correctamente!!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setReceta(initialState);
+                //setVistaPrevia("");
+                setGrupo(1);
                 
             } catch (error) {
                 console.log(error);
@@ -183,15 +185,20 @@ function CreateR() {
                             {!receta.title && <span className="error-message">{errors.title}</span>}
                         </div>
                         {/* image */} 
-                        <div class="contInputLabel">
+                        {/* <div class="contInputLabel">
                             <label class="form-label labelCR">Imagen del prod: </label>
                             <input  type="file" accept="image/*" id="image" onChange={handleCH} class="form-control inputCR"/>
                             {!receta.image && <span className="error-message">{errors.image}</span>}
+                        </div> */}
+                        <div class="contInputLabel">
+                            <label class="form-label labelCR">Imagen del prod: </label>
+                            <input  type="text" id="image" value={receta.image} onChange={handleCH} class="form-control inputCR" placeholder="ingrese URL imagen"/>
+                            {!receta.image && <span className="error-message">{errors.image}</span>}
                         </div>
                         {/* muestra img previa */}
-                        <div>
+                        {/* <div>
                             <img src={vistaPrevia} alt="Sin cargar" className={"imgPre"}/>
-                        </div>
+                        </div> */}
                         <div class="contBotones">
                             <a href='/home' class="btn btn-dark btnSgt">Go Home</a>
                             
