@@ -105,7 +105,7 @@ function CreateR() {
     const handlerDeleteIng = (ingre,i) => {
         setIngrediente({...receta, analyzedInstructions: receta.analyzedInstructions[i].ingredients.filter(ing => ing.name !== ingre.name)});
     };
-    console.log("receta:", receta);
+    
     const handleSub = async (e) => {
         e.preventDefault();
         const newErrors = {...errors}; //array errores
@@ -173,9 +173,9 @@ function CreateR() {
             :
             <div class="contGralCR">     
                 <form class="container contForm" onSubmit={handleSub}>
-                <h3 class="tituloReceta">Crea tu propia Receta</h3>
-                {/* Grupo 1 */}
-                {
+                    <h3 class="tituloReceta">Crea tu propia Receta</h3>
+                    {/* Grupo 1 */}
+                    {
                     grupo === 1 &&
                     <div class='container-fluid grupo1'>                        
                         {/* titulo */}

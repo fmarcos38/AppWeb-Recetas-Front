@@ -19,8 +19,8 @@
 }
 .grupo1{
     display: grid;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
 }
 .grupo2{
     display:grid;

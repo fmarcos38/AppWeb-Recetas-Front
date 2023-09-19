@@ -31,8 +31,11 @@ function ListaRecetas({load, allRecetas, diaNoche ,barbie}) {
                                     }
                                 </div>                                                                
                             )
-                        }) :
-                        <span className={barbie !== true ? "msgNorecetas" : "msgNorecetasK"}>No se encontron recetas para dicha busqueda</span>
+                        }) 
+                        :
+                        <div className='contMsjNoRecetas'>
+                            <p className={barbie !== true ? "msgNorecetas" : "msgNorecetasK"}>No se encontron recetas para dicha busqueda</p>
+                        </div>                        
                     }
                 </>                
             }

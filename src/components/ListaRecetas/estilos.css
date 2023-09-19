@@ -1,28 +1,39 @@
 .contGralR{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 /* este contenedor le el tamaño a las cards */
 .contReceta{
-  width: 30%;
+  width: 33%;
   height: 550px;  
   margin-bottom: 1rem;
 }
+.contMsjNoRecetas{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .msgNorecetas{
   color: #ff0080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .msgNorecetasK{
   color:aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media screen and (max-width:1100px){
+@media screen and (max-width:1200px){
   .contReceta{
     width: 45%;
   }
 }
-@media screen and (max-width:870px){
+@media screen and (max-width:950px){
   .contReceta{
     width: 50%;
   }

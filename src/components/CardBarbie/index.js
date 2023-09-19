@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import swal from 'sweetalert';
 import userLog from '../../localStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { agregaFav, elimR, meGusta } from '../../redux/actions';
+import { agregaFav, elimR, getRecetas, meGusta } from '../../redux/actions';
 
 const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
 
@@ -92,7 +92,8 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
             icon: "success",
             button: "Aceptar",
         }); 
-        window.location.reload();
+        //window.location.reload();
+        dispatch(getRecetas());
     };
     
 
@@ -134,7 +135,7 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
                     <div class="position-absolute bottom-0 end-0 contBotones">
                         <a href={`/formEdit/${_id}`}>
                             <button class='btn'>
-                                <EditIcon className="btnEditR"/>
+                                <EditIcon className="btnElimR"/>
                             </button> 
                         </a>                                            
                     </div>               
@@ -164,22 +165,3 @@ const CardBarbie = ({ _id, title, image, diets, diaNoche, barbie }) => {
 };
 
 export default CardBarbie;
-
-
-
-/*
-
-
-<div class="position-absolute bottom-0 start-0">
-                    
-            
-
-                <div class="position-absolute bottom-0 end-50">
-                    
-                </div>
-                
-                <div class="">
-                    
-                </div>
-
-*/

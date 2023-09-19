@@ -1,5 +1,4 @@
 .contCard{
-    width: 320px;  
     height: 100%;  
     margin-bottom: 2rem;
     background-color:rgb(31, 31, 30);   
@@ -10,7 +9,7 @@
 }
 .imgReceta{
     margin-left: 0.75rem;
-    width: 300px;
+    width: 100%;
     height: 249px;
     border-radius: 10px;    
 }
@@ -22,7 +21,7 @@
 .contBotones{
     margin-bottom: 0.5rem;
 }
-.cardButtonFav, .cardButtonMG{
+.cardButtonFav, .cardButtonMG, .btnEditR{
     color: aqua;
 }
 .cardButtonK{
