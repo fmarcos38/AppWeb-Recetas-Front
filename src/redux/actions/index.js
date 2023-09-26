@@ -57,7 +57,7 @@ export function editaReceta(data){
 /*---------actions User----------------*/
 export function registrarse(data){
     return async function(dispatch){
-        const resp = await axios.post(`${urlDesarrollo}/auth`, data);
+        const resp = await axios.post(`${urlDesarrollo}/users`, data);
         
         if(resp.data.token){
             localStorage.setItem('user', JSON.stringify(resp.data)); //asigno el token q viene del back

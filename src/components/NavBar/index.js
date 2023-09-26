@@ -36,7 +36,7 @@ function NavBar({userActual, name}) {
                 </li> 
                 {/* crear R */}
                 {
-                  userStorage.user.role === "admin" &&
+                  userStorage?.user.role === "admin" &&
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/createR">Crea receta</a>
                   </li>

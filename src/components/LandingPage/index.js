@@ -55,7 +55,7 @@ function LandingPage() {
                         </div>                                  
                     </div>
                     {/* cont 1 */}
-                    <div class="container col">                        
+                    <div class="container col contTitImage">                        
                             <div class="container titulos">
                                 <h2 className="titulo">No sabés que cocinar?</h2>                              
                             </div>
@@ -69,8 +69,10 @@ function LandingPage() {
                 </div>
                 
                 {/* Dietas */}
-                <h4 className="titulo">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
-                <div class="container-fluid contSegundo">                        
+                <div class="container contTiposrecetas">
+                    <h4 className="titulo">Algunas de las Dietas a las que se adaptan nuestras recetas</h4>
+
+                    <div class="container-fluid contSegundo">                                     
                         <div class="container contLogoD">                            
                             <img src={gluten} alt="" className="imgDietas"/>
                         </div>
@@ -87,6 +89,8 @@ function LandingPage() {
                             <img src={paleo} alt="" className="imgDietas"/>
                         </div>
                 </div>
+                </div>
+                
                 {/* Dietas pantalla chica */}
                 <div class="row contSegundoPChica">                        
                     <img src={gluten} alt="" className="imgDietas"/>
@@ -97,15 +101,15 @@ function LandingPage() {
                 </div>                
                 
 
-                {/* cont recetas */}
-                <h4 className="titulo">Algunas de nuestras recetas</h4>
-                {/* <div class="container-fluid contTercero">                        
-                    <ListaRecetasMuestra />
-                </div> */}
-                {/* pantalla CH recetas */}
-                <div class="row">                        
-                    <ListaRecetasMuestra />                        
+                {/* cont recetas */}                
+                <div class="container contTercero">
+                    <h4 className="titulo">Algunas de nuestras recetas</h4>
+                    {/* pantalla CH recetas */}
+                    <div class="row">                        
+                        <ListaRecetasMuestra />                        
+                    </div>
                 </div>
+                
                 
                 {/* Info alimentos */}
                 <div class="container-fluid contSegundoDIV">

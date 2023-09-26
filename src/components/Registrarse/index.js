@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Registrarse() {
 
     const initialState = {
-        name: "", email: "", password: ""
+        name: "", email: "", password: "", verifPassword: ""
     };
 
     const [state, setState] = useState(initialState);
@@ -47,12 +47,21 @@ function Registrarse() {
             newErrors.password = '';
         }
 
+        if (!state.verifPassword.trim()) {
+            newErrors.verifPassword = 'La contraseña es obligatoria';
+        } else if (state.verifPassword.length < 6) {
+            newErrors.verifPassword = 'La contraseña debe tener al menos 6 caracteres';
+        }else if(state.password !== state.verifPassword){
+            newErrors.verifPassword = 'Las contraseñas no coinciden';
+        } else {
+            newErrors.verifPassword = '';
+        }
         setErrors(newErrors);
 
     // si no hay errores------------------------------------
     if (!Object.values(newErrors).some((error) => !!error)) {
-        
         dispatch(registrarse(state));
+        
         setState(initialState);
         navigate("/login");
     }
@@ -64,8 +73,8 @@ function Registrarse() {
                 <form onSubmit={handleSub} class="container card">
                 <h1>Registrate para acceder a todas las recetas</h1>
                 <div class="tituloP">
-                    <img src='https://img1.picmix.com/output/stamp/normal/3/1/6/8/498613_71577.gif' class="imgLog1" alt=''/>
-                    <img src='https://www.gifsanimados.org/data/media/92/cocinero-y-chef-imagen-animada-0002.gif' class="imgLog2" alt=''/>
+                    <img src='https://img1.picmix.com/output/stamp/normal/3/1/6/8/498613_71577.gif' class="imgLog1R" alt=''/>
+                    <img src='https://www.gifsanimados.org/data/media/92/cocinero-y-chef-imagen-animada-0002.gif' class="imgLog2R" alt=''/>
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -81,6 +90,11 @@ function Registrarse() {
                     <label for="pass" class="form-label">Password</label>
                     <input type="text" class="form-control" value={state.password} onChange={handleChange} id="password" placeholder="your pass"/>
                     {errors.password && ( <span className="error-message">{errors.password}</span> )}
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Vuelva a ing su Password</label>
+                    <input type="text" class="form-control" value={state.verifPassword} onChange={handleChange} id="verifPassword" placeholder="your pass"/>
+                    {errors.verifPassword && ( <span className="error-message">{errors.verifPassword}</span> )}
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary"type='submit'>Registrarse</button>

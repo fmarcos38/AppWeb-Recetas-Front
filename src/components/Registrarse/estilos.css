@@ -16,6 +16,10 @@
     align-self: center;
     justify-content: center;
 }
+.imgLog1R,
+.imgLog2R{
+    height: 200px;
+}
 .error-message {
     color: red;
     font-size: 14px;

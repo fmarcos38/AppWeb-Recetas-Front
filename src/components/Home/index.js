@@ -57,12 +57,12 @@ function Home() {
     //para la paginación --> sacar totlPaginas = (recetasTot/cantRecPorPag) 
     const [paginaActual, setPaginaActual] = useState(1); //estado pagina actual
     let totalPag = 0;
-
+    
     /* utilizo un If para calcular la cantidad de items q debe mostrar el paginado(me refiero a los num de pag [pag1, pag2...etc] segun la cant de recetas retornadas del back) */
     if(!dieta && !ingrediente){
         totalPag = Math.ceil(103 / 20);   
     }else{
-        totalPag = Math.ceil(allRecetas.page.totalConsultaAct / 20);
+        totalPag = Math.ceil(allRecetas.page.totalRecetasDB / 20);
     }
     
     const onChangePag = (numPag) => {
